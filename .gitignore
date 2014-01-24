@@ -1,0 +1,5 @@
+#ignore the Eclipse .metadata folder
+.metadata/
+
+#ignore all the files in the build folder
+GPAGO/build/
