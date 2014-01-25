@@ -1,0 +1,54 @@
+	<table width="504" border="1">
+		<tr>
+			<td width="151" rowspan="9">
+			<a href="PHOTOGALLERY%20AVAIL%20DOGS/alealancraig2.jpg" target="_blank">
+			<img class="style30" height="202" src="PHOTOGALLERY%20AVAIL%20DOGS/alealancraig1.jpg" width="156" /></a></td>
+			<td bgcolor="#c3d2ed" class="style8" style="width: 141px"><strong>
+			Name:</strong></td>
+			<td width="201" bgcolor="#c3d2ed" class="auto-style17">Ale Alan 
+			Craig "Craig"</td>
+		</tr>
+		<tr>
+			<td class="style8" style="width: 141px">Date of Birth:</td>
+			<td width="201" class="style8">11/23/2011</td>
+		</tr>
+		<tr>
+			<td class="style8" style="width: 141px">Gender:</td>
+			<td width="201" class="style8">Male</td>
+		</tr>
+		<tr>
+			<td class="style8" style="width: 141px">Weight:</td>
+			<td width="201" class="style8">77</td>
+		</tr>
+		<tr>
+			<td class="style8" style="width: 141px; height: 16px;">Color:</td>
+			<td width="201" class="style8" style="height: 16px">Red</td>
+		</tr>
+		<tr>
+			<td class="style8" style="width: 141px">Cat friendly:</td>
+			<td width="201" class="style8" style="height: 18px">Yes</td>
+		</tr>
+		<tr>
+			<td class="style8" style="width: 141px; height: 22px;">Home acclimated:</td>
+			<td width="201" class="style8" style="height: 22px">No</td>
+		</tr>
+		<tr>
+			<td class="style8" style="width: 141px; height: 22px;">Personality/more info:</td>
+			<td width="201" class="style8"><span class="auto-style86">Brother to 
+			Ale Dolly Parton &amp; Ale Ernie Banks</span><br />
+			<em>additional
+			<a href="PHOTOGALLERY%20AVAIL%20DOGS/AleAlanCraig3.jpg" target="_blank">pic</a>,
+			<a href="PHOTOGALLERY%20AVAIL%20DOGS/AleAlanCraig4.jpg" target="_blank">pic</a></em></td>
+		</tr>
+		<tr>
+			<td class="style8" style="width: 141px; height: 21px;">Sponsored by:</td>
+			<td width="201" class="style8" style="height: 21px">
+			<p class="style61">Carol &amp; Michael LaMothe</p>
+			<p class="style61">Debbie &amp; Robert Barnes</p>
+			<p class="style61">Marcus &amp; Michelle Odell</p>
+			<p class="style61">Gary Schaffer</p>
+			<p class="style61"><a href="sponsorform.html">Click here to sponsor 
+			me</a></p>
+</td>
+			</tr>
+	</table>
