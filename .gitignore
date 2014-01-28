@@ -1,5 +1,7 @@
 #ignore the Eclipse .metadata folder
 .metadata/
 
+.RemoteSystemsTempFiles
+
 #ignore all the files in the build folder
 GPAGO/build/
