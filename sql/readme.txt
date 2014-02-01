@@ -1,0 +1,2 @@
+Before Moving to Production, a sqlCreate file should be generated to create the production schema.  
+DDL Generation, as specified in the persistence.xml file, should be changed so not to drop-and-create-tables.

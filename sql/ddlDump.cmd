@@ -1,0 +1,1 @@
+"C:\Program Files (x86)\MySQL\MySQL Server 5.0\bin\mysqldump" --no-data --user=root --password=password gpago > sqlCreate.sql
