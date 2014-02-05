@@ -2,6 +2,7 @@ package gpago.model.test;
 
 import gpago.model.entity.Greyhound;
 
+import java.util.List;
 import java.util.logging.Logger;
 
 import javax.persistence.EntityManager;
@@ -31,6 +32,13 @@ public class ModelTest {
 		newGreyhound("Sue");
 		newGreyhound("Joe");
 		em.getTransaction().commit();
+		
+		List<Greyhound> greyhounds = em.createNamedQuery("Greyhound.findAll").getResultList();
+		
+		for (Greyhound greyhound: greyhounds) {
+			System.out.println("Greyhound: " + greyhound.getName());
+		}
+		
 		
 
 		// g should be written to database now.

@@ -12,7 +12,10 @@ import javax.persistence.*;
  *
  */
 @Entity
-
+@NamedQueries({
+	@NamedQuery(name = "Greyhound.findAll", query = "SELECT e FROM Greyhound e"),
+	@NamedQuery(name = "Greyhound.findById", query = "SELECT e FROM Greyhound e WHERE e.id = :id")
+})
 public class Greyhound implements Serializable {
 
 	   
