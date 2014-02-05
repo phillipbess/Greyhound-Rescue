@@ -5,3 +5,4 @@ RemoteSystemsTempFiles
 
 #ignore all the files in the build folder
 GPAGO/build/
+/bin
