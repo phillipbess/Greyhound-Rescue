@@ -7,7 +7,7 @@ import java.util.List;
 
 public class ModelFacade {
 	
-	List<Greyhound> greyhounds = new ArrayList<Greyhound>();
+	private List<Greyhound> greyhounds = new ArrayList<Greyhound>();
 	
 	public List<Greyhound> getGreyhounds() {
 		return greyhounds;
