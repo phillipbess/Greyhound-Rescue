@@ -44,13 +44,17 @@ public class Greyhound implements Serializable {
 		super();
 	}
 	
+	public Greyhound(String name, String description) {
+		super();
+		this.name = name;
+		this.description = description;
+	}
+	
+	
 	public Long getId() {
 		return this.id;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}   
 	public String getName() {
 		return this.name;
 	}
@@ -59,12 +63,24 @@ public class Greyhound implements Serializable {
 		this.name = name;
 	}
 	
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
 	public Boolean getIsCatFriendly() { 
 		return isCatFriendly;
 	}
 
 	public void setIsCatFriendly(Boolean isCatFriendly) {
 		this.isCatFriendly = isCatFriendly;
+	}
+	
+	public String toString() {
+		return name + " [id = " + id + "] ";
 	}
    
 }
