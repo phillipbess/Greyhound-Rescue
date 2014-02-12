@@ -27,6 +27,10 @@ public class Greyhound implements Serializable {
 	
 	private String name_race;
 	
+	private Boolean isCatFriendly;
+	
+	
+
 	@Temporal(TemporalType.TIMESTAMP) 
 	public Date entryDate;	
 
@@ -53,6 +57,14 @@ public class Greyhound implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public Boolean getIsCatFriendly() {
+		return isCatFriendly;
+	}
+
+	public void setIsCatFriendly(Boolean isCatFriendly) {
+		this.isCatFriendly = isCatFriendly;
 	}
    
 }
