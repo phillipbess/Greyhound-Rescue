@@ -59,7 +59,7 @@ public class Greyhound implements Serializable {
 		this.name = name;
 	}
 	
-	public Boolean getIsCatFriendly() {
+	public Boolean getIsCatFriendly() { 
 		return isCatFriendly;
 	}
 
