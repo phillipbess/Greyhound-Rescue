@@ -3,6 +3,7 @@
 	<name>GPAGO</name>
 	<comment></comment>
 	<projects>
+		<project>Model</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
