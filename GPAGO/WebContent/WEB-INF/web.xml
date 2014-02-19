@@ -37,15 +37,25 @@
     <servlet-class>coreservlets.NoInvokerServlet</servlet-class>
   </servlet>
   <servlet>
-  	<servlet-name>SampleDataInitializer</servlet-name>
+    <servlet-name>SampleDataInitializer</servlet-name>
     <servlet-class>gpago.view.servlet.SampleDataInitializer</servlet-class>
     <load-on-startup>0</load-on-startup>
-   </servlet>   
-  
+  </servlet>
   <servlet-mapping>
     <servlet-name>NoInvoker</servlet-name>
     <url-pattern>/servlet/*</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>ControllerServlet</servlet-name>
+    <servlet-class>gpago.view.servlet.ControllerServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ControllerServlet</servlet-name>
+    <url-pattern>/admin/*</url-pattern>
+  </servlet-mapping>
+  
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
