@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Manage Pets</title>
+<title>Resource Not Found</title>
 </head>
 <body>
-Manage Pets
+
 </body>
 </html>

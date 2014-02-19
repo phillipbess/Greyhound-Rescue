@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Login</title>
+<title>Greyhound [Greyhound Name or New Greyhound]</title>
 </head>
 <body>
-<p>Login</p>
+Add or exit greyhound.
 </body>
 </html>

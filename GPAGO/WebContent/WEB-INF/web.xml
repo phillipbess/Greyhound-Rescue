@@ -3,7 +3,7 @@
   <display-name>GPAGO</display-name>
   <error-page>
     <error-code>400</error-code>
-    <location>/WEB-INF/jsp/failed-login.jsp</location>
+    <location>/WEB-INF/jsp/badRequest.jsp</location>
   </error-page>
   <error-page>
     <error-code>401</error-code>
@@ -12,6 +12,10 @@
   <error-page>
     <error-code>403</error-code>
     <location>/WEB-INF/jsp/forbidden.jsp</location>
+  </error-page>
+  <error-page>
+    <error-code>404</error-code>
+    <location>/WEB-INF/jsp/resouceNotFound.jsp</location>
   </error-page>
   <security-constraint>
     <web-resource-collection>

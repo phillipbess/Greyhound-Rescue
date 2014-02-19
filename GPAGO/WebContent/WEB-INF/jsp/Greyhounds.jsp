@@ -19,7 +19,7 @@
 <tr>
 <td>${greyhound.name}</td>
 <td>${greyhound.description}</td>
-<td><a href="admin?operation=EDIT&id=${greyhound.id}">Edit</a></td>
+<td><a href="admin?action=edit&id=${greyhound.id}">Edit</a></td>
 </tr>
 
 </c:forEach>

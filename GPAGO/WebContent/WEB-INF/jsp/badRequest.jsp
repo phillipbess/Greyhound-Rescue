@@ -4,10 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Login Failed</title>
+<title>Invalid Request</title>
 </head>
 <body>
-<p>Failed Login</p>
-
+<p>The request was not understood by the server.</p>
 </body>
 </html>

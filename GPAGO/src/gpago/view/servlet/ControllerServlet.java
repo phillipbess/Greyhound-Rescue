@@ -20,13 +20,13 @@ public class ControllerServlet extends HttpServlet {
 		LIST_GREYHOUNDS, NEW_GREYHOUND, EDIT_GREYHOUND, UNKNOWN
 	};
 
-	public static final String OPERAION_NEW_GREYHOUND = "NEW";
-	public static final String OPERAION_EDIT_GREYHOUND = "EDIT";
+	public static final String OPERAION_NEW_GREYHOUND = "new";
+	public static final String OPERAION_EDIT_GREYHOUND = "edit";
 	public static final String OPERAION_UNKNOWN = "UNKNOWN";
 
-	public static final String OPERAION_LIST_GREYHOUND_RESOURCE = "/WEB-INF/jsp/ManageGreyhounds.jsp";
-	public static final String OPERAION_NEW_GREYHOUND_RESOURCE = "/WEB-INF/Greyhound.jsp";
-	public static final String OPERAION_EDIT_GREYHOUND_RESOURCE = "/WEB-INF/Greyhound.jsp";
+	public static final String OPERAION_LIST_GREYHOUND_RESOURCE = "/WEB-INF/jsp/Greyhounds.jsp";
+	public static final String OPERAION_NEW_GREYHOUND_RESOURCE  = "/WEB-INF/jsp/Greyhound.jsp";
+	public static final String OPERAION_EDIT_GREYHOUND_RESOURCE = "/WEB-INF/jsp/Greyhound.jsp";
 
 	private static final long serialVersionUID = 1L;
 	
@@ -44,7 +44,7 @@ public class ControllerServlet extends HttpServlet {
 	 *      response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Operation operation = getOperation(request.getParameter("operation"));
+		Operation operation = getOperation(request.getParameter("action"));
 
 		
 		String address = OPERAION_LIST_GREYHOUND_RESOURCE; // Default to listing greyhounds
