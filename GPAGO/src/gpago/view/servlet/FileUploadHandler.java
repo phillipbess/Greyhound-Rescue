@@ -2,6 +2,9 @@ package gpago.view.servlet;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -16,7 +19,8 @@ import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 /*
  * Class is called from AddNewGreyForm jsp page to process adding an image to the server.
- * Currently outputs result to AddNewGreyFormResult.  Will eventually output to notification.
+ * It checks to verify the file isn't already there, then adds the file if it isn't and 
+ * send an appropriate message to the AddNewGreyFormResult alert window.
  */
 
 @WebServlet("/upload/*")
@@ -24,39 +28,50 @@ public class FileUploadHandler extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	private final String UPLOAD_DIRECTORY = "C:/uploads";
-  
-    
-    
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-      
-        //process only if its multipart content
-        if(ServletFileUpload.isMultipartContent(request)){
-            try {
-                List<FileItem> multiparts = new ServletFileUpload(
-                                         new DiskFileItemFactory()).parseRequest(request);
-              
-                for(FileItem item : multiparts){
-                    if(!item.isFormField()){
-                        String name = new File(item.getName()).getName();
-                        new File(UPLOAD_DIRECTORY).mkdir();
-                        item.write( new File(UPLOAD_DIRECTORY + File.separator + name));
-                    }
-                }
-           
-               //File uploaded successfully
-               request.setAttribute("message", "File Uploaded Successfully to "+UPLOAD_DIRECTORY);
-            } catch (Exception ex) {
-               request.setAttribute("message", "File Upload Failed due to " + ex);
-            }          
-         
-        }else{
-            request.setAttribute("message",
-                                 "Sorry this Servlet only handles file upload request");
-        }
-    
-        request.getRequestDispatcher("/AddNewGreyFormResult.jsp").forward(request, response);
-     
-    }  
+
+	@Override
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+
+		// process only if its multipart content
+		if (ServletFileUpload.isMultipartContent(request)) {
+			try {
+				String name = null;
+				List<FileItem> multiparts = new ServletFileUpload(
+						new DiskFileItemFactory()).parseRequest(request);
+
+				for (FileItem item : multiparts) {
+					if (!item.isFormField()) {
+						name = new File(item.getName()).getName();
+						Path path = Paths.get(UPLOAD_DIRECTORY + File.separator
+								+ name);
+						if (Files.notExists(path)) {
+							new File(UPLOAD_DIRECTORY).mkdir();
+							item.write(new File(UPLOAD_DIRECTORY
+									+ File.separator + name));
+							// File uploaded successfully
+							request.setAttribute("message", "File " + name
+									+ " Uploaded Successfully to "
+									+ UPLOAD_DIRECTORY);
+						} else {
+							request.setAttribute("message", "File " + name
+									+ " already exists in " + UPLOAD_DIRECTORY);
+						}
+					}
+				}
+
+			} catch (Exception ex) {
+				request.setAttribute("message", "File Upload Failed due to "
+						+ ex);
+			}
+
+		} else {
+			request.setAttribute("message",
+					"Sorry this Servlet only handles file upload request");
+		}
+
+		request.getRequestDispatcher("/AddNewGreyFormResult.jsp").forward(
+				request, response);
+
+	}
 }

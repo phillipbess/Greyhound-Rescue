@@ -12,7 +12,8 @@
     <body> 
         <div id="result">
             <script type="text/javascript">
-            alert('${requestScope["message"]}');
+            window.location = 'http://localhost:8080/GPAGO/AddNewGreyForm.jsp';
+            alert('${requestScope["message"]}');            
         	</script>            
         </div>      
     </body>

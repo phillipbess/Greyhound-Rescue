@@ -20,9 +20,9 @@
         <div>
             <h3> Choose File to Upload in Server </h3>
             <form action="${pageContext.request.contextPath}/upload" method="post" enctype="multipart/form-data">
-                <input type="file" name="file" />
+                <input type="file" name="file" /><br>
                 <input type="submit" value="upload" />
             </form>          
-        </div>      
+        </div>       
     </body>
 </html>
