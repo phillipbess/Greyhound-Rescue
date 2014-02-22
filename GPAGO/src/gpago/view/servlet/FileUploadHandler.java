@@ -10,6 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.tomcat.util.http.fileupload.FileItem;
+import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
+import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
+
 /*
  * Class is called from AddNewGreyForm jsp page to process adding an image to the server.
  * Currently outputs result to AddNewGreyFormResult.  Will eventually output to notification.
@@ -28,12 +32,12 @@ public class FileUploadHandler extends HttpServlet {
             throws ServletException, IOException {
       
         //process only if its multipart content
-        if(org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload.isMultipartContent(request)){
+        if(ServletFileUpload.isMultipartContent(request)){
             try {
-                List<org.apache.tomcat.util.http.fileupload.FileItem> multiparts = new org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload(
-                                         new org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory()).parseRequest(request);
+                List<FileItem> multiparts = new ServletFileUpload(
+                                         new DiskFileItemFactory()).parseRequest(request);
               
-                for(org.apache.tomcat.util.http.fileupload.FileItem item : multiparts){
+                for(FileItem item : multiparts){
                     if(!item.isFormField()){
                         String name = new File(item.getName()).getName();
                         new File(UPLOAD_DIRECTORY).mkdir();
