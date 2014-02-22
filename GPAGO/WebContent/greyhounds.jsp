@@ -6,12 +6,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Manage Greyhounds</title>
+<title>Greyhounds</title>
 </head>
 <body>
 
 
-<jsp:useBean id="facade" class="gpago.view.ViewFacade" scope="request"/>
+<jsp:useBean id="facade" type="gpago.view.ViewFacade" scope="request"/>
 <table>
 
 <c:forEach var="greyhound" items="${facade.greyhounds}">
@@ -19,7 +19,6 @@
 <tr>
 <td>${greyhound.name}</td>
 <td>${greyhound.description}</td>
-<td><a href="admin?action=edit&id=${greyhound.id}">Edit</a></td>
 </tr>
 
 </c:forEach>

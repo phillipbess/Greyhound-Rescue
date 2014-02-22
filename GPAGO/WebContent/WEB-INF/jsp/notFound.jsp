@@ -4,9 +4,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Greyhound [Greyhound Name or New Greyhound]</title>
+<title>Greyhound Rescue</title>
 </head>
 <body>
-Add or exit greyhound.
+
+<h3>Not Found</h3>
+<p>Sorry. The page you requested cannot be found on our site.</p>
 </body>
 </html>

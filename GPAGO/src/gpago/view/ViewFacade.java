@@ -7,9 +7,10 @@ import gpago.model.entity.Greyhound;
 
 public class ViewFacade {
 	
-	ModelFacade modelFacade = new ModelFacade();
+	ModelFacade modelFacade;
 	
-	public ViewFacade() {
+	public ViewFacade(ModelFacade modelFacade) {
+		this.modelFacade = modelFacade;
 		
 	}
 	

@@ -50,7 +50,7 @@ public class SampleDataInitializer extends HttpServlet {
 		if (greyhoundCountBeforeTest == 0) {
 			logger.info("SampleDataInitializer - generating sample data records");
 			
-			for (int x = 0; x < RECORDS_TO_GENERATE; x++)
+			for (int x = 1; x <= RECORDS_TO_GENERATE; x++)
 				createGreyhound(facade, x);
 			
 			// Commit all of the managed entity to the database.

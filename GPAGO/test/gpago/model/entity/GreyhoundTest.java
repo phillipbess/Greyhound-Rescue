@@ -22,9 +22,9 @@ public class GreyhoundTest {
 		
 		Greyhound greyhound = new Greyhound();
 		greyhound.setIsCatFriendly(true);
-		Assert.assertEquals("isCatFriendly is not as expected.", true, greyhound.getIsCatFriendly());
+		Assert.assertEquals("isCatFriendly is not as expected.", true, greyhound.isCatFriendly());
 		
 		greyhound.setIsCatFriendly(false);
-		Assert.assertEquals("isCatFriendly is not as expected.", false, greyhound.getIsCatFriendly());
+		Assert.assertEquals("isCatFriendly is not as expected.", false, greyhound.isCatFriendly());
 	}
 }

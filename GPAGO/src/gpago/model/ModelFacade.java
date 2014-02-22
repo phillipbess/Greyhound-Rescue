@@ -39,6 +39,18 @@ public class ModelFacade {
 		return getEntityManager().find(Greyhound.class, id);
 	}
 	
+	public void saveGreyhound(Greyhound greyhound) {
+		if (greyhound.getId()==null) { // Then it's a new greyhound, persist it.
+			persistEntity(greyhound);
+			em.getTransaction().begin();
+			em.getTransaction().commit();
+		} else { // Else, it's an existing greyhound that has been updated.  Just commit.
+			// 
+			em.getTransaction().begin();
+			em.getTransaction().commit();
+		}
+	}
+	
 	public void removeGreyhound(Greyhound greyhound) {
 		getEntityManager().remove(greyhound);
 	}
