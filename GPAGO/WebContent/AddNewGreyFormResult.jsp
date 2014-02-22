@@ -11,7 +11,9 @@
 </head>
     <body> 
         <div id="result">
-            <h3>${requestScope["message"]}</h3>
+            <script type="text/javascript">
+            alert('${requestScope["message"]}');
+        	</script>            
         </div>      
     </body>
 </html>
