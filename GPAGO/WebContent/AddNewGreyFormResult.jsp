@@ -1,5 +1,5 @@
-<!-- This page is temporary.  Will eventually be replaced by notification on AddNewGreyForm page.
-	 Currently creates a new page to show the results of an image add attempt. -->
+<!-- Creates an alert to show the results of an image add attempt.
+	 Then redirects to back to the AddNewGreyForm page so more additions can be made. -->
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -11,7 +11,10 @@
 </head>
     <body> 
         <div id="result">
-            <h3>${requestScope["message"]}</h3>
+            <script type="text/javascript">
+            window.location = 'http://localhost:8080/GPAGO/AddNewGreyForm.jsp';
+            alert('${requestScope["message"]}');            
+        	</script>            
         </div>      
     </body>
 </html>
