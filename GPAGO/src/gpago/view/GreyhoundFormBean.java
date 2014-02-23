@@ -1,5 +1,7 @@
 package gpago.view;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.lang3.StringUtils;
 
 import gpago.model.entity.Greyhound;
@@ -17,6 +19,18 @@ public class GreyhoundFormBean {
 	
 	public GreyhoundFormBean(Greyhound greyhound) {
 		this.greyhound = greyhound;
+	}
+	
+	public GreyhoundFormBean(HttpServletRequest request, Greyhound greyhound) {
+		this.greyhound = greyhound;
+		initFromRequest(request, greyhound);
+	}
+	
+	private void initFromRequest(HttpServletRequest request, Greyhound greyhound) {
+		if (request.getParameter("name")!=null)
+			greyhound.setName(request.getParameter("name"));
+		if (request.getParameter("description")!=null)
+			greyhound.setDescription(request.getParameter("description"));
 	}
 	
 	/**
@@ -47,7 +61,7 @@ public class GreyhoundFormBean {
 	
 	public String getNameValidationText() {
 		if (StringUtils.isEmpty(greyhound.getName()))
-			return "A name must be entered";
+			return "Required";
 		return "";
 	}
 

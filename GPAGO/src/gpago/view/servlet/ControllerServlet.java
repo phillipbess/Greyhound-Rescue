@@ -6,7 +6,6 @@ import gpago.view.GreyhoundFormBean;
 import gpago.view.ViewFacade;
 
 import java.io.IOException;
-import java.util.Map;
 import java.util.logging.Logger;
 
 import javax.servlet.RequestDispatcher;
@@ -66,14 +65,14 @@ public class ControllerServlet extends HttpServlet {
 			address = ADDRESS_MANAGE_GREYHOUNDS_URI;
 			request.setAttribute("facade", new ViewFacade(facade)); // We use the view facade to tailor what is exposed to jsp.
 		} else if (uri.endsWith("/admin/new_greyhound")) {
-			GreyhoundFormBean bean = new GreyhoundFormBean(new Greyhound());
+			GreyhoundFormBean bean = new GreyhoundFormBean(request, new Greyhound());
 			request.setAttribute("greyhound", bean);
 			address = ADDRESS_NEW_GREYHOUND_URI;
 		} else if (uri.endsWith("/admin/update_greyhound")) {
-			Greyhound greyhound = getGreyhound(request);
+			Greyhound greyhound = getGreyhound(getLongParameter(request, "id"));
 
 			if (greyhound!=null) {
-				GreyhoundFormBean bean = new GreyhoundFormBean(greyhound);
+				GreyhoundFormBean bean = new GreyhoundFormBean(request, greyhound);
 				request.setAttribute("greyhound", bean);
 				address = ADDRESS_EDIT_GREYHOUND_URI;
 			} else {
@@ -99,17 +98,16 @@ public class ControllerServlet extends HttpServlet {
 		String address = null; // The uri to forward to.
 
 		// If an id parameter exists, try to load a greyhound record for that id and initialize the greyhound object from the request parameters.
-		Greyhound greyhound  = getGreyhound(request);
+		Greyhound greyhound  = getGreyhound(getLongParameter(request, "id"));
 		
 		if (greyhound==null) {
 			// No id was specified (or a greyhound with that id was not found in the database)
 			// Therefore, we're creating new greyhound. Create a new greyhound object and initialize from parameters			
 			greyhound = new Greyhound();
-			initFromRequest(request, greyhound);
 		}
-		
+
 		// Wrap the greyhound object in a GreyhoundFormBean to be used by the jsp's.
-		GreyhoundFormBean bean = new GreyhoundFormBean(greyhound);
+		GreyhoundFormBean bean = new GreyhoundFormBean(request, greyhound);
 		
 		if (bean.isValid()) {
 			logger.finest("Saving greyhound");
@@ -130,27 +128,16 @@ public class ControllerServlet extends HttpServlet {
 		dispatcher.forward(request, response);
 	}
 	
-	private Greyhound getGreyhound(HttpServletRequest request) {
-		Greyhound greyhound = null;;
-
-		Long id = getLongParameter(request, "id");
+	private Greyhound getGreyhound(Long id) {
+		if (id==null)
+			return null;
 		
-		if (id!=null) {
-			greyhound = facade.getGreyhound(id);
-			if (greyhound!=null) {
-				initFromRequest(request, greyhound);
-			}
-		}
-		return greyhound;
-	}
-		
-	private void initFromRequest(HttpServletRequest request, Greyhound greyhound) {
-		if (request.getParameter("name")!=null)
-			greyhound.setName(request.getParameter("name"));
-		if (request.getParameter("description")!=null)
-			greyhound.setDescription(request.getParameter("description"));
-	}
+		if (id!=null)
+			return facade.getGreyhound(id);
 
+		return null;
+	}
+	
 	private Long getLongParameter(HttpServletRequest request, String name) {
 		String strValue =  request.getParameter(name);
 		if (strValue!=null) {
