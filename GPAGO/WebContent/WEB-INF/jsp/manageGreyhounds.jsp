@@ -13,8 +13,9 @@
 
 <jsp:useBean id="facade" type="gpago.view.ViewFacade" scope="request"/>
 
-<a href="new_greyhound">Edit</a>
+<a href="new_greyhound">Create New Greyhound Record</a>
 
+<br />
 <br />
 
 <table>

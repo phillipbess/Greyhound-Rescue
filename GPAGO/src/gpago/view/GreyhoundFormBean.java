@@ -1,21 +1,15 @@
 package gpago.view;
 
-import java.util.Map;
-import java.util.logging.Logger;
-
 import org.apache.commons.lang3.StringUtils;
 
 import gpago.model.entity.Greyhound;
 
 /**
- * The greyhoundFormBean provides specific information needed to display the
- * details of a greyhound.  This class is primarily a wrapper around a
- * Greyhound entity object.
+ * The greyhoundFormBean provides specific information needed by the jsps to display
+ * details of a greyhound .  This class is primarily a wrapper around the Greyhound entity object.
  * 
  */
 public class GreyhoundFormBean {
-	private static final Logger logger = Logger.getLogger(GreyhoundFormBean.class.getName());
-
 	/**
 	 * A reference to the greyhound object being added or edited.
 	 */
@@ -23,46 +17,6 @@ public class GreyhoundFormBean {
 	
 	public GreyhoundFormBean(Greyhound greyhound) {
 		this.greyhound = greyhound;
-	}
-	
-	/**
-	 * Create and initialize a GrehoundFormBean, including the contained Greyhound object
-	 * from properties.
-	 * 
-	 * @param greyhoundProperties
-	 * @param operation
-	 */
-	public GreyhoundFormBean(Map<String, String[]> greyhoundProperties) {
-		Long id = getLongProperty(greyhoundProperties, "id");
-		String name = getStringProperty(greyhoundProperties, "name");
-		String description = getStringProperty(greyhoundProperties, "description");
-		
-		greyhound = new Greyhound(id, name, description);
-		
-		/*try {
-			BeanUtils.populate(greyhound, greyhoundProperties);
-		} catch (Exception ex) {
-			logger.log(Level.SEVERE, "Error while initializing Greyhound object from properties.", ex);
-			
-		}*/
-	}
-	
-	private String getStringProperty(Map<String, String[]> greyhoundProperties, String name) {
-		String[] value =  greyhoundProperties.get(name);
-		if ((value!=null) && (value.length>0))
-			return value[0];
-		return null;
-	}
-	
-	private Long getLongProperty(Map<String, String[]> greyhoundProperties, String name) {
-		String[] strValue =  greyhoundProperties.get(name);
-		if ((strValue!=null) && (strValue.length>0)) {
-			try {
-				return Long.valueOf(strValue[0]);
-			} catch (Throwable ex) {
-			}
-		}
-		return null;
 	}
 	
 	/**

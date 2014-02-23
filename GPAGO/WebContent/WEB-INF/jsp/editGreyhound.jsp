@@ -12,8 +12,6 @@
 
 <input type="hidden" name="id" value="${greyhound.id}">
 
-<h1>${greyhound.operationDesc}</h1>
-
 <form method="POST">
 
 Name: <input type="text" name="name" value="${greyhound.name}">${greyhound.nameValidationText}<br />

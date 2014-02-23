@@ -59,17 +59,17 @@ public class ControllerServlet extends HttpServlet {
 		
 		uri = uri.toLowerCase();
 		
-		if ((contextPath + "/view-greyhounds").equalsIgnoreCase(uri)) { // Then user is viewing greyhounds available for adoption.
+		if (uri.endsWith("/view-greyhounds")) { // Then user is viewing greyhounds available for adoption.
 			address = ADDRESS_LIST_GREYHOUNDS_URI;
 			request.setAttribute("facade", new ViewFacade(facade)); // We use the view facade to tailor what is exposed to jsp.
-		} else if ((contextPath + "/admin/manage-greyhounds").equalsIgnoreCase(uri)) {
+		} else if (uri.endsWith("/admin/manage-greyhounds")) {
 			address = ADDRESS_MANAGE_GREYHOUNDS_URI;
 			request.setAttribute("facade", new ViewFacade(facade)); // We use the view facade to tailor what is exposed to jsp.
-		} else if ((contextPath + "/admin/new_greyhound").equalsIgnoreCase(uri)) {
+		} else if (uri.endsWith("/admin/new_greyhound")) {
 			GreyhoundFormBean bean = new GreyhoundFormBean(new Greyhound());
 			request.setAttribute("greyhound", bean);
 			address = ADDRESS_NEW_GREYHOUND_URI;
-		} else if ((contextPath + "/admin/update_greyhound").equalsIgnoreCase(uri)) {
+		} else if (uri.endsWith("/admin/update_greyhound")) {
 			Greyhound greyhound = getGreyhound(request);
 
 			if (greyhound!=null) {
