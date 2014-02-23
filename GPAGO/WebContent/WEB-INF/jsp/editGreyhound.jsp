@@ -18,7 +18,7 @@ Name: <input type="text" name="name" value="${greyhound.name}">${greyhound.nameV
 Description: <input type="text" name="description" value="${greyhound.description}"><br />
 
 <input type="submit" name="Save">
-<a href="admin/manage-greyhounds"><input type="button" value="Cancel" /></a>
+<button type="button" onclick="window.location='admin/manage-greyhounds';return false;">Cancel</button>
 
 </form>
 </body>
