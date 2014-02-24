@@ -3,6 +3,7 @@ package gpago.view.servlet;
 import gpago.model.ModelFacade;
 import gpago.model.entity.Greyhound;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -67,7 +68,9 @@ public class SampleDataInitializer extends HttpServlet {
 	}
 	
 	private Greyhound createGreyhound(ModelFacade facade, int idNum) {
-		Greyhound g = new Greyhound("Greyhound " + idNum, "This is a sample greyhound record for Greyhound " + idNum);
+		Greyhound g = new Greyhound("Greyhound " + idNum, "Sample greyhound record for Greyhound " + idNum,
+				new Date(1900000), "Male", 72, "brown", true, true, "A very friendly grey!", "A very happy grey",
+				new String[]{"Sponsor1", "Sponsor2"});
 		facade.persistEntity(g);
 		return g;
 	}

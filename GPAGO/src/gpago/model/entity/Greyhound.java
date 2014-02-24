@@ -56,14 +56,28 @@ public class Greyhound implements Serializable {
 		super();
 	}
 	
-	public Greyhound(String name, String description) {
+	public Greyhound(String name, String description, Date dateOfBirth, String gender, int weight, 
+					String color, boolean isCatFriendly, boolean isHomeAcclimated, String personality, 
+					String moreInfo, String[] sponsors) {
 		this();
-		this.name = name;
-		this.description = description;
+		setName(name);
+		setDescription(description);
+		setDateOfBirth(dateOfBirth);
+		setGender(gender);
+		setWeight(weight);
+		setColor(color);
+		setIsCatFriendly(isCatFriendly);
+		setIsHomeAcclimated(isHomeAcclimated);
+		setPersonality(personality);
+		setMoreInfo(moreInfo);
+		setSponsors(sponsors);
 	}
 	
-	public Greyhound(Long id, String name, String description) {
-		this(name, description);
+	public Greyhound(Long id, String name, String description, Date dateOfBirth, String gender, int weight, 
+			String color, boolean isCatFriendly, boolean isHomeAcclimated, String personality, 
+			String moreInfo, String[] sponsors) {
+		this(name, description, dateOfBirth, gender, weight, color, isCatFriendly, isHomeAcclimated, personality,
+				moreInfo, sponsors);
 		this.id = id;
 	}
 	
@@ -89,7 +103,7 @@ public class Greyhound implements Serializable {
 		this.description = description;
 	}
 	
-	public Boolean isCatFriendly() { 
+	public Boolean getIsCatFriendly() { 
 		return isCatFriendly;
 	}
 

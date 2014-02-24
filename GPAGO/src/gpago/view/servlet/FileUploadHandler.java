@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.tomcat.util.http.fileupload.FileItem;
+import org.apache.tomcat.util.http.fileupload.RequestContext;
 import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
@@ -38,7 +39,7 @@ public class FileUploadHandler extends HttpServlet {
 			try {
 				String name = null;
 				List<FileItem> multiparts = new ServletFileUpload(
-						new DiskFileItemFactory()).parseRequest(request);
+						new DiskFileItemFactory()).parseRequest((RequestContext) request);
 
 				for (FileItem item : multiparts) {
 					if (!item.isFormField()) {

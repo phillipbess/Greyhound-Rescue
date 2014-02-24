@@ -13,18 +13,38 @@
 
 <jsp:useBean id="facade" type="gpago.view.ViewFacade" scope="request"/>
 
-<a href="new_greyhound">Create New Greyhound Record</a>
+<a href="new_greyhound">Create new greyhound record</a>
 
 <br />
 <br />
 
-<table>
+<table border="1">
+<tr>
+<td>Name</td>
+<td>Description</td>
+<td>Date of Birth</td>
+<td>Gender</td>
+<td>Weight</td>
+<td>Color</td>
+<td>Cat Friendly</td>
+<td>Home Acclimated</td>
+<td>Personality</td>
+<td>More info</td>
+</tr>
 
 <c:forEach var="greyhound" items="${facade.greyhounds}">
 
 <tr>
 <td>${greyhound.name}</td>
 <td>${greyhound.description}</td>
+<td>${greyhound.dateOfBirth}</td>
+<td>${greyhound.gender}</td>
+<td>${greyhound.weight}</td>
+<td>${greyhound.color}</td>
+<td>${greyhound.isCatFriendly}</td>
+<td>${greyhound.isHomeAcclimated}</td>
+<td>${greyhound.personality}</td>
+<td>${greyhound.moreInfo}</td>
 <td><a href="update_greyhound?id=${greyhound.id}">Edit</a></td>
 </tr>
 

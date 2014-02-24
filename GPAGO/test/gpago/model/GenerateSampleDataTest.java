@@ -2,6 +2,7 @@ package gpago.model;
 
 import gpago.model.entity.Greyhound;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.junit.Assert;
@@ -25,8 +26,9 @@ public class GenerateSampleDataTest {
 		
 		// Only add sample data if no greyhound records currently exist in the database.
 		if (greyhoundCountBeforeTest == 0) {
-			for (int x = 0; x < RECORDS_TO_GENERATE; x++)
+			for (int x = 0; x < RECORDS_TO_GENERATE; x++){
 				createGreyhound(facade, x);
+			}				
 			
 			// Commit all of the managed entity to the database.
 			// Note, in JPA persisting an entity makes it managed but it is not
@@ -43,7 +45,9 @@ public class GenerateSampleDataTest {
 	}
 	
 	private Greyhound createGreyhound(ModelFacade facade, int idNum) {
-		Greyhound g = new Greyhound("Greyhound " + idNum, "This is a sample greyhound record for Greyhound " + idNum);
+		Greyhound g = new Greyhound("Greyhound " + idNum, "Sample greyhound record for Greyhound " + idNum,
+				new Date(1900000), "Male", 72, "brown", true, true, "A very friendly grey!", "A very happy grey",
+				new String[]{"Sponsor1", "Sponsor2"});
 		facade.persistEntity(g);
 		return g;
 	}

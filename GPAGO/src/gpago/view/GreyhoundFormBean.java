@@ -78,7 +78,7 @@ public class GreyhoundFormBean {
 	}
 	
 	public boolean isCatFriendly() { 
-		return greyhound.isCatFriendly();
+		return greyhound.getIsCatFriendly();
 	}
 
 	public void setIsCatFriendly(Boolean isCatFriendly) {
