@@ -24,12 +24,25 @@ public class Greyhound implements Serializable {
 	
 	private String name;
 	
-	private String name_race;
+	@Temporal(TemporalType.TIMESTAMP) 
+	private Date dateOfBirth;
+	
+	private String gender;
+	
+	private int weight;
+	
+	private String color;
 	
 	private Boolean isCatFriendly;
 	
+	private Boolean isHomeAcclimated;
 	
-
+	private String personality;
+	
+	private String moreInfo;
+	
+	private String[] sponsors;
+	
 	@Temporal(TemporalType.TIMESTAMP) 
 	private Date entryDate;	
 
@@ -84,6 +97,70 @@ public class Greyhound implements Serializable {
 		this.isCatFriendly = isCatFriendly;
 	}
 	
+	public Date getDateOfBirth() {
+		return dateOfBirth;
+	}
+
+	public void setDateOfBirth(Date dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public int getWeight() {
+		return weight;
+	}
+
+	public void setWeight(int weight) {
+		this.weight = weight;
+	}
+
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
+
+	public Boolean getIsHomeAcclimated() {
+		return isHomeAcclimated;
+	}
+
+	public void setIsHomeAcclimated(Boolean isHomeAcclimated) {
+		this.isHomeAcclimated = isHomeAcclimated;
+	}
+
+	public String getPersonality() {
+		return personality;
+	}
+
+	public void setPersonality(String personality) {
+		this.personality = personality;
+	}
+
+	public String getMoreInfo() {
+		return moreInfo;
+	}
+
+	public void setMoreInfo(String moreInfo) {
+		this.moreInfo = moreInfo;
+	}
+
+	public String[] getSponsors() {
+		return sponsors;
+	}
+
+	public void setSponsors(String[] sponsors) {
+		this.sponsors = sponsors;
+	}
+
 	public String toString() {
 		return name + " [id = " + id + "] ";
 	}
