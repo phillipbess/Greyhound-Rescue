@@ -14,14 +14,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.tomcat.util.http.fileupload.FileItem;
-import org.apache.tomcat.util.http.fileupload.RequestContext;
 import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 /*
  * Class is called from AddNewGreyForm jsp page to process adding an image to the server.
- * It checks to verify the file isn't already there, then adds the file if it isn't and 
- * send an appropriate message to the AddNewGreyFormResult alert window.
+ * Currently outputs result to AddNewGreyFormResult.  Will eventually output to notification.
  */
 
 @WebServlet("/upload/*")
@@ -29,50 +27,47 @@ public class FileUploadHandler extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	private final String UPLOAD_DIRECTORY = "C:/uploads";
-
-	@Override
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-
-		// process only if its multipart content
-		if (ServletFileUpload.isMultipartContent(request)) {
-			try {
-				String name = null;
-				List<FileItem> multiparts = new ServletFileUpload(
-						new DiskFileItemFactory()).parseRequest((RequestContext) request);
-
-				for (FileItem item : multiparts) {
-					if (!item.isFormField()) {
-						name = new File(item.getName()).getName();
-						Path path = Paths.get(UPLOAD_DIRECTORY + File.separator
-								+ name);
-						if (Files.notExists(path)) {
-							new File(UPLOAD_DIRECTORY).mkdir();
-							item.write(new File(UPLOAD_DIRECTORY
-									+ File.separator + name));
-							// File uploaded successfully
-							request.setAttribute("message", "File " + name
-									+ " Uploaded Successfully to "
-									+ UPLOAD_DIRECTORY);
-						} else {
-							request.setAttribute("message", "File " + name
-									+ " already exists in " + UPLOAD_DIRECTORY);
-						}
-					}
-				}
-
-			} catch (Exception ex) {
-				request.setAttribute("message", "File Upload Failed due to "
-						+ ex);
-			}
-
-		} else {
-			request.setAttribute("message",
-					"Sorry this Servlet only handles file upload request");
-		}
-
-		request.getRequestDispatcher("/AddNewGreyFormResult.jsp").forward(
-				request, response);
-
-	}
+  
+    
+    
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+      
+        //process only if its multipart content
+        if(ServletFileUpload.isMultipartContent(request)){        	
+            try {
+            	String name = null;
+                List<FileItem> multiparts = new ServletFileUpload(
+                                         new DiskFileItemFactory()).parseRequest(request);
+              
+                for(FileItem item : multiparts){
+                    if(!item.isFormField()){
+                        name = new File(item.getName()).getName();
+                        Path path = Paths.get(UPLOAD_DIRECTORY + File.separator + name);
+                        if (Files.notExists(path)) {
+                        	new File(UPLOAD_DIRECTORY).mkdir();
+                        item.write( new File(UPLOAD_DIRECTORY + File.separator + name));
+                        //File uploaded successfully
+                        request.setAttribute("message", "File "+ name +" Uploaded Successfully to "+UPLOAD_DIRECTORY);
+                        }else{
+                        	request.setAttribute("message", "File "+ name +" already exists in "+UPLOAD_DIRECTORY);
+                        }
+                        
+                    }
+                }
+           
+               
+            } catch (Exception ex) {
+               request.setAttribute("message", "File Upload Failed due to " + ex);
+            }          
+         
+        }else{
+            request.setAttribute("message",
+                                 "Sorry this Servlet only handles file upload request");
+        }
+    
+        request.getRequestDispatcher("/AddNewGreyFormResult.jsp").forward(request, response);
+     
+    }  
 }
