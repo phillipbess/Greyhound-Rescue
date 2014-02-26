@@ -25,7 +25,7 @@ import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 @WebServlet("/upload/*")
 public class FileUploadHandler extends HttpServlet {
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L; 
 	private final String UPLOAD_DIRECTORY = "C:/uploads";
   
     
