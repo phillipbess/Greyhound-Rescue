@@ -1,5 +1,9 @@
 package gpago.view;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.StringUtils;
@@ -27,10 +31,28 @@ public class GreyhoundFormBean {
 	}
 	
 	private void initFromRequest(HttpServletRequest request, Greyhound greyhound) {
-		if (request.getParameter("name")!=null)
+		if (request.getParameter("name")!=null){
 			greyhound.setName(request.getParameter("name"));
-		if (request.getParameter("description")!=null)
+		}
+		if (request.getParameter("description")!=null){
 			greyhound.setDescription(request.getParameter("description"));
+		}
+		if (request.getParameter("dateOfBirth")!=null){
+			/*SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+			try {
+				greyhound.setDateOfBirth(format.parse(request.getParameter("dateOfBirth")));
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}*/
+		}
+		if (request.getParameter("gender")!=null){
+			greyhound.setGender(request.getParameter("gender"));
+		}
+		
+		if (request.getParameter("weight")!=null){
+			greyhound.setWeight(Integer.parseInt(request.getParameter("weight")));
+		}
+		
 	}
 	
 	/**
@@ -75,6 +97,30 @@ public class GreyhoundFormBean {
 
 	public void setDescription(String description) {
 		greyhound.setDescription(description);
+	}
+	
+	public Date getDateOfBirth() {
+		return greyhound.getDateOfBirth();
+	}
+
+	public void setDateOfBirth(Date dateOfBirth) {
+		greyhound.setDateOfBirth(dateOfBirth);
+	}
+	
+	public String getGender(){
+		return greyhound.getGender();
+	}
+	
+	public void setGender(String gender){
+		greyhound.setGender(gender);
+	}
+	
+	public int getWeight(){
+		return greyhound.getWeight();
+	}
+	
+	public void setWeight(int weight){
+		greyhound.setWeight(weight); 
 	}
 	
 	public boolean isCatFriendly() { 
