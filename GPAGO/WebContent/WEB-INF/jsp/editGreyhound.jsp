@@ -13,9 +13,11 @@
 <input type="hidden" name="id" value="${greyhound.id}">
 
 <form method="POST">
-
 Name: <input type="text" name="name" value="${greyhound.name}">${greyhound.nameValidationText}<br />
 Description: <input type="text" name="description" value="${greyhound.description}"><br />
+Date of Birth: <input type="text" name="dateOfBirth" value="${greyhound.dateOfBirth}"><br />
+Gender: <input type="text" name="gender" value="${greyhound.gender}"><br />
+Weight: <input type="text" name="weight" value="${greyhound.weight}"><br />
 
 <input type="submit" name="Save">
 <button type="button" onclick="window.location='admin/manage-greyhounds';return false;">Cancel</button>
