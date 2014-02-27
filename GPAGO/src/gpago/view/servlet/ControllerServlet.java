@@ -117,15 +117,17 @@ public class ControllerServlet extends HttpServlet {
 			request.setAttribute("facade", new ViewFacade(facade)); // We use the view facade to tailor what is exposed to jsp.
 			address = ADDRESS_MANAGE_GREYHOUNDS_URI;
 			
+			response.sendRedirect(request.getContextPath() + "/admin/manage-greyhounds");
+			
 		} else { // the greyhound is not valid.  Redisply the edit greyhound jsp.
 			logger.finest("Invalid greyhound");
 			
 			address = ADDRESS_EDIT_GREYHOUND_URI;
 			request.setAttribute("greyhound", bean);
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher(address);
+			dispatcher.forward(request, response);
 		}
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher(address);
-		dispatcher.forward(request, response);
 	}
 	
 	private Greyhound getGreyhound(Long id) {
