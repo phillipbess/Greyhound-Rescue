@@ -14,6 +14,7 @@
 <jsp:useBean id="facade" type="gpago.view.ViewFacade" scope="request"/>
 
 <a href="new_greyhound">Create new greyhound record</a>
+<a href="logout">Logout</a>
 
 <br />
 <br />
