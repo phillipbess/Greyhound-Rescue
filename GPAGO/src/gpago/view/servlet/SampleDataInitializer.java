@@ -54,11 +54,6 @@ public class SampleDataInitializer extends HttpServlet {
 			for (int x = 1; x <= RECORDS_TO_GENERATE; x++)
 				createGreyhound(facade, x);
 			
-			// Commit all of the managed entity to the database.
-			// Note, in JPA persisting an entity makes it managed but it is not
-			// written to the database until the transaction is committed.
-			facade.commitTransaction();
-			
 			List<Greyhound> greyhounds = facade.getAllGreyhounds();
 			
 			logger.info("SampleDataInitializer - " + greyhounds.size() + " greyhound records were generated.");
@@ -71,7 +66,7 @@ public class SampleDataInitializer extends HttpServlet {
 		Greyhound g = new Greyhound("Greyhound " + idNum, "Sample greyhound record for Greyhound " + idNum,
 				new Date(1900000), "Male", 72, "brown", true, true, "A very friendly grey!", "A very happy grey",
 				new String[]{"Sponsor1", "Sponsor2"});
-		facade.persistEntity(g);
+		facade.saveGreyhound(g);
 		return g;
 	}
 }
