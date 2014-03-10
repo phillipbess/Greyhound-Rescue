@@ -18,9 +18,10 @@ Description: <input type="text" name="description" value="${greyhound.descriptio
 Date of Birth: <input type="text" name="dateOfBirth" value="${greyhound.dateOfBirth}"><br />
 Gender: <input type="text" name="gender" value="${greyhound.gender}"><br />
 Weight: <input type="text" name="weight" value="${greyhound.weight}"><br />
-
+Main Image: <img src="${greyhound.mainImage}" width="42" height="42"><br/>
 <input type="submit" name="Save">
 <button type="button" onclick="window.location='admin/manage-greyhounds';return false;">Cancel</button>
+
 
 </form>
 </body>

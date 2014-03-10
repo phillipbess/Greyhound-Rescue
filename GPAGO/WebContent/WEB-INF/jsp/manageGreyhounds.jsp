@@ -31,6 +31,7 @@
 <td>Home Acclimated</td>
 <td>Personality</td>
 <td>More info</td>
+<td>Main Image</td>
 </tr>
 
 <c:forEach var="greyhound" items="${facade.greyhounds}">
@@ -46,6 +47,7 @@
 <td>${greyhound.isHomeAcclimated}</td>
 <td>${greyhound.personality}</td>
 <td>${greyhound.moreInfo}</td>
+<td><img src="${greyhound.mainImage}" width="42" height="42"></td>
 <td><a href="update_greyhound?id=${greyhound.id}">Edit</a></td>
 </tr>
 

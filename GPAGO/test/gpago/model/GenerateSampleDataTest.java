@@ -41,7 +41,7 @@ public class GenerateSampleDataTest {
 	private Greyhound createGreyhound(ModelFacade facade, int idNum) {
 		Greyhound g = new Greyhound("Greyhound " + idNum, "Sample greyhound record for Greyhound " + idNum,
 				new Date(1900000), "Male", 72, "brown", true, true, "A very friendly grey!", "A very happy grey",
-				new String[]{"Sponsor1", "Sponsor2"});
+				new String[]{"Sponsor1", "Sponsor2"}, "C:/Greys/alealancraig1.jpg");
 		facade.saveGreyhound(g);
 		return g;
 	}

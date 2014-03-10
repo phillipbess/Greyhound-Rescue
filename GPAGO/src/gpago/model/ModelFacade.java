@@ -26,6 +26,7 @@ public class ModelFacade {
 	 * Retrieve all Greyhound records from the database.
 	 * @return A list of all Greyhound entities in the database.
 	 */
+	@SuppressWarnings("unchecked")
 	public List<Greyhound> getAllGreyhounds() {
 		EntityManager em = emf.createEntityManager();
 

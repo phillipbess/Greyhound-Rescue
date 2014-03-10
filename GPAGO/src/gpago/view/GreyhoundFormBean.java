@@ -1,7 +1,5 @@
 package gpago.view;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
@@ -51,6 +49,10 @@ public class GreyhoundFormBean {
 		
 		if (request.getParameter("weight")!=null){
 			greyhound.setWeight(Integer.parseInt(request.getParameter("weight")));
+		}
+		
+		if (request.getParameter("mainImage")!=null){
+			greyhound.setMainImage(request.getParameter("mainImage"));
 		}
 		
 	}
@@ -129,5 +131,13 @@ public class GreyhoundFormBean {
 
 	public void setIsCatFriendly(Boolean isCatFriendly) {
 		greyhound.setIsCatFriendly(isCatFriendly);
+	}
+	
+	public void setMainImage(String mainImage){
+		greyhound.setMainImage(mainImage);
+	}
+	
+	public String getMainImage(){
+		return greyhound.getMainImage();
 	}
 }
