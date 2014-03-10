@@ -20,17 +20,25 @@
 --
 
 DROP TABLE IF EXISTS `greyhound`;
-SET @saved_cs_client     = @@character_set_client;
+SET @saved_cs_client = @@character_set_client;
 SET character_set_client = utf8;
 CREATE TABLE `greyhound` (
   `ID` bigint(20) NOT NULL,
+  `COLOR` varchar(255) DEFAULT NULL,
+  `DATEOFBIRTH` datetime DEFAULT NULL,
   `DESCRIPTION` longtext,
-  `ENTRYDATE` datetime default NULL,
-  `NAME` varchar(255) default NULL,
-  `NAME_RACE` varchar(255) default NULL,
-  PRIMARY KEY  (`ID`)
+  `ENTRYDATE` datetime DEFAULT NULL,
+  `GENDER` varchar(45) DEFAULT NULL,
+  `ISCATFRIENDLY` varchar(45) DEFAULT NULL,
+  `ISHOMEACCLIMATED` varchar(45) DEFAULT NULL,
+  `MOREINFO` varchar(45) DEFAULT NULL,
+  `NAME` varchar(255) DEFAULT NULL,
+  `PERSONALITY` varchar(45) DEFAULT NULL,
+  `SPONSORS` varchar(45) DEFAULT NULL,
+  `WEIGHT` int(11) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-SET character_set_client = @saved_cs_client;
+
 
 --
 -- Table structure for table `sequence`
