@@ -141,10 +141,7 @@ public class ControllerServlet extends HttpServlet {
 		if (id==null)
 			return null;
 		
-		if (id!=null)
-			return facade.getGreyhound(id);
-
-		return null;
+		return facade.getGreyhound(id);
 	}
 	
 	private Long getLongParameter(HttpServletRequest request, String name) {
