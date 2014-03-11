@@ -43,7 +43,9 @@ public class Greyhound implements Serializable {
 	
 	private String[] sponsors;
 	
-	private String mainImage;
+	private String mainImageSource;
+	
+	private String mainImageLocal;
 	
 	@Temporal(TemporalType.TIMESTAMP) 
 	private Date entryDate;	
@@ -60,7 +62,7 @@ public class Greyhound implements Serializable {
 	
 	public Greyhound(String name, String description, Date dateOfBirth, String gender, int weight, 
 					String color, boolean isCatFriendly, boolean isHomeAcclimated, String personality, 
-					String moreInfo, String[] sponsors, String mainImage) {
+					String moreInfo, String[] sponsors, String mainImageLocal, String mainImageSource) {
 		this();
 		setName(name);
 		setDescription(description);
@@ -73,14 +75,15 @@ public class Greyhound implements Serializable {
 		setPersonality(personality);
 		setMoreInfo(moreInfo);
 		setSponsors(sponsors);
-		setMainImage(mainImage);
+		setMainImageLocal(mainImageLocal);
+		setMainImageSource(mainImageSource);
 	}
 	
 	public Greyhound(Long id, String name, String description, Date dateOfBirth, String gender, int weight, 
 			String color, boolean isCatFriendly, boolean isHomeAcclimated, String personality, 
-			String moreInfo, String[] sponsors, String mainImage) {
+			String moreInfo, String[] sponsors, String mainImageLocal, String mainImageSource) {
 		this(name, description, dateOfBirth, gender, weight, color, isCatFriendly, isHomeAcclimated, personality,
-				moreInfo, sponsors, mainImage);
+				moreInfo, sponsors, mainImageLocal, mainImageSource);
 		this.id = id;
 	}
 
@@ -177,12 +180,20 @@ public class Greyhound implements Serializable {
 		this.sponsors = sponsors;
 	}
 
-	public String getMainImage() {
-		return mainImage;
+	public String getMainImageSource() {
+		return mainImageSource;
 	}
 
-	public void setMainImage(String mainImage) {
-		this.mainImage = mainImage;
+	public void setMainImageSource(String mainImageSource) {
+		this.mainImageSource = mainImageSource;
+	}
+	
+	public String getMainImageLocal() {
+		return mainImageLocal;
+	}
+
+	public void setMainImageLocal(String mainImageLocal) {
+		this.mainImageLocal = mainImageLocal;
 	}
 
 	public String toString() {

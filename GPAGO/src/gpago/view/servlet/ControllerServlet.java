@@ -32,7 +32,7 @@ public class ControllerServlet extends HttpServlet {
 	public static final String ADDRESS_NEW_GREYHOUND_URI  = "/WEB-INF/jsp/editGreyhound.jsp";
 	public static final String ADDRESS_EDIT_GREYHOUND_URI = "/WEB-INF/jsp/editGreyhound.jsp";
 	public static final String ADDRESS_NOT_FOUND = "/WEB-INF/jsp/notFound.jsp";
-
+	
 	private static final long serialVersionUID = 1L;
 	
 	private ModelFacade facade = new ModelFacade();
@@ -101,7 +101,8 @@ public class ControllerServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
+		
 		String address = null; // The uri to forward to.
 
 		// If an id parameter exists, try to load a greyhound record for that id and initialize the greyhound object from the request parameters.
@@ -119,10 +120,13 @@ public class ControllerServlet extends HttpServlet {
 		if (bean.isValid()) {
 			logger.finest("Saving greyhound");
 			facade.saveGreyhound(greyhound);
-
+	        
+	        
 			// We're done adding or updating record, go back to manage greyhounds page.
 			request.setAttribute("facade", new ViewFacade(facade)); // We use the view facade to tailor what is exposed to jsp.
 			address = ADDRESS_MANAGE_GREYHOUNDS_URI;
+			
+			
 			
 			response.sendRedirect(request.getContextPath() + "/admin/manage-greyhounds");
 			

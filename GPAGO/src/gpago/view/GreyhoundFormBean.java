@@ -51,8 +51,8 @@ public class GreyhoundFormBean {
 			greyhound.setWeight(Integer.parseInt(request.getParameter("weight")));
 		}
 		
-		if (request.getParameter("mainImage")!=null){
-			greyhound.setMainImage(request.getParameter("mainImage"));
+		if (request.getParameter("mainImageLocal")!=null){
+			greyhound.setMainImageLocal(request.getParameter("mainImageLocal"));
 		}
 		
 	}
@@ -133,11 +133,11 @@ public class GreyhoundFormBean {
 		greyhound.setIsCatFriendly(isCatFriendly);
 	}
 	
-	public void setMainImage(String mainImage){
-		greyhound.setMainImage(mainImage);
+	public void setMainImageLocal(String mainImageLocal){
+		greyhound.setMainImageSource(mainImageLocal);
 	}
 	
-	public String getMainImage(){
-		return greyhound.getMainImage();
+	public String getMainImageLocal(){
+		return greyhound.getMainImageLocal();
 	}
 }

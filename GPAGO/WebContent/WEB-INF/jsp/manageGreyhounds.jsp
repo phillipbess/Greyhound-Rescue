@@ -47,7 +47,7 @@
 <td>${greyhound.isHomeAcclimated}</td>
 <td>${greyhound.personality}</td>
 <td>${greyhound.moreInfo}</td>
-<td><img src="${greyhound.mainImage}" width="42" height="42"></td>
+<td><img src="${greyhound.mainImageLocal}" width="42" height="42"></td>
 <td><a href="update_greyhound?id=${greyhound.id}">Edit</a></td>
 </tr>
 
