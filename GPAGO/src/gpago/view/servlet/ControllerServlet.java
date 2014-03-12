@@ -27,7 +27,7 @@ public class ControllerServlet extends HttpServlet {
 	public static final String OPERAION_EDIT_GREYHOUND = "edit";
 	public static final String OPERAION_UNKNOWN = "UNKNOWN";
 
-	public static final String ADDRESS_LIST_GREYHOUNDS_URI = "/Greyhounds.jsp";
+	public static final String ADDRESS_LIST_GREYHOUNDS_URI = "/greyhounds.jsp";
 	public static final String ADDRESS_MANAGE_GREYHOUNDS_URI = "/WEB-INF/jsp/manageGreyhounds.jsp";
 	public static final String ADDRESS_NEW_GREYHOUND_URI  = "/WEB-INF/jsp/editGreyhound.jsp";
 	public static final String ADDRESS_EDIT_GREYHOUND_URI = "/WEB-INF/jsp/editGreyhound.jsp";
