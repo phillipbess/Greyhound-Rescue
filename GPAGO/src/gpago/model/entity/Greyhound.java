@@ -33,9 +33,9 @@ public class Greyhound implements Serializable {
 	
 	private String color;
 	
-	private Boolean isCatFriendly;
+	private boolean isCatFriendly;
 	
-	private Boolean isHomeAcclimated;
+	private boolean isHomeAcclimated;
 	
 	private String personality;
 	
@@ -51,8 +51,8 @@ public class Greyhound implements Serializable {
 	private Date entryDate;	
 
 	/*@Lob
-	@Column(length = 2048)
-	private static final long serialVersionUID = 1L;*/
+	@Column(length = 2048)*/
+	private static final long serialVersionUID = 1L;
 
 	public Greyhound() {
 		super();

@@ -17,6 +17,11 @@ Name: <input type="text" name="name" value="${greyhound.name}">${greyhound.nameV
 Date of Birth: <input type="text" name="dateOfBirth" value="${greyhound.dateOfBirth}"><br />
 Gender: <input type="text" name="gender" value="${greyhound.gender}"><br />
 Weight: <input type="text" name="weight" value="${greyhound.weight}"><br />
+Color: <input type="text" name="color" value="${greyhound.color}"><br />
+Cat friendly?: <input type="checkbox" name="isCatFriendly" value="${greyhound.isCatFriendly}"><br />
+Home acclimated: <input type="text" name="isHomeAcclimated" value="${greyhound.isHomeAcclimated}"><br />
+Personality: <input type="text" name="personality" value="${greyhound.personality}"><br />
+More info: <input type="text" name="moreInfo" value="${greyhound.moreInfo}"><br />
 Main Image: <img src="${greyhound.mainImageLocal}" width="42" height="42">
         <input type="file" name="mainImageLocal" value="${greyhound.mainImageLocal}"><br/>
 <input type="submit" name="Save">
