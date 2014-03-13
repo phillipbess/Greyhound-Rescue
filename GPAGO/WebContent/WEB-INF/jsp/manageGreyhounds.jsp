@@ -22,7 +22,6 @@
 <table border="1">
 <tr>
 <td>Name</td>
-<td>Description</td>
 <td>Date of Birth</td>
 <td>Gender</td>
 <td>Weight</td>
@@ -38,7 +37,6 @@
 
 <tr>
 <td>${greyhound.name}</td>
-<td>${greyhound.description}</td>
 <td>${greyhound.dateOfBirth}</td>
 <td>${greyhound.gender}</td>
 <td>${greyhound.weight}</td>
@@ -56,9 +54,3 @@
 
 </body>
 </html>
-
-
-
-
-
-

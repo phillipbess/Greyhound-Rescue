@@ -50,22 +50,19 @@ public class Greyhound implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP) 
 	private Date entryDate;	
 
-	@Lob
+	/*@Lob
 	@Column(length = 2048)
-	private String description;
-	
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;*/
 
 	public Greyhound() {
 		super();
 	}
 	
-	public Greyhound(String name, String description, Date dateOfBirth, String gender, int weight, 
+	public Greyhound(String name, Date dateOfBirth, String gender, int weight, 
 					String color, boolean isCatFriendly, boolean isHomeAcclimated, String personality, 
 					String moreInfo, String[] sponsors, String mainImageLocal, String mainImageSource) {
 		this();
 		setName(name);
-		setDescription(description);
 		setDateOfBirth(dateOfBirth);
 		setGender(gender);
 		setWeight(weight);
@@ -79,10 +76,10 @@ public class Greyhound implements Serializable {
 		setMainImageSource(mainImageSource);
 	}
 	
-	public Greyhound(Long id, String name, String description, Date dateOfBirth, String gender, int weight, 
+	public Greyhound(Long id, String name, Date dateOfBirth, String gender, int weight, 
 			String color, boolean isCatFriendly, boolean isHomeAcclimated, String personality, 
 			String moreInfo, String[] sponsors, String mainImageLocal, String mainImageSource) {
-		this(name, description, dateOfBirth, gender, weight, color, isCatFriendly, isHomeAcclimated, personality,
+		this(name, dateOfBirth, gender, weight, color, isCatFriendly, isHomeAcclimated, personality,
 				moreInfo, sponsors, mainImageLocal, mainImageSource);
 		this.id = id;
 	}
@@ -99,15 +96,7 @@ public class Greyhound implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	
+		
 	public Boolean getIsCatFriendly() { 
 		return isCatFriendly;
 	}

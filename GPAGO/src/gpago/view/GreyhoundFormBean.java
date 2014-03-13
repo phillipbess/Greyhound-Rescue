@@ -32,9 +32,6 @@ public class GreyhoundFormBean {
 		if (request.getParameter("name")!=null){
 			greyhound.setName(request.getParameter("name"));
 		}
-		if (request.getParameter("description")!=null){
-			greyhound.setDescription(request.getParameter("description"));
-		}
 		if (request.getParameter("dateOfBirth")!=null){
 			/*SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 			try {
@@ -92,15 +89,7 @@ public class GreyhoundFormBean {
 	public void setName(String name) {
 		greyhound.setName(name);
 	}
-	
-	public String getDescription() {
-		return greyhound.getDescription();
-	}
 
-	public void setDescription(String description) {
-		greyhound.setDescription(description);
-	}
-	
 	public Date getDateOfBirth() {
 		return greyhound.getDateOfBirth();
 	}

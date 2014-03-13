@@ -18,7 +18,7 @@
 
 <tr>
 <td>${greyhound.name}</td>
-<td>${greyhound.description}</td>
+<td>${greyhound.dateOfBirth}</td>
 </tr>
 
 </c:forEach>

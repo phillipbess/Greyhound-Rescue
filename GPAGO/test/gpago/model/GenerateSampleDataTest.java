@@ -34,13 +34,12 @@ public class GenerateSampleDataTest {
 			
 			System.out.println("\nGreyhounds:");
 			for (Greyhound greyhound: greyhounds)
-				System.out.println("\t\t" + greyhound + ", " + greyhound.getDescription());
+				System.out.println("\t\t" + greyhound);
 		}
 	}
 	
 	private Greyhound createGreyhound(ModelFacade facade, int idNum) {
-		Greyhound g = new Greyhound("Greyhound " + idNum, "Sample greyhound record for Greyhound " + idNum,
-				new Date(1900000), "Male", 72, "brown", true, true, "A very friendly grey!", "A very happy grey",
+		Greyhound g = new Greyhound("Greyhound " + idNum, new Date(1900000), "Male", 72, "brown", true, true, "A very friendly grey!", "A very happy grey",
 				new String[]{"Sponsor1", "Sponsor2"}, "http://www.greyhoundpetsorlando.org/PHOTOGALLERY%20AVAIL%20DOGS/aledollyparton1.jpg",
 				"http://www.greyhoundpetsorlando.org/PHOTOGALLERY%20AVAIL%20DOGS/aledollyparton1.jpg");
 		facade.saveGreyhound(g);

@@ -14,7 +14,6 @@
 
 <form method="POST">
 Name: <input type="text" name="name" value="${greyhound.name}">${greyhound.nameValidationText}<br />
-Description: <input type="text" name="description" value="${greyhound.description}"><br />
 Date of Birth: <input type="text" name="dateOfBirth" value="${greyhound.dateOfBirth}"><br />
 Gender: <input type="text" name="gender" value="${greyhound.gender}"><br />
 Weight: <input type="text" name="weight" value="${greyhound.weight}"><br />
