@@ -30,6 +30,7 @@
 <td>Home Acclimated</td>
 <td>Personality</td>
 <td>More info</td>
+<td>Sponsored by</td>
 <td>Main Image</td>
 </tr>
 
@@ -45,6 +46,11 @@
 <td>${greyhound.isHomeAcclimated}</td>
 <td>${greyhound.personality}</td>
 <td>${greyhound.moreInfo}</td>
+<td>
+	<c:forEach var="sponsor" items="${facade.sponsorships}">
+		${greyhound.sponsors.sponsor.name}
+	</c:forEach>
+</td>
 <td><img src="${greyhound.mainImageLocal}" width="42" height="42"></td>
 <td><a href="update_greyhound?id=${greyhound.id}">Edit</a></td>
 </tr>

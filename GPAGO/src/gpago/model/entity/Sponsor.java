@@ -30,7 +30,8 @@ public class Sponsor implements Serializable {
 	
 	private String email;
 	
-		
+	private Sponsorship[] sponsoredGreys;
+	
 	public Sponsor() {
 		super();
 	}
@@ -73,6 +74,14 @@ public class Sponsor implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public Sponsorship[] getSponsoredGreys() {
+		return sponsoredGreys;
+	}
+
+	public void setSponsoredGreys(Sponsorship[] sponsoredGreys) {
+		this.sponsoredGreys = sponsoredGreys;
 	}
 	
 	

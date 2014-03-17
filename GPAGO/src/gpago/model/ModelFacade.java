@@ -1,6 +1,7 @@
 package gpago.model;
 
 import gpago.model.entity.Greyhound;
+import gpago.model.entity.Sponsorship;
 
 import java.util.List;
 import java.util.logging.Level;
@@ -94,6 +95,86 @@ public class ModelFacade {
 				}
 			} finally {
 				em.close();
+			}
+		}
+	}
+	
+	/**
+	 * Retrieve all Sponsorship records from the database.
+	 * @return A list of all Sponsorship entities in the database.
+	 */
+	public List<Sponsorship> getAllSponsorships() {
+		EntityManager em = emf.createEntityManager();
+
+		try {
+			return emf.createEntityManager().createNamedQuery("Sponsorship.findAll", Sponsorship.class).getResultList();
+		} finally {
+			em.close();
+		}
+	}
+	
+	public Sponsorship getSponsorship(Long id) {
+		EntityManager em = emf.createEntityManager();
+
+		try {
+			return emf.createEntityManager().find(Sponsorship.class, id);
+		} finally {
+			em.close();
+		}
+	}
+	
+	public void saveSponsorships(Sponsorship[] sponsorships) {
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction utx = em.getTransaction();
+
+		try {
+			utx.begin();
+			for(Sponsorship sponsorship: sponsorships){
+				if (sponsorship.getId()==null) { // it's a new sponsorship, persist it.
+					em.persist(sponsorship);
+				} else { // Else, it's an existing sponsorship that has been updated.  Just commit.
+					em.merge(sponsorship);
+				}
+			}
+			utx.commit();
+		} catch (Throwable ex) {
+			logger.log(Level.SEVERE, "Error while saving sponsorship record.  The transaction is being rolled back.", ex);
+			try {
+				utx.rollback();
+			} catch (Exception e) {
+			}
+		} finally {
+			em.close();
+		}
+	}
+	
+	public void removeSponsorships(Sponsorship[] sponsorships) {
+		for(Sponsorship sponsorship: sponsorships){
+			if (sponsorship.getId() == null){ // sponsorship does not have id, probably because it was never persisted.
+				return;
+			}
+		}
+		EntityManager em = emf.createEntityManager();
+		
+		for(Sponsorship sponsorship: sponsorships){
+		Sponsorship s = em.find(Sponsorship.class, sponsorship.getId());
+		
+			if (s!=null) {
+				EntityTransaction utx = em.getTransaction();
+	
+				try {
+					utx.begin();
+					em.remove(s);
+					utx.commit();
+				} catch (Throwable ex) {
+					logger.log(Level.SEVERE, "Error while removing sponsorship record.  The transaction is being rolled back.", ex);
+					try {
+						utx.rollback();
+					} catch (Exception e) {
+					}
+				} finally {
+					em.close();
+				}
 			}
 		}
 	}

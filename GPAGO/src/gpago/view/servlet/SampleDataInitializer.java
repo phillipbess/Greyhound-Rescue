@@ -66,11 +66,13 @@ public class SampleDataInitializer extends HttpServlet {
 	
 	
 	private Greyhound createGreyhound(ModelFacade facade, int idNum) {
+		Sponsorship[] sponsors = new Sponsorship[]{new Sponsorship(new Sponsor("John"), (long) idNum)};
 		Greyhound g = new Greyhound("Greyhound " + idNum, new Date(1900000), "Male", 72, "brown", true, true, 
-				"A very friendly grey!", "A very happy grey", new Sponsorship[]{new Sponsorship(new Sponsor("John"), (long) idNum)}, 
+				"A very friendly grey!", "A very happy grey", sponsors, 
 				"http://www.greyhoundpetsorlando.org/PHOTOGALLERY%20AVAIL%20DOGS/aledollyparton1.jpg",
 				"http://www.greyhoundpetsorlando.org/PHOTOGALLERY%20AVAIL%20DOGS/aledollyparton1.jpg");
 		facade.saveGreyhound(g);
+		facade.saveSponsorships(sponsors);
 		return g;
 	}
 }

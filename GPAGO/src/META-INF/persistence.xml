@@ -6,6 +6,7 @@
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 		<class>gpago.model.entity.Greyhound</class>
 		<class>gpago.model.entity.Sponsor</class>
+		<class>gpago.model.entity.Sponsorship</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/gpago"/>

@@ -4,6 +4,16 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+
+/**
+ * Entity implementation class for Entity: Sponsorship
+ *
+ */
+@Entity
+@NamedQueries({
+	@NamedQuery(name = "Sponsorship.findAll", query = "SELECT e FROM Sponsorship e"),
+	@NamedQuery(name = "Sponsorship.findById", query = "SELECT e FROM Sponsorship e WHERE e.id = :id")
+})
 public class Sponsorship implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
