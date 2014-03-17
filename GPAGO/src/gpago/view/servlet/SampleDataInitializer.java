@@ -2,6 +2,8 @@ package gpago.view.servlet;
 
 import gpago.model.ModelFacade;
 import gpago.model.entity.Greyhound;
+import gpago.model.entity.Sponsor;
+import gpago.model.entity.Sponsorship;
 
 import java.sql.Date;
 import java.util.List;
@@ -65,7 +67,7 @@ public class SampleDataInitializer extends HttpServlet {
 	
 	private Greyhound createGreyhound(ModelFacade facade, int idNum) {
 		Greyhound g = new Greyhound("Greyhound " + idNum, new Date(1900000), "Male", 72, "brown", true, true, 
-				"A very friendly grey!", "A very happy grey", new String[]{"Sponsor1", "Sponsor2"}, 
+				"A very friendly grey!", "A very happy grey", new Sponsorship[]{new Sponsorship(new Sponsor("John"), (long) idNum)}, 
 				"http://www.greyhoundpetsorlando.org/PHOTOGALLERY%20AVAIL%20DOGS/aledollyparton1.jpg",
 				"http://www.greyhoundpetsorlando.org/PHOTOGALLERY%20AVAIL%20DOGS/aledollyparton1.jpg");
 		facade.saveGreyhound(g);
