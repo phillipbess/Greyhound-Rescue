@@ -35,6 +35,10 @@ public class Sponsor implements Serializable {
 		super();
 	}
 	
+	public Sponsor(String name){
+		this();
+	}
+	
 	public Long getId() {
 		return this.id;
 	}

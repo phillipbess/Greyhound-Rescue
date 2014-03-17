@@ -41,7 +41,7 @@ public class Greyhound implements Serializable {
 	
 	private String moreInfo;
 	
-	private String[] sponsors;
+	private Sponsorship[] sponsors;
 	
 	private String mainImageSource;
 	
@@ -60,7 +60,7 @@ public class Greyhound implements Serializable {
 	
 	public Greyhound(String name, Date dateOfBirth, String gender, int weight, 
 					String color, boolean isCatFriendly, boolean isHomeAcclimated, String personality, 
-					String moreInfo, String[] sponsors, String mainImageLocal, String mainImageSource) {
+					String moreInfo, Sponsorship[] sponsors, String mainImageLocal, String mainImageSource) {
 		this();
 		setName(name);
 		setDateOfBirth(dateOfBirth);
@@ -78,7 +78,7 @@ public class Greyhound implements Serializable {
 	
 	public Greyhound(Long id, String name, Date dateOfBirth, String gender, int weight, 
 			String color, boolean isCatFriendly, boolean isHomeAcclimated, String personality, 
-			String moreInfo, String[] sponsors, String mainImageLocal, String mainImageSource) {
+			String moreInfo, Sponsorship[] sponsors, String mainImageLocal, String mainImageSource) {
 		this(name, dateOfBirth, gender, weight, color, isCatFriendly, isHomeAcclimated, personality,
 				moreInfo, sponsors, mainImageLocal, mainImageSource);
 		this.id = id;
@@ -161,11 +161,11 @@ public class Greyhound implements Serializable {
 		this.moreInfo = moreInfo;
 	}
 
-	public String[] getSponsors() {
+	public Sponsorship[] getSponsors() {
 		return sponsors;
 	}
 
-	public void setSponsors(String[] sponsors) {
+	public void setSponsors(Sponsorship[] sponsors) {
 		this.sponsors = sponsors;
 	}
 
