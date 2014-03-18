@@ -1,5 +1,6 @@
 package gpago.model.entity;
 
+import java.io.File;
 import java.io.Serializable;
 import java.lang.String;
 import java.util.Date;
@@ -43,9 +44,8 @@ public class Greyhound implements Serializable {
 	
 	private Sponsorship[] sponsors;
 	
-	private String mainImageSource;
-	
-	private String mainImageLocal;
+	@Lob
+	private byte[] firstImage;
 	
 	@Temporal(TemporalType.TIMESTAMP) 
 	private Date entryDate;	
@@ -60,7 +60,7 @@ public class Greyhound implements Serializable {
 	
 	public Greyhound(String name, Date dateOfBirth, String gender, int weight, 
 					String color, boolean isCatFriendly, boolean isHomeAcclimated, String personality, 
-					String moreInfo, Sponsorship[] sponsors, String mainImageLocal, String mainImageSource) {
+					String moreInfo, Sponsorship[] sponsors, byte[] firstImage) {
 		this();
 		setName(name);
 		setDateOfBirth(dateOfBirth);
@@ -72,15 +72,14 @@ public class Greyhound implements Serializable {
 		setPersonality(personality);
 		setMoreInfo(moreInfo);
 		setSponsors(sponsors);
-		setMainImageLocal(mainImageLocal);
-		setMainImageSource(mainImageSource);
+		setFirstImage(firstImage);
 	}
 	
 	public Greyhound(Long id, String name, Date dateOfBirth, String gender, int weight, 
 			String color, boolean isCatFriendly, boolean isHomeAcclimated, String personality, 
-			String moreInfo, Sponsorship[] sponsors, String mainImageLocal, String mainImageSource) {
+			String moreInfo, Sponsorship[] sponsors, byte[] firstImage) {
 		this(name, dateOfBirth, gender, weight, color, isCatFriendly, isHomeAcclimated, personality,
-				moreInfo, sponsors, mainImageLocal, mainImageSource);
+				moreInfo, sponsors, firstImage);
 		this.id = id;
 	}
 
@@ -169,20 +168,12 @@ public class Greyhound implements Serializable {
 		this.sponsors = sponsors;
 	}
 
-	public String getMainImageSource() {
-		return mainImageSource;
+	public byte[] getFirstImage() {
+		return firstImage;
 	}
 
-	public void setMainImageSource(String mainImageSource) {
-		this.mainImageSource = mainImageSource;
-	}
-	
-	public String getMainImageLocal() {
-		return mainImageLocal;
-	}
-
-	public void setMainImageLocal(String mainImageLocal) {
-		this.mainImageLocal = mainImageLocal;
+	public void setFirstImage(byte[] firstImage) {
+		this.firstImage = firstImage;
 	}
 
 	public String toString() {

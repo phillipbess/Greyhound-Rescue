@@ -31,7 +31,7 @@
 <td>Personality</td>
 <td>More info</td>
 <td>Sponsored by</td>
-<td>Main Image</td>
+<td>First Image</td>
 </tr>
 
 <c:forEach var="greyhound" items="${facade.greyhounds}">
@@ -51,7 +51,7 @@
 		${greyhound.sponsors.sponsor.name}
 	</c:forEach>
 </td>
-<td><img src="${greyhound.mainImageLocal}" width="42" height="42"></td>
+<td><img src="${greyhound.firstImage}" width="42" height="42"></td>
 <td><a href="update_greyhound?id=${greyhound.id}">Edit</a></td>
 </tr>
 

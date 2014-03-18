@@ -42,8 +42,7 @@ public class GenerateSampleDataTest {
 	
 	private Greyhound createGreyhound(ModelFacade facade, int idNum) {
 		Greyhound g = new Greyhound("Greyhound " + idNum, new Date(1900000), "Male", 72, "brown", true, true, "A very friendly grey!", "A very happy grey",
-				new Sponsorship[]{new Sponsorship(new Sponsor("John"), (long) idNum)}, "http://www.greyhoundpetsorlando.org/PHOTOGALLERY%20AVAIL%20DOGS/aledollyparton1.jpg",
-				"http://www.greyhoundpetsorlando.org/PHOTOGALLERY%20AVAIL%20DOGS/aledollyparton1.jpg");
+				new Sponsorship[]{new Sponsorship(new Sponsor("John"), (long) idNum)}, null);
 		facade.saveGreyhound(g);
 		return g;
 	}

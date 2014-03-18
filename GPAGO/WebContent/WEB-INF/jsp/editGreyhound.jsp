@@ -22,8 +22,8 @@ Cat friendly?: <input type="checkbox" name="isCatFriendly" value="${greyhound.is
 Home acclimated: <input type="text" name="isHomeAcclimated" value="${greyhound.isHomeAcclimated}"><br />
 Personality: <input type="text" name="personality" value="${greyhound.personality}"><br />
 More info: <input type="text" name="moreInfo" value="${greyhound.moreInfo}"><br />
-Main Image: <img src="${greyhound.mainImageLocal}" width="42" height="42">
-        <input type="file" name="mainImageLocal" value="${greyhound.mainImageLocal}"><br/>
+Main Image: <img src="${greyhound.firstImage}" width="42" height="42">
+        <input type="file" name="firstImage" value="${greyhound.firstImage}"><br/>
 <input type="submit" name="Save">
 <button type="button" onclick="window.location='admin/manage-greyhounds';return false;">Cancel</button>
 

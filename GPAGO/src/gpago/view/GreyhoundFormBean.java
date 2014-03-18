@@ -56,9 +56,9 @@ public class GreyhoundFormBean {
 			greyhound.setIsCatFriendly(Boolean.parseBoolean(request.getParameter("isCatFriendly")));
 		}		
 		
-		if (request.getParameter("mainImageLocal")!=null){
-			greyhound.setMainImageLocal(request.getParameter("mainImageLocal"));
-		}
+/*		if (request.getParameter("firstImage")!=null){
+			greyhound.setFirstImage(request.getPicture("firstImage"));
+		}*/
 		
 	}
 	
@@ -162,11 +162,11 @@ public class GreyhoundFormBean {
 		greyhound.setIsHomeAcclimated(isHomeAcclimated);
 	}
 	
-	public void setMainImageLocal(String mainImageLocal){
-		greyhound.setMainImageSource(mainImageLocal);
+	public void setMainImageLocal(byte[] firstImage){
+		greyhound.setFirstImage(firstImage);
 	}
 	
-	public String getMainImageLocal(){
-		return greyhound.getMainImageLocal();
+	public byte[] getFirstImage(){
+		return greyhound.getFirstImage();
 	}
 }
