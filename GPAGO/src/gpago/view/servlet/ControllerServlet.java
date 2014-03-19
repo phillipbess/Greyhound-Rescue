@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +21,7 @@ import javax.servlet.http.HttpSession;
  * Servlet implementation class ControllerServlet
  */
 @WebServlet(urlPatterns = {"/admin/*", "/view-greyhounds"})
+@MultipartConfig
 public class ControllerServlet extends HttpServlet {
 	private static final Logger logger = Logger.getLogger(ControllerServlet.class.getName());
 	
@@ -127,8 +129,19 @@ public class ControllerServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
 		
+		
+		String objectType = request.getParameter("type");
+		
+		if ("greyhound".equals(objectType)) { // If a greyhound is being saved
+			handleSaveGreyhound(request, response);
+		} else if ("sponsor".equals(objectType)) { // If a sponsor is being saved
+			handleSaveGreyhound(request, response);
+		}
+	}
+	
+	private void handleSaveGreyhound(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String address = null; // The uri to forward to.
-
+		
 		// If an id parameter exists, try to load a greyhound record for that id and initialize the greyhound object from the request parameters.
 		Greyhound greyhound  = getGreyhound(getLongParameter(request, "id"));
 		
@@ -142,15 +155,12 @@ public class ControllerServlet extends HttpServlet {
 		GreyhoundFormBean bean = new GreyhoundFormBean(request, greyhound);
 		
 		if (bean.isValid()) {
-			logger.finest("Saving greyhound");
+			logger.finest("Saving " + greyhound);
 			facade.saveGreyhound(greyhound);
-	        
 	        
 			// We're done adding or updating record, go back to manage greyhounds page.
 			request.setAttribute("facade", new ViewFacade(facade)); // We use the view facade to tailor what is exposed to jsp.
 			address = ADDRESS_MANAGE_GREYHOUNDS_URI;
-			
-			
 			
 			response.sendRedirect(request.getContextPath() + "/admin/manage-greyhounds");
 			

@@ -1,12 +1,17 @@
 package gpago.view;
 
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.Part;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import gpago.model.entity.Greyhound;
+import gpago.view.servlet.ControllerServlet;
 
 /**
  * The greyhoundFormBean provides specific information needed by the jsps to display
@@ -14,6 +19,8 @@ import gpago.model.entity.Greyhound;
  * 
  */
 public class GreyhoundFormBean {
+	private static final Logger logger = Logger.getLogger(GreyhoundFormBean.class.getName());
+	
 	/**
 	 * A reference to the greyhound object being added or edited.
 	 */
@@ -54,12 +61,20 @@ public class GreyhoundFormBean {
 		
 		if (request.getParameter("isCatFriendly")!=null){
 			greyhound.setIsCatFriendly(Boolean.parseBoolean(request.getParameter("isCatFriendly")));
-		}		
+		}
 		
-/*		if (request.getParameter("firstImage")!=null){
-			greyhound.setFirstImage(request.getPicture("firstImage"));
-		}*/
-		
+		// Only process image if content is multipart.
+		if ((request.getContentType() != null) && (request.getContentType().toLowerCase().indexOf("multipart/form-data") > -1 )) {
+			try {
+				Part filePart = request.getPart("image");
+				if (filePart!=null) {
+					greyhound.setFirstImage(IOUtils.toByteArray(filePart.getInputStream()));
+				}
+			} catch (Exception e) {
+				// TODO Log exception, but there's not much else we can do.
+				logger.log(Level.SEVERE, "Error while getting image bytes from multipart request.", e);
+			}
+		}
 	}
 	
 	/**
