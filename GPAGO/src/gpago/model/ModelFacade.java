@@ -123,7 +123,7 @@ public class ModelFacade {
 		}
 	}
 	
-	public void saveSponsorships(Sponsorship[] sponsorships) {
+	public void saveSponsorships(List<Sponsorship> sponsorships) {
 		EntityManager em = emf.createEntityManager();
 		EntityTransaction utx = em.getTransaction();
 
@@ -148,7 +148,7 @@ public class ModelFacade {
 		}
 	}
 	
-	public void removeSponsorships(Sponsorship[] sponsorships) {
+	public void removeSponsorships(List<Sponsorship> sponsorships) {
 		for(Sponsorship sponsorship: sponsorships){
 			if (sponsorship.getId() == null){ // sponsorship does not have id, probably because it was never persisted.
 				return;

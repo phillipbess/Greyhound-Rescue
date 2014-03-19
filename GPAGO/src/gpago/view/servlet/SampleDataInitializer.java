@@ -12,6 +12,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -76,8 +77,8 @@ public class SampleDataInitializer extends HttpServlet {
 	private Greyhound createGreyhound(ModelFacade facade, int idNum) {
 		/*try {*/
 			//byte[] firstImage = extractBytes();
-			Sponsorship[] sponsors = new Sponsorship[] { new Sponsorship(
-					new Sponsor("John"), (long) idNum) };
+			List<Sponsorship> sponsors = new ArrayList<Sponsorship>();
+			sponsors.add(new Sponsorship(new Sponsor("John"), (long) idNum));
 
 			Greyhound g = new Greyhound("Greyhound " + idNum, new Date(1900000),
 					"Male", 72, "brown", true, true, "A very friendly grey!",

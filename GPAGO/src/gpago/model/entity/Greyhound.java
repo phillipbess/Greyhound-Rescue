@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.Serializable;
 import java.lang.String;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -42,7 +43,7 @@ public class Greyhound implements Serializable {
 	
 	private String moreInfo;
 	
-	private Sponsorship[] sponsors;
+	private List<Sponsorship> sponsors;
 	
 	@Lob
 	private byte[] firstImage;
@@ -60,7 +61,7 @@ public class Greyhound implements Serializable {
 	
 	public Greyhound(String name, Date dateOfBirth, String gender, int weight, 
 					String color, boolean isCatFriendly, boolean isHomeAcclimated, String personality, 
-					String moreInfo, Sponsorship[] sponsors, byte[] firstImage) {
+					String moreInfo, List<Sponsorship> sponsors, byte[] firstImage) {
 		this();
 		setName(name);
 		setDateOfBirth(dateOfBirth);
@@ -77,7 +78,7 @@ public class Greyhound implements Serializable {
 	
 	public Greyhound(Long id, String name, Date dateOfBirth, String gender, int weight, 
 			String color, boolean isCatFriendly, boolean isHomeAcclimated, String personality, 
-			String moreInfo, Sponsorship[] sponsors, byte[] firstImage) {
+			String moreInfo, List<Sponsorship> sponsors, byte[] firstImage) {
 		this(name, dateOfBirth, gender, weight, color, isCatFriendly, isHomeAcclimated, personality,
 				moreInfo, sponsors, firstImage);
 		this.id = id;
@@ -160,11 +161,11 @@ public class Greyhound implements Serializable {
 		this.moreInfo = moreInfo;
 	}
 
-	public Sponsorship[] getSponsors() {
+	public List<Sponsorship> getSponsors() {
 		return sponsors;
 	}
 
-	public void setSponsors(Sponsorship[] sponsors) {
+	public void setSponsors(List<Sponsorship> sponsors) {
 		this.sponsors = sponsors;
 	}
 
