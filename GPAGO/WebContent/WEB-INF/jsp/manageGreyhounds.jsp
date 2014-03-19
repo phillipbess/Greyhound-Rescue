@@ -63,7 +63,7 @@
 	</c:forEach>
 </td>
 <td><img src="${greyhound.firstImage}" width="42" height="42"></td>
-<td><a href="update_greyhound?id=${greyhound.id}">Edit</a></td>
+<td><a href="update-greyhound?id=${greyhound.id}">Edit</a></td>
 </tr>
 
 </c:forEach>
