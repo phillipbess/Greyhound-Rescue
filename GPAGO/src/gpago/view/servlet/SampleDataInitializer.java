@@ -81,7 +81,7 @@ public class SampleDataInitializer extends HttpServlet {
 
 			Greyhound g = new Greyhound("Greyhound " + idNum, new Date(1900000),
 					"Male", 72, "brown", true, true, "A very friendly grey!",
-					"A very happy grey", sponsors, firstImage);
+					"A very happy grey", sponsors, null);
 			facade.saveGreyhound(g);
 			facade.saveSponsorships(sponsors);
 			return g;
