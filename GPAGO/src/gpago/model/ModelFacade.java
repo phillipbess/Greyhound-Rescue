@@ -31,7 +31,7 @@ public class ModelFacade {
 		EntityManager em = emf.createEntityManager();
 
 		try {
-			return emf.createEntityManager().createNamedQuery("Greyhound.findAll", Greyhound.class).getResultList();
+			return em.createNamedQuery("Greyhound.findAll", Greyhound.class).getResultList();
 		} finally {
 			em.close();
 		}
@@ -41,7 +41,7 @@ public class ModelFacade {
 		EntityManager em = emf.createEntityManager();
 
 		try {
-			return emf.createEntityManager().find(Greyhound.class, id);
+			return em.find(Greyhound.class, id);
 		} finally {
 			em.close();
 		}
@@ -107,7 +107,7 @@ public class ModelFacade {
 		EntityManager em = emf.createEntityManager();
 
 		try {
-			return emf.createEntityManager().createNamedQuery("Sponsorship.findAll", Sponsorship.class).getResultList();
+			return em.createNamedQuery("Sponsorship.findAll", Sponsorship.class).getResultList();
 		} finally {
 			em.close();
 		}
@@ -117,7 +117,7 @@ public class ModelFacade {
 		EntityManager em = emf.createEntityManager();
 
 		try {
-			return emf.createEntityManager().find(Sponsorship.class, id);
+			return em.find(Sponsorship.class, id);
 		} finally {
 			em.close();
 		}
