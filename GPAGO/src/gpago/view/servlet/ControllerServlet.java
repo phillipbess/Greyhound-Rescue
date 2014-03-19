@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet implementation class ControllerServlet
  */
-@WebServlet("/ControllerServlet")
+@WebServlet(urlPatterns = {"/admin/*", "/view-greyhounds"})
 public class ControllerServlet extends HttpServlet {
 	private static final Logger logger = Logger.getLogger(ControllerServlet.class.getName());
 	
