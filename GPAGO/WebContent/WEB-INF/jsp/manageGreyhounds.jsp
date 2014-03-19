@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Manage Greyhounds</title>
+<title>Greyhound Rescue</title>
 
 <script src="//netdna.bootstrapcdn.com/bootswatch/3.1.1/yeti/bootstrap.min.css"></script>
 <script src="http://code.jquery.com/jquery-1.10.1.min.js"  type= "text/javascript"></script>
@@ -18,10 +18,13 @@
 </head>
 <body>
 
+<p><h1>Manage Greyhounds</h1></p>
 
 <jsp:useBean id="facade" type="gpago.view.ViewFacade" scope="request"/>
 
-<a href="new_greyhound">Create new greyhound record</a>
+<p><a href="manage-sponsors">Manage Sponsors</a></p>
+
+<a href="new-greyhound">Create new greyhound record</a>
 <a href="logout">Logout</a>
 
 <br />

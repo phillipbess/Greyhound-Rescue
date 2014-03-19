@@ -31,6 +31,11 @@ public class ControllerServlet extends HttpServlet {
 	public static final String ADDRESS_MANAGE_GREYHOUNDS_URI = "/WEB-INF/jsp/manageGreyhounds.jsp";
 	public static final String ADDRESS_NEW_GREYHOUND_URI  = "/WEB-INF/jsp/editGreyhound.jsp";
 	public static final String ADDRESS_EDIT_GREYHOUND_URI = "/WEB-INF/jsp/editGreyhound.jsp";
+
+	public static final String ADDRESS_MANAGE_SPONSORS_URI = "/WEB-INF/jsp/manageSponsors.jsp";
+	public static final String ADDRESS_NEW_SPONSOR_URI  = "/WEB-INF/jsp/editSponsor.jsp";
+	public static final String ADDRESS_EDIT_SPONSOR_URI = "/WEB-INF/jsp/editSponsor.jsp";
+	
 	public static final String ADDRESS_NOT_FOUND = "/WEB-INF/jsp/notFound.jsp";
 	
 	private static final long serialVersionUID = 1L;
@@ -71,11 +76,11 @@ public class ControllerServlet extends HttpServlet {
 		} else if (uri.endsWith("/admin/manage-greyhounds")) {
 			address = ADDRESS_MANAGE_GREYHOUNDS_URI;
 			request.setAttribute("facade", new ViewFacade(facade)); // We use the view facade to tailor what is exposed to jsp.
-		} else if (uri.endsWith("/admin/new_greyhound")) {
+		} else if (uri.endsWith("/admin/new-greyhound")) {
 			GreyhoundFormBean bean = new GreyhoundFormBean(request, new Greyhound());
 			request.setAttribute("greyhound", bean);
 			address = ADDRESS_NEW_GREYHOUND_URI;
-		} else if (uri.endsWith("/admin/update_greyhound")) {
+		} else if (uri.endsWith("/admin/update-greyhound")) {
 			Greyhound greyhound = getGreyhound(getLongParameter(request, "id"));
 
 			if (greyhound!=null) {
@@ -86,6 +91,25 @@ public class ControllerServlet extends HttpServlet {
 				// A greyhound with the specified ID was not found or some error occurred, just display the manage greyhounds view.
 				request.setAttribute("facade", new ViewFacade(facade)); // We use the view facade to tailor what is exposed to jsp.
 				address = ADDRESS_MANAGE_GREYHOUNDS_URI;
+			}
+		} else if (uri.endsWith("/admin/manage-sponsors")) {
+			address = ADDRESS_MANAGE_SPONSORS_URI;
+			request.setAttribute("facade", new ViewFacade(facade)); // We use the view facade to tailor what is exposed to jsp.
+		} else if (uri.endsWith("/admin/new-sponsor")) {
+			GreyhoundFormBean bean = new GreyhoundFormBean(request, new Greyhound()); // TODO this needs to be a SponsorFormBean
+			request.setAttribute("greyhound", bean);
+			address = ADDRESS_NEW_SPONSOR_URI;
+		} else if (uri.endsWith("/admin/update-sponsor")) {
+			Greyhound greyhound = getGreyhound(getLongParameter(request, "id")); // TODO this needs to be a Sponsor
+
+			if (greyhound!=null) {
+				GreyhoundFormBean bean = new GreyhoundFormBean(request, greyhound);
+				request.setAttribute("greyhound", bean);
+				address = ADDRESS_EDIT_SPONSOR_URI;
+			} else {
+				// A greyhound with the specified ID was not found or some error occurred, just display the manage greyhounds view.
+				request.setAttribute("facade", new ViewFacade(facade)); // We use the view facade to tailor what is exposed to jsp.
+				address = ADDRESS_MANAGE_SPONSORS_URI;
 			}
 		} else {
 			address = ADDRESS_NOT_FOUND;

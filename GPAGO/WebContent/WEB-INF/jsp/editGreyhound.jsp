@@ -8,6 +8,8 @@
 </head>
 <body>
 
+<p><h3>Enter Greyhound Information</h3></p>
+
 <jsp:useBean id="greyhound" type="gpago.view.GreyhoundFormBean" scope="request"/>
 
 <input type="hidden" name="id" value="${greyhound.id}">
