@@ -1,6 +1,7 @@
 package gpago.model;
 
 import gpago.model.entity.Greyhound;
+import gpago.model.entity.Sponsor;
 import gpago.model.entity.Sponsorship;
 
 import java.util.List;
@@ -175,6 +176,82 @@ public class ModelFacade {
 				} finally {
 					em.close();
 				}
+			}
+		}
+	}
+	
+	/**
+	 * Retrieve all Sponsor records from the database.
+	 * @return A list of all Sponsor entities in the database.
+	 */
+	public List<Sponsor> getAllSponsors() {
+		EntityManager em = emf.createEntityManager();
+
+		try {
+			return emf.createEntityManager().createNamedQuery("Sponsor.findAll", Sponsor.class).getResultList();
+		} finally {
+			em.close();
+		}
+	}
+	
+	public Sponsor getSponsor(Long id) {
+		EntityManager em = emf.createEntityManager();
+
+		try {
+			return emf.createEntityManager().find(Sponsor.class, id);
+		} finally {
+			em.close();
+		}
+	}
+	
+	public void saveSponsor(Sponsor sponsor) {
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction utx = em.getTransaction();
+
+		try {
+			utx.begin();
+			
+			if (sponsor.getId()==null) { // it's a new sponsor, persist it.
+				em.persist(sponsor);
+			} else { // Else, it's an existing sponsor that has been updated.  Just commit.
+				em.merge(sponsor);
+			}
+			
+			utx.commit();
+		} catch (Throwable ex) {
+			logger.log(Level.SEVERE, "Error while saving sponsor record.  The transaction is being rolled back.", ex);
+			try {
+				utx.rollback();
+			} catch (Exception e) {
+			}
+		} finally {
+			em.close();
+		}
+	}
+	
+	public void removeSponsor(Sponsor sponsor) {
+		if (sponsor.getId() == null) // Sponsor does not have id, probably because it was never persisted.
+			return;
+
+		EntityManager em = emf.createEntityManager();
+		
+		Sponsor s = em.find(Sponsor.class, sponsor.getId());
+		
+		if (s!=null) {
+			EntityTransaction utx = em.getTransaction();
+
+			try {
+				utx.begin();
+				em.remove(s);
+				utx.commit();
+			} catch (Throwable ex) {
+				logger.log(Level.SEVERE, "Error while removing greyhound record.  The transaction is being rolled back.", ex);
+				try {
+					utx.rollback();
+				} catch (Exception e) {
+				}
+			} finally {
+				em.close();
 			}
 		}
 	}

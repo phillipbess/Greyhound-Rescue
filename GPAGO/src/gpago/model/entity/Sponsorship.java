@@ -24,20 +24,20 @@ public class Sponsorship implements Serializable {
 	
 	private Sponsor sponsor;
 	
-	private Long greyhound;
+	private Greyhound greyhound;
 	
 	
 	public Sponsorship() {
 		super();
 	}
 	
-	public Sponsorship(Sponsor sponsor, Long greyhound){
+	public Sponsorship(Sponsor sponsor, Greyhound greyhound){
 		this();
 		setSponsor(sponsor);
 		setGreyhound(greyhound);
 	}
 	
-	public Sponsorship(Long id, Sponsor sponsor, Long greyhound){
+	public Sponsorship(Long id, Sponsor sponsor, Greyhound greyhound){
 		this(sponsor, greyhound);
 		this.id = id;
 	}
@@ -54,11 +54,11 @@ public class Sponsorship implements Serializable {
 		this.sponsor = sponsor;
 	}
 
-	public Long getGreyhound() {
+	public Greyhound getGreyhound() {
 		return greyhound;
 	}
 
-	public void setGreyhound(Long greyhound) {
+	public void setGreyhound(Greyhound greyhound) {
 		this.greyhound = greyhound;
 	}
 

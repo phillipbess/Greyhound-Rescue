@@ -10,58 +10,77 @@ import javax.persistence.*;
 
 /**
  * Entity implementation class for Entity: GreyHound
- *
+ * 
  */
 @Entity
 @NamedQueries({
-	@NamedQuery(name = "Greyhound.findAll", query = "SELECT e FROM Greyhound e"),
-	@NamedQuery(name = "Greyhound.findById", query = "SELECT e FROM Greyhound e WHERE e.id = :id")
-})
+		@NamedQuery(name = "Greyhound.findAll", query = "SELECT e FROM Greyhound e"),
+		@NamedQuery(name = "Greyhound.findById", query = "SELECT e FROM Greyhound e WHERE e.id = :id") })
 public class Greyhound implements Serializable {
 
-	   
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
+
 	private String name;
-	
-	@Temporal(TemporalType.TIMESTAMP) 
+
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateOfBirth;
-	
+
 	private String gender;
-	
+
 	private int weight;
-	
+
 	private String color;
-	
+
 	private boolean isCatFriendly;
-	
+
 	private boolean isHomeAcclimated;
-	
+
 	private String personality;
-	
+
 	private String moreInfo;
-	
+
 	private List<Sponsorship> sponsors;
-	
+
 	@Lob
 	private byte[] firstImage;
-	
-	@Temporal(TemporalType.TIMESTAMP) 
-	private Date entryDate;	
 
-	/*@Lob
-	@Column(length = 2048)*/
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date entryDate;
+
+	/*
+	 * @Lob
+	 * 
+	 * @Column(length = 2048)
+	 */
 	private static final long serialVersionUID = 1L;
 
 	public Greyhound() {
 		super();
 	}
 	
-	public Greyhound(String name, Date dateOfBirth, String gender, int weight, 
-					String color, boolean isCatFriendly, boolean isHomeAcclimated, String personality, 
-					String moreInfo, List<Sponsorship> sponsors, byte[] firstImage) {
+	//greyhound constructor without sponsorship parameter
+	public Greyhound(String name, Date dateOfBirth, String gender, int weight,
+			String color, boolean isCatFriendly, boolean isHomeAcclimated,
+			String personality, String moreInfo, byte[] firstImage) {
+		this();
+		setName(name);
+		setDateOfBirth(dateOfBirth);
+		setGender(gender);
+		setWeight(weight);
+		setColor(color);
+		setIsCatFriendly(isCatFriendly);
+		setIsHomeAcclimated(isHomeAcclimated);
+		setPersonality(personality);
+		setMoreInfo(moreInfo);
+		setFirstImage(firstImage);
+	}
+
+	public Greyhound(String name, Date dateOfBirth, String gender, int weight,
+			String color, boolean isCatFriendly, boolean isHomeAcclimated,
+			String personality, String moreInfo, List<Sponsorship> sponsors,
+			byte[] firstImage) {
 		this();
 		setName(name);
 		setDateOfBirth(dateOfBirth);
@@ -75,15 +94,15 @@ public class Greyhound implements Serializable {
 		setSponsors(sponsors);
 		setFirstImage(firstImage);
 	}
-	
-	public Greyhound(Long id, String name, Date dateOfBirth, String gender, int weight, 
-			String color, boolean isCatFriendly, boolean isHomeAcclimated, String personality, 
-			String moreInfo, List<Sponsorship> sponsors, byte[] firstImage) {
-		this(name, dateOfBirth, gender, weight, color, isCatFriendly, isHomeAcclimated, personality,
-				moreInfo, sponsors, firstImage);
+
+	public Greyhound(Long id, String name, Date dateOfBirth, String gender,
+			int weight, String color, boolean isCatFriendly,
+			boolean isHomeAcclimated, String personality, String moreInfo,
+			List<Sponsorship> sponsors, byte[] firstImage) {
+		this(name, dateOfBirth, gender, weight, color, isCatFriendly,
+				isHomeAcclimated, personality, moreInfo, sponsors, firstImage);
 		this.id = id;
 	}
-
 
 	public Long getId() {
 		return this.id;
@@ -96,15 +115,15 @@ public class Greyhound implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-		
-	public Boolean getIsCatFriendly() { 
+
+	public Boolean getIsCatFriendly() {
 		return isCatFriendly;
 	}
 
 	public void setIsCatFriendly(Boolean isCatFriendly) {
 		this.isCatFriendly = isCatFriendly;
 	}
-	
+
 	public Date getDateOfBirth() {
 		return dateOfBirth;
 	}
@@ -180,5 +199,5 @@ public class Greyhound implements Serializable {
 	public String toString() {
 		return name + " [id = " + id + "] ";
 	}
-   
+
 }
