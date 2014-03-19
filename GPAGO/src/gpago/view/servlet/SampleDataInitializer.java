@@ -74,8 +74,8 @@ public class SampleDataInitializer extends HttpServlet {
 	}
 
 	private Greyhound createGreyhound(ModelFacade facade, int idNum) {
-		try {
-			byte[] firstImage = extractBytes();
+		/*try {*/
+			//byte[] firstImage = extractBytes();
 			Sponsorship[] sponsors = new Sponsorship[] { new Sponsorship(
 					new Sponsor("John"), (long) idNum) };
 
@@ -85,11 +85,11 @@ public class SampleDataInitializer extends HttpServlet {
 			facade.saveGreyhound(g);
 			facade.saveSponsorships(sponsors);
 			return g;
-		} catch (IOException e) {
+		/*} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
-		}
+		}*/
 	}
 
 	private byte[] extractBytes() throws IOException {
