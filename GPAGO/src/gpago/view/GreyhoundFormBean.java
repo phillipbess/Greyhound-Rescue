@@ -11,7 +11,6 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import gpago.model.entity.Greyhound;
-import gpago.view.servlet.ControllerServlet;
 
 /**
  * The greyhoundFormBean provides specific information needed by the jsps to display
