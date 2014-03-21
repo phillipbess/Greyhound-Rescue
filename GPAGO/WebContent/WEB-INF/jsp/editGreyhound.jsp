@@ -8,11 +8,15 @@
 </head>
 <body>
 
+<p><h3>Enter Greyhound Information</h3></p>
+
 <jsp:useBean id="greyhound" type="gpago.view.GreyhoundFormBean" scope="request"/>
 
-<input type="hidden" name="id" value="${greyhound.id}">
+<form method="post" enctype="multipart/form-data">
 
-<form method="POST">
+<input type="hidden" name="id" value="${greyhound.id}">
+<input type="hidden" name="type" value="greyhound">
+
 Name: <input type="text" name="name" value="${greyhound.name}">${greyhound.nameValidationText}<br />
 Date of Birth: <input type="text" name="dateOfBirth" value="${greyhound.dateOfBirth}"><br />
 Gender: <input type="text" name="gender" value="${greyhound.gender}"><br />
@@ -22,12 +26,9 @@ Cat friendly?: <input type="checkbox" name="isCatFriendly" value="${greyhound.is
 Home acclimated: <input type="text" name="isHomeAcclimated" value="${greyhound.isHomeAcclimated}"><br />
 Personality: <input type="text" name="personality" value="${greyhound.personality}"><br />
 More info: <input type="text" name="moreInfo" value="${greyhound.moreInfo}"><br />
-Main Image: <img src="${greyhound.firstImage}" width="42" height="42">
-        <input type="file" name="firstImage" value="${greyhound.firstImage}"><br/>
+<input type="file" name="image"><br/>
 <input type="submit" name="Save">
 <button type="button" onclick="window.location='admin/manage-greyhounds';return false;">Cancel</button>
-
-
 </form>
 </body>
 </html>
