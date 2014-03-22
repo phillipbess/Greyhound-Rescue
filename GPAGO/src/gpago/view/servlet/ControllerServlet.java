@@ -59,8 +59,8 @@ public class ControllerServlet extends HttpServlet {
 		String uri = request.getRequestURI();
 		logger.finest("URI: " + uri);
 		
-		String contextPath = request.getContextPath();
-		logger.finest("Context Info: " + contextPath);
+		//String contextPath = request.getContextPath();
+		//logger.finest("Context Info: " + contextPath);
 		
 		String address = null;
 		
@@ -128,13 +128,14 @@ public class ControllerServlet extends HttpServlet {
 	 *      response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
+		String uri = request.getRequestURI();
+		logger.finest("URI: " + uri);
 		
-		
-		String objectType = request.getParameter("type");
-		
-		if ("greyhound".equals(objectType)) { // If a greyhound is being saved
+		uri = uri.toLowerCase();
+
+		if (uri.endsWith("/save-greyhound")) { // Save the greyhound record.
 			handleSaveGreyhound(request, response);
-		} else if ("sponsor".equals(objectType)) { // If a sponsor is being saved
+		} else if (uri.endsWith("/save-sponsor")) { // Save the sponsor record.
 			handleSaveGreyhound(request, response);
 		}
 	}

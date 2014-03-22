@@ -6,6 +6,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link href="../adminStyles.css" rel="stylesheet" type="text/css"/>
+
 <title>Greyhound Rescue</title>
 
 <script src="//netdna.bootstrapcdn.com/bootswatch/3.1.1/yeti/bootstrap.min.css"></script>
@@ -17,6 +19,7 @@
   
 </head>
 <body>
+<div id="page">
 
 <p><h1>Manage Greyhounds</h1></p>
 
@@ -69,5 +72,6 @@
 </c:forEach>
 </table>
 
+</div>
 </body>
 </html>
