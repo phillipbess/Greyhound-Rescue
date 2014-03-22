@@ -6,10 +6,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link href="../adminStyles.css" rel="stylesheet" type="text/css"/>
+
 <title>Greyhound Rescue</title>
 <link href="../styles.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
+<div id="page">
 
 <p><h1>Manage Sponsors</h1></p>
 
@@ -55,5 +58,6 @@
 </c:forEach>
 </table>
 
+</div>
 </body>
 </html>

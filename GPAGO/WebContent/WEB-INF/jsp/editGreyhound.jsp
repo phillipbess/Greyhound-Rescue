@@ -4,11 +4,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link href="../adminStyles.css" rel="stylesheet" type="text/css"/>
+
 <title>Greyhound Rescue</title>
 </head>
 <body>
+<div id="page">
 
-<p><h3>Enter Greyhound Information</h3></p>
+<h1>Enter Greyhound Information</h1>
 
 <jsp:useBean id="greyhound" type="gpago.view.GreyhoundFormBean" scope="request"/>
 
@@ -28,7 +31,9 @@ Personality: <input type="text" name="personality" value="${greyhound.personalit
 More info: <input type="text" name="moreInfo" value="${greyhound.moreInfo}"><br />
 <input type="file" name="image"><br/>
 <input type="submit" name="Save">
-<button type="button" onclick="window.location='admin/manage-greyhounds';return false;">Cancel</button>
+<button type="button" onclick="window.location='manage-greyhounds';return false;">Cancel</button>
 </form>
+
+</div>
 </body>
 </html>
