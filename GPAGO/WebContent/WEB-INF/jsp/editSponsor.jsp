@@ -15,9 +15,8 @@
 
 <jsp:useBean id="greyhound" type="gpago.view.GreyhoundFormBean" scope="request"/>
 
-<form method="POST">
+<form method="POST" action="save-sponsor">
 <input type="hidden" name="id" value="${greyhound.id}">
-<input type="hidden" name="type" value="sponsor">
 
 Name: <input type="text" name="name" value="${greyhound.name}">${greyhound.nameValidationText}<br />
 Date of Birth: <input type="text" name="dateOfBirth" value="${greyhound.dateOfBirth}"><br />
