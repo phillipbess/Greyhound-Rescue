@@ -23,16 +23,18 @@ public class Sponsor implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id; 
 	
-	private String name;
-	
+	@OneToMany(mappedBy="sponsor")
 	private List<Sponsorship> sponsoredGreys;
 	
+	private String name;
+		
 	public Sponsor() {
 		super();
 	}
 	
 	public Sponsor(String name){
 		this();
+		this.name = name;
 	}
 	
 	public Long getId() {
@@ -40,7 +42,7 @@ public class Sponsor implements Serializable {
 	}
 
 	public String getName() {
-		return name;
+		return this.name;
 	}
 
 	public void setName(String name) {

@@ -62,7 +62,7 @@
 <td>${greyhound.moreInfo}</td>
 <td>
 	<c:forEach var="sponsorship" items="${greyhound.sponsors}">
-		${sponsorship.name}
+		${sponsorship.sponsor.name}
 	</c:forEach>
 </td>
 <td><img src="${greyhound.firstImage}" width="42" height="42"></td>

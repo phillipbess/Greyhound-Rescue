@@ -22,6 +22,9 @@ public class Greyhound implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
+	@OneToMany(mappedBy="greyhound")
+	private List<Sponsorship> sponsors;
+	
 	private String name;
 
 	@Temporal(TemporalType.TIMESTAMP)
@@ -40,8 +43,6 @@ public class Greyhound implements Serializable {
 	private String personality;
 
 	private String moreInfo;
-
-	private List<Sponsorship> sponsors;
 
 	@Lob
 	private byte[] firstImage;

@@ -114,7 +114,7 @@ public class SampleDataInitializer extends HttpServlet {
 	
 	private List<Sponsorship> createSponsorship(ModelFacade facade, Greyhound greyhound, Sponsor sponsor){
 		List<Sponsorship> sponsorships = new ArrayList<Sponsorship>();
-		Sponsorship sponsorship = new Sponsorship(sponsor, greyhound);
+		Sponsorship sponsorship = new Sponsorship(sponsor, greyhound, 10.00);
 		sponsorships.add(sponsorship);
 		
 		facade.saveSponsorships((ArrayList<Sponsorship>) sponsorships);
