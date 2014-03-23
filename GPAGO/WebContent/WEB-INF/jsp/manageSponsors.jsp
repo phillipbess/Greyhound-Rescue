@@ -29,30 +29,20 @@
 <table border="1">
 <tr>
 <td>Name</td>
-<td>Date of Birth</td>
-<td>Gender</td>
-<td>Weight</td>
-<td>Color</td>
-<td>Cat Friendly</td>
-<td>Home Acclimated</td>
-<td>Personality</td>
-<td>More info</td>
-<td>Main Image</td>
+<td>Sponsored Greys</td>
 </tr>
 
-<c:forEach var="greyhound" items="${facade.greyhounds}">
+<c:forEach var="sponsor" items="${facade.sponsors}">
 
 <tr>
-<td>${greyhound.name}</td>
-<td>${greyhound.dateOfBirth}</td>
-<td>${greyhound.gender}</td>
-<td>${greyhound.weight}</td>
-<td>${greyhound.color}</td>
-<td>${greyhound.isCatFriendly}</td>
-<td>${greyhound.isHomeAcclimated}</td>
-<td>${greyhound.personality}</td>
-<td>${greyhound.moreInfo}</td>
-<td><a href="update-sponsor?id=${greyhound.id}">Edit</a></td>
+<td>${sponsor.name}</td>
+<td>
+	<c:forEach var="sponsoredGrey" items="${sponsor.sponsoredGreys}">
+		${sponsoredGrey.greyhound.name}
+	</c:forEach>
+</td>
+
+<td><a href="update-sponsor?id=${sponsor.id}">Edit</a></td>
 </tr>
 
 </c:forEach>

@@ -82,6 +82,8 @@ public class SampleDataInitializer extends HttpServlet {
 		
 		//update greyhound 
 		updateGreyhound(facade, greyhound, sponsorships);
+		//update sponsor
+		updateSponsor(facade, sponsor, sponsorships);
 		
 		return greyhound;
 	}
@@ -125,6 +127,12 @@ public class SampleDataInitializer extends HttpServlet {
 		greyhound.setSponsors(sponsors);
 		
 		facade.saveGreyhound(greyhound);
+	}
+	
+	private void updateSponsor(ModelFacade facade, Sponsor sponsor, List<Sponsorship> sponsors){
+		sponsor.setSponsoredGreys(sponsors);
+		
+		facade.saveSponsor(sponsor);
 	}
 
 	private byte[] extractBytes() throws IOException {
