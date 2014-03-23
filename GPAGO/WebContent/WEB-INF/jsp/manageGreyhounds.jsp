@@ -61,7 +61,7 @@
 <td>${greyhound.personality}</td>
 <td>${greyhound.moreInfo}</td>
 <td>
-	<c:forEach var="sponsor" items="${facade.sponsorships}">
+	<c:forEach var="sponsor" items="${greyhound.sponsorships}">
 		${greyhound.sponsors.sponsor.name}
 	</c:forEach>
 </td>
