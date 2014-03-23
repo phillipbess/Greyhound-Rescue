@@ -61,8 +61,18 @@
 <td>${greyhound.personality}</td>
 <td>${greyhound.moreInfo}</td>
 <td>
+	<!-- Print commas, but not for the first sponsor -->
+	<c:set var="firstSponsor" value="true"/>
 	<c:forEach var="sponsorship" items="${greyhound.sponsors}">
-		${sponsorship.sponsor.name}
+		<c:choose>
+			<c:when test="${firstSponsor eq true}">
+				${sponsorship.sponsor.name}
+				<c:set var="firstSponsor" value="false"/>
+			</c:when>
+			<c:otherwise>
+				&#44; ${sponsorship.sponsor.name}
+			</c:otherwise>
+		</c:choose>
 	</c:forEach>
 </td>
 <td><img src="${greyhound.firstImage}" width="42" height="42"></td>
