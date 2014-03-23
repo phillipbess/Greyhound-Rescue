@@ -37,8 +37,18 @@
 <tr>
 <td>${sponsor.name}</td>
 <td>
+	<!-- Print list of greyhounds with commas, but not for the first greyhound -->
+	<c:set var="firstGreyhound" value="true"/>		
 	<c:forEach var="sponsoredGrey" items="${sponsor.sponsoredGreys}">
-		${sponsoredGrey.greyhound.name}
+		<c:choose>
+			<c:when test="${firstGreyhound eq true}">
+				${sponsoredGrey.greyhound.name}
+				<c:set var="firstGreyhound" value="false"/>
+			</c:when>
+			<c:otherwise>
+				&#44; ${sponsoredGrey.greyhound.name}
+			</c:otherwise>
+		</c:choose>
 	</c:forEach>
 </td>
 
