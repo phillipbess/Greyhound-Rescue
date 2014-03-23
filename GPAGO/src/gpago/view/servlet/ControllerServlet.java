@@ -2,7 +2,9 @@ package gpago.view.servlet;
 
 import gpago.model.ModelFacade;
 import gpago.model.entity.Greyhound;
+import gpago.model.entity.Sponsor;
 import gpago.view.GreyhoundFormBean;
+import gpago.view.SponsorFormBean;
 import gpago.view.ViewFacade;
 
 import java.io.IOException;
@@ -98,18 +100,18 @@ public class ControllerServlet extends HttpServlet {
 			address = ADDRESS_MANAGE_SPONSORS_URI;
 			request.setAttribute("facade", new ViewFacade(facade)); // We use the view facade to tailor what is exposed to jsp.
 		} else if (uri.endsWith("/admin/new-sponsor")) {
-			GreyhoundFormBean bean = new GreyhoundFormBean(request, new Greyhound()); // TODO this needs to be a SponsorFormBean
-			request.setAttribute("greyhound", bean);
+			SponsorFormBean bean = new SponsorFormBean(request, new Sponsor());
+			request.setAttribute("sponsor", bean);
 			address = ADDRESS_NEW_SPONSOR_URI;
 		} else if (uri.endsWith("/admin/update-sponsor")) {
-			Greyhound greyhound = getGreyhound(getLongParameter(request, "id")); // TODO this needs to be a Sponsor
+			Sponsor sponsor = getSponsor(getLongParameter(request, "id"));
 
-			if (greyhound!=null) {
-				GreyhoundFormBean bean = new GreyhoundFormBean(request, greyhound);
-				request.setAttribute("greyhound", bean);
+			if (sponsor!=null) {
+				SponsorFormBean bean = new SponsorFormBean(request, sponsor);
+				request.setAttribute("sponsor", bean);
 				address = ADDRESS_EDIT_SPONSOR_URI;
 			} else {
-				// A greyhound with the specified ID was not found or some error occurred, just display the manage greyhounds view.
+				// A sponsor with the specified ID was not found or some error occurred, just display the manage sponsor view.
 				request.setAttribute("facade", new ViewFacade(facade)); // We use the view facade to tailor what is exposed to jsp.
 				address = ADDRESS_MANAGE_SPONSORS_URI;
 			}
@@ -177,8 +179,9 @@ public class ControllerServlet extends HttpServlet {
 	}
 	
 	private Greyhound getGreyhound(Long id) {
-		if (id==null)
+		if (id==null){
 			return null;
+		}
 		
 		return facade.getGreyhound(id);
 	}
@@ -192,5 +195,13 @@ public class ControllerServlet extends HttpServlet {
 			}
 		}
 		return null;
+	}
+	
+	private Sponsor getSponsor(Long id){
+		if(id==null){
+			return null;
+		}
+		
+		return facade.getSponsor(id);
 	}
 }
