@@ -61,5 +61,9 @@ public class Sponsorship implements Serializable {
 	public void setGreyhound(Greyhound greyhound) {
 		this.greyhound = greyhound;
 	}
+	
+	public String getName(){
+		return this.sponsor.getName();
+	}
 
 }
