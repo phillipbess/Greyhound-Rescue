@@ -1,6 +1,7 @@
 package gpago.model.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -22,22 +23,18 @@ public class Sponsor implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id; 
 	
+	@OneToMany(mappedBy="sponsor")
+	private List<Sponsorship> sponsoredGreys;
+	
 	private String name;
-	
-	private String telephone;
-	
-	private String address;
-	
-	private String email;
-	
-	private Sponsorship[] sponsoredGreys;
-	
+		
 	public Sponsor() {
 		super();
 	}
 	
 	public Sponsor(String name){
 		this();
+		this.name = name;
 	}
 	
 	public Long getId() {
@@ -45,42 +42,18 @@ public class Sponsor implements Serializable {
 	}
 
 	public String getName() {
-		return name;
+		return this.name;
 	}
 
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	public String getTelephone() {
-		return telephone;
-	}
-
-	public void setTelephone(String telephone) {
-		this.telephone = telephone;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public Sponsorship[] getSponsoredGreys() {
+	public List<Sponsorship> getSponsoredGreys() {
 		return sponsoredGreys;
 	}
 
-	public void setSponsoredGreys(Sponsorship[] sponsoredGreys) {
+	public void setSponsoredGreys(List<Sponsorship> sponsoredGreys) {
 		this.sponsoredGreys = sponsoredGreys;
 	}
 	

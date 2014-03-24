@@ -10,6 +10,8 @@ import javax.persistence.*;
  *
  */
 @Entity
+@Table(name="sponsorship")
+@IdClass(SponsorshipId.class)
 @NamedQueries({
 	@NamedQuery(name = "Sponsorship.findAll", query = "SELECT e FROM Sponsorship e"),
 	@NamedQuery(name = "Sponsorship.findById", query = "SELECT e FROM Sponsorship e WHERE e.id = :id")
@@ -22,28 +24,53 @@ public class Sponsorship implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
+	@Id
+	private long sponsorId;
+	
+	@Id
+	private long greyhoundId;
+	
+	@Column(name="AMOUNT")
+	private double amount;
+	
+	@ManyToOne
+	@PrimaryKeyJoinColumn(name="SPONSORID", referencedColumnName="ID")
 	private Sponsor sponsor;
 	
-	private Long greyhound;
-	
-	
+	@ManyToOne
+	@PrimaryKeyJoinColumn(name="GREYHOUNDID", referencedColumnName="ID")
+	private Greyhound greyhound;
+
 	public Sponsorship() {
 		super();
 	}
 	
-	public Sponsorship(Sponsor sponsor, Long greyhound){
+	public Sponsorship(Sponsor sponsor, Greyhound greyhound){
 		this();
 		setSponsor(sponsor);
 		setGreyhound(greyhound);
 	}
 	
-	public Sponsorship(Long id, Sponsor sponsor, Long greyhound){
+	public Sponsorship(Sponsor sponsor, Greyhound greyhound, double amount){
+		this();
+		this.sponsorId = sponsor.getId();
+		this.greyhoundId  = greyhound.getId();
+		this.greyhound = greyhound;
+		this.sponsor = sponsor;
+		this.amount = amount;
+	}
+	
+	public Sponsorship(Long id, Sponsor sponsor, Greyhound greyhound){
 		this(sponsor, greyhound);
 		this.id = id;
 	}
-	
-	public Long getId() {
-		return this.id;
+
+	public double getAmount() {
+		return amount;
+	}
+
+	public void setAmount(double amount) {
+		this.amount = amount;
 	}
 
 	public Sponsor getSponsor() {
@@ -54,12 +81,15 @@ public class Sponsorship implements Serializable {
 		this.sponsor = sponsor;
 	}
 
-	public Long getGreyhound() {
+	public Greyhound getGreyhound() {
 		return greyhound;
 	}
 
-	public void setGreyhound(Long greyhound) {
+	public void setGreyhound(Greyhound greyhound) {
 		this.greyhound = greyhound;
 	}
-
+	
+	public Long getId(){
+		return this.id;
+	}
 }

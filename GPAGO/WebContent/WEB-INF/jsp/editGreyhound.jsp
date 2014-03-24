@@ -4,15 +4,21 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link href="../adminStyles.css" rel="stylesheet" type="text/css"/>
+
 <title>Greyhound Rescue</title>
 </head>
 <body>
+<div id="page">
+
+<h1>Enter Greyhound Information</h1>
 
 <jsp:useBean id="greyhound" type="gpago.view.GreyhoundFormBean" scope="request"/>
 
+<form method="post" enctype="multipart/form-data" action="save-greyhound">
+
 <input type="hidden" name="id" value="${greyhound.id}">
 
-<form method="POST">
 Name: <input type="text" name="name" value="${greyhound.name}">${greyhound.nameValidationText}<br />
 Date of Birth: <input type="text" name="dateOfBirth" value="${greyhound.dateOfBirth}"><br />
 Gender: <input type="text" name="gender" value="${greyhound.gender}"><br />
@@ -22,12 +28,11 @@ Cat friendly?: <input type="checkbox" name="isCatFriendly" value="${greyhound.is
 Home acclimated: <input type="text" name="isHomeAcclimated" value="${greyhound.isHomeAcclimated}"><br />
 Personality: <input type="text" name="personality" value="${greyhound.personality}"><br />
 More info: <input type="text" name="moreInfo" value="${greyhound.moreInfo}"><br />
-Main Image: <img src="${greyhound.firstImage}" width="42" height="42">
-        <input type="file" name="firstImage" value="${greyhound.firstImage}"><br/>
+<input type="file" name="image"><br/>
 <input type="submit" name="Save">
-<button type="button" onclick="window.location='admin/manage-greyhounds';return false;">Cancel</button>
-
-
+<button type="button" onclick="window.location='manage-greyhounds';return false;">Cancel</button>
 </form>
+
+</div>
 </body>
 </html>

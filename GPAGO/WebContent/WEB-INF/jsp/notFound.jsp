@@ -4,6 +4,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link href="/adminStyles.css" rel="stylesheet" type="text/css"/>
+
 <title>Greyhound Rescue</title>
 </head>
 <body>

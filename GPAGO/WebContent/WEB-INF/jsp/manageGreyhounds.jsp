@@ -6,7 +6,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Manage Greyhounds</title>
+<link href="../adminStyles.css" rel="stylesheet" type="text/css"/>
+
+<title>Greyhound Rescue</title>
 
 <script src="//netdna.bootstrapcdn.com/bootswatch/3.1.1/yeti/bootstrap.min.css"></script>
 <script src="http://code.jquery.com/jquery-1.10.1.min.js"  type= "text/javascript"></script>
@@ -17,11 +19,15 @@
   
 </head>
 <body>
+<div id="page">
 
+<p><h1>Manage Greyhounds</h1></p>
 
 <jsp:useBean id="facade" type="gpago.view.ViewFacade" scope="request"/>
 
-<a href="new_greyhound">Create new greyhound record</a>
+<p><a href="manage-sponsors">Manage Sponsors</a></p>
+
+<a href="new-greyhound">Create new greyhound record</a>
 <a href="logout">Logout</a>
 
 <br />
@@ -55,16 +61,27 @@
 <td>${greyhound.personality}</td>
 <td>${greyhound.moreInfo}</td>
 <td>
-	<c:forEach var="sponsor" items="${facade.sponsorships}">
-		${greyhound.sponsors.sponsor.name}
+	<!-- Print list of sponsors with commas, but not for the first sponsor -->
+	<c:set var="firstSponsor" value="true"/>
+	<c:forEach var="sponsorship" items="${greyhound.sponsors}">
+		<c:choose>
+			<c:when test="${firstSponsor eq true}">
+				${sponsorship.sponsor.name}
+				<c:set var="firstSponsor" value="false"/>
+			</c:when>
+			<c:otherwise>
+				&#44; ${sponsorship.sponsor.name}
+			</c:otherwise>
+		</c:choose>
 	</c:forEach>
 </td>
 <td><img src="${greyhound.firstImage}" width="42" height="42"></td>
-<td><a href="update_greyhound?id=${greyhound.id}">Edit</a></td>
+<td><a href="update-greyhound?id=${greyhound.id}">Edit</a></td>
 </tr>
 
 </c:forEach>
 </table>
 
+</div>
 </body>
 </html>
