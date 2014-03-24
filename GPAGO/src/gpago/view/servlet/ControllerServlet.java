@@ -2,7 +2,9 @@ package gpago.view.servlet;
 
 import gpago.model.ModelFacade;
 import gpago.model.entity.Greyhound;
+import gpago.model.entity.Sponsor;
 import gpago.view.GreyhoundFormBean;
+import gpago.view.SponsorFormBean;
 import gpago.view.ViewFacade;
 
 import java.io.IOException;
@@ -10,6 +12,7 @@ import java.util.logging.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +22,8 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet implementation class ControllerServlet
  */
-@WebServlet("/ControllerServlet")
+@WebServlet(urlPatterns = {"/admin/*", "/view-greyhounds"})
+@MultipartConfig
 public class ControllerServlet extends HttpServlet {
 	private static final Logger logger = Logger.getLogger(ControllerServlet.class.getName());
 	
@@ -31,6 +35,11 @@ public class ControllerServlet extends HttpServlet {
 	public static final String ADDRESS_MANAGE_GREYHOUNDS_URI = "/WEB-INF/jsp/manageGreyhounds.jsp";
 	public static final String ADDRESS_NEW_GREYHOUND_URI  = "/WEB-INF/jsp/editGreyhound.jsp";
 	public static final String ADDRESS_EDIT_GREYHOUND_URI = "/WEB-INF/jsp/editGreyhound.jsp";
+
+	public static final String ADDRESS_MANAGE_SPONSORS_URI = "/WEB-INF/jsp/manageSponsors.jsp";
+	public static final String ADDRESS_NEW_SPONSOR_URI  = "/WEB-INF/jsp/editSponsor.jsp";
+	public static final String ADDRESS_EDIT_SPONSOR_URI = "/WEB-INF/jsp/editSponsor.jsp";
+	
 	public static final String ADDRESS_NOT_FOUND = "/WEB-INF/jsp/notFound.jsp";
 	
 	private static final long serialVersionUID = 1L;
@@ -52,8 +61,8 @@ public class ControllerServlet extends HttpServlet {
 		String uri = request.getRequestURI();
 		logger.finest("URI: " + uri);
 		
-		String contextPath = request.getContextPath();
-		logger.finest("Context Info: " + contextPath);
+		//String contextPath = request.getContextPath();
+		//logger.finest("Context Info: " + contextPath);
 		
 		String address = null;
 		
@@ -71,11 +80,11 @@ public class ControllerServlet extends HttpServlet {
 		} else if (uri.endsWith("/admin/manage-greyhounds")) {
 			address = ADDRESS_MANAGE_GREYHOUNDS_URI;
 			request.setAttribute("facade", new ViewFacade(facade)); // We use the view facade to tailor what is exposed to jsp.
-		} else if (uri.endsWith("/admin/new_greyhound")) {
+		} else if (uri.endsWith("/admin/new-greyhound")) {
 			GreyhoundFormBean bean = new GreyhoundFormBean(request, new Greyhound());
 			request.setAttribute("greyhound", bean);
 			address = ADDRESS_NEW_GREYHOUND_URI;
-		} else if (uri.endsWith("/admin/update_greyhound")) {
+		} else if (uri.endsWith("/admin/update-greyhound")) {
 			Greyhound greyhound = getGreyhound(getLongParameter(request, "id"));
 
 			if (greyhound!=null) {
@@ -86,6 +95,25 @@ public class ControllerServlet extends HttpServlet {
 				// A greyhound with the specified ID was not found or some error occurred, just display the manage greyhounds view.
 				request.setAttribute("facade", new ViewFacade(facade)); // We use the view facade to tailor what is exposed to jsp.
 				address = ADDRESS_MANAGE_GREYHOUNDS_URI;
+			}
+		} else if (uri.endsWith("/admin/manage-sponsors")) {
+			address = ADDRESS_MANAGE_SPONSORS_URI;
+			request.setAttribute("facade", new ViewFacade(facade)); // We use the view facade to tailor what is exposed to jsp.
+		} else if (uri.endsWith("/admin/new-sponsor")) {
+			SponsorFormBean bean = new SponsorFormBean(request, new Sponsor());
+			request.setAttribute("sponsor", bean);
+			address = ADDRESS_NEW_SPONSOR_URI;
+		} else if (uri.endsWith("/admin/update-sponsor")) {
+			Sponsor sponsor = getSponsor(getLongParameter(request, "id"));
+
+			if (sponsor!=null) {
+				SponsorFormBean bean = new SponsorFormBean(request, sponsor);
+				request.setAttribute("sponsor", bean);
+				address = ADDRESS_EDIT_SPONSOR_URI;
+			} else {
+				// A sponsor with the specified ID was not found or some error occurred, just display the manage sponsor view.
+				request.setAttribute("facade", new ViewFacade(facade)); // We use the view facade to tailor what is exposed to jsp.
+				address = ADDRESS_MANAGE_SPONSORS_URI;
 			}
 		} else {
 			address = ADDRESS_NOT_FOUND;
@@ -102,9 +130,21 @@ public class ControllerServlet extends HttpServlet {
 	 *      response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
+		String uri = request.getRequestURI();
+		logger.finest("URI: " + uri);
 		
-		String address = null; // The uri to forward to.
+		uri = uri.toLowerCase();
 
+		if (uri.endsWith("/save-greyhound")) { // Save the greyhound record.
+			handleSaveGreyhound(request, response);
+		} else if (uri.endsWith("/save-sponsor")) { // Save the sponsor record.
+			handleSaveGreyhound(request, response);
+		}
+	}
+	
+	private void handleSaveGreyhound(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String address = null; // The uri to forward to.
+		
 		// If an id parameter exists, try to load a greyhound record for that id and initialize the greyhound object from the request parameters.
 		Greyhound greyhound  = getGreyhound(getLongParameter(request, "id"));
 		
@@ -118,15 +158,12 @@ public class ControllerServlet extends HttpServlet {
 		GreyhoundFormBean bean = new GreyhoundFormBean(request, greyhound);
 		
 		if (bean.isValid()) {
-			logger.finest("Saving greyhound");
+			logger.finest("Saving " + greyhound);
 			facade.saveGreyhound(greyhound);
-	        
 	        
 			// We're done adding or updating record, go back to manage greyhounds page.
 			request.setAttribute("facade", new ViewFacade(facade)); // We use the view facade to tailor what is exposed to jsp.
 			address = ADDRESS_MANAGE_GREYHOUNDS_URI;
-			
-			
 			
 			response.sendRedirect(request.getContextPath() + "/admin/manage-greyhounds");
 			
@@ -142,8 +179,9 @@ public class ControllerServlet extends HttpServlet {
 	}
 	
 	private Greyhound getGreyhound(Long id) {
-		if (id==null)
+		if (id==null){
 			return null;
+		}
 		
 		return facade.getGreyhound(id);
 	}
@@ -157,5 +195,13 @@ public class ControllerServlet extends HttpServlet {
 			}
 		}
 		return null;
+	}
+	
+	private Sponsor getSponsor(Long id){
+		if(id==null){
+			return null;
+		}
+		
+		return facade.getSponsor(id);
 	}
 }

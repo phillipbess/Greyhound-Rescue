@@ -4,6 +4,7 @@ import java.util.List;
 
 import gpago.model.ModelFacade;
 import gpago.model.entity.Greyhound;
+import gpago.model.entity.Sponsor;
 import gpago.model.entity.Sponsorship;
 
 public class ViewFacade {
@@ -21,5 +22,9 @@ public class ViewFacade {
 	
 	public List<Sponsorship> getSponsorships() {
 		return modelFacade.getAllSponsorships();
+	}
+	
+	public List<Sponsor> getSponsors(){
+		return modelFacade.getAllSponsors();
 	}
 }
