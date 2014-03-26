@@ -27,6 +27,8 @@
 <tr>
 <td>${greyhound.name}</td>
 <td>${greyhound.dateOfBirth}</td>
+<td>${greyhound.gender}</td>
+<td>${greyhound.weight}</td>
 </tr>
 
 </c:forEach>
