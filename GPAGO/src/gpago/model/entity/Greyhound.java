@@ -200,5 +200,4 @@ public class Greyhound implements Serializable {
 	public String toString() {
 		return name + " [id = " + id + "] ";
 	}
-
 }
