@@ -3,6 +3,7 @@ package gpago.model.entity;
 import java.io.File;
 import java.io.Serializable;
 import java.lang.String;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -199,5 +200,10 @@ public class Greyhound implements Serializable {
 
 	public String toString() {
 		return name + " [id = " + id + "] ";
+	}
+
+	public void setSponsorsById(String[] sponsors) {
+		// TODO Auto-generated method stub
+	
 	}
 }

@@ -1,6 +1,7 @@
 package gpago.view;
 
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -11,6 +12,7 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import gpago.model.entity.Greyhound;
+import gpago.model.entity.Sponsorship;
 
 /**
  * The greyhoundFormBean provides specific information needed by the jsps to display
@@ -31,10 +33,10 @@ public class GreyhoundFormBean {
 	
 	public GreyhoundFormBean(HttpServletRequest request, Greyhound greyhound) {
 		this.greyhound = greyhound;
-		initFromRequest(request, greyhound);
+			initFromRequest(request, greyhound);
 	}
 	
-	private void initFromRequest(HttpServletRequest request, Greyhound greyhound) {
+	private void initFromRequest(HttpServletRequest request, Greyhound greyhound){
 		if (request.getParameter("name")!=null){
 			greyhound.setName(request.getParameter("name"));
 		}
@@ -60,6 +62,12 @@ public class GreyhoundFormBean {
 		
 		if (request.getParameter("isCatFriendly")!=null){
 			greyhound.setIsCatFriendly(Boolean.parseBoolean(request.getParameter("isCatFriendly")));
+		}
+		
+		if (request.getParameterValues("sponsors[]")!=null){
+			String[] sponsors = request.getParameterValues("sponsors[]");
+			//this still needs to be implemented
+			greyhound.setSponsorsById(sponsors);
 		}
 		
 		// Only process image if content is multipart.
@@ -174,6 +182,14 @@ public class GreyhoundFormBean {
 	
 	public void setIsHomeAcclimated(boolean isHomeAcclimated){
 		greyhound.setIsHomeAcclimated(isHomeAcclimated);
+	}
+	
+	public List<Sponsorship> getSponsors() {
+		return greyhound.getSponsors();
+	}
+	
+	public void setSponsors(List<Sponsorship> sponsors) {
+		greyhound.setSponsors(sponsors);
 	}
 	
 	public void setMainImageLocal(byte[] firstImage){
