@@ -11,9 +11,13 @@ public class ViewFacade {
 	
 	ModelFacade modelFacade;
 	
-	public ViewFacade(ModelFacade modelFacade) {
-		this.modelFacade = modelFacade;
+	//default constructor 
+	public ViewFacade(){
+		modelFacade = new ModelFacade();
+	}
 		
+	public ViewFacade(ModelFacade modelFacade) {
+		this.modelFacade = modelFacade;	
 	}
 	
 	public List<Greyhound> getGreyhounds() {

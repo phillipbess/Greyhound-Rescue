@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.List" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 <!DOCTYPE html>
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -39,7 +39,7 @@ $(document).ready(function(){
 <h1>Enter Greyhound Information</h1>
 
 <jsp:useBean id="greyhound" type="gpago.view.GreyhoundFormBean" scope="request"/>
-<jsp:useBean id="sponsor" type="gpago.view.SponsorFormBean" scope="request"/>
+<jsp:useBean id="facade" class="gpago.view.ViewFacade" scope="request"/>
 
 <form method="post" enctype="multipart/form-data" action="save-greyhound">
 
@@ -57,10 +57,11 @@ More info: <input type="text" name="moreInfo" value="${greyhound.moreInfo}"><br 
 Sponsored by: 
 <section class="container">
     <div>
-        <select id="leftValues" size="5" name="sponsors[]" multiple></select>
+        <select id="leftValues" size="5" name="sponsors[]" multiple>
         <c:forEach var="sponsorship" items="${greyhound.sponsors}">
 				<option value="${sponsorship.sponsor.id}">${sponsorship.sponsor.name}</option>
 		</c:forEach>
+		</select>
     </div>
     <div>
         <input type="button" id="btnLeft" value="&lt;&lt;" />
@@ -68,8 +69,8 @@ Sponsored by:
     </div>
     <div>
         <select id="rightValues" size="5" multiple>
-            <c:forEach var="sponsorship" items="${sponsor}">
-				<option value="${sponsorship.id}">${sponsorship.name}</option>
+            <c:forEach var="sponsor" items="${facade.sponsors}">
+				<option value="${sponsor.id}">${sponsor.name}</option>
 			</c:forEach>
         </select>
         <!-- <div>
