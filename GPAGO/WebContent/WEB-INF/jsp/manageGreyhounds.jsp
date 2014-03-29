@@ -75,7 +75,7 @@
 		</c:choose>
 	</c:forEach>
 </td>
-<td><img src="${greyhound.firstImage}" width="42" height="42"></td>
+<td><img src="image?id=${greyhound.id}" width="42" height="42"></td>
 <td><a href="update-greyhound?id=${greyhound.id}">Edit</a></td>
 </tr>
 
