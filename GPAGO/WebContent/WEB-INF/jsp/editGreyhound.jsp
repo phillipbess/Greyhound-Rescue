@@ -39,6 +39,7 @@ $(document).ready(function(){
 <h1>Enter Greyhound Information</h1>
 
 <jsp:useBean id="greyhound" type="gpago.view.GreyhoundFormBean" scope="request"/>
+<jsp:useBean id="sponsor" type="gpago.view.SponsorFormBean" scope="request"/>
 
 <form method="post" enctype="multipart/form-data" action="save-greyhound">
 
@@ -57,6 +58,9 @@ Sponsored by:
 <section class="container">
     <div>
         <select id="leftValues" size="5" name="sponsors[]" multiple></select>
+        <c:forEach var="sponsorship" items="${greyhound.sponsors}">
+				<option value="${sponsorship.sponsor.id}">${sponsorship.sponsor.name}</option>
+		</c:forEach>
     </div>
     <div>
         <input type="button" id="btnLeft" value="&lt;&lt;" />
@@ -64,8 +68,8 @@ Sponsored by:
     </div>
     <div>
         <select id="rightValues" size="5" multiple>
-            <c:forEach var="sponsorship" items="${greyhound.sponsors}">
-				<option value="${sponsorship.sponsor.id}">${sponsorship.sponsor.name}</option>
+            <c:forEach var="sponsorship" items="${sponsor}">
+				<option value="${sponsorship.id}">${sponsorship.name}</option>
 			</c:forEach>
         </select>
         <!-- <div>
