@@ -64,8 +64,8 @@ Sponsored by:
 		</select>
     </div>
     <div>
-        <input type="button" id="btnLeft" value="&lt;&lt;" />
-        <input type="button" id="btnRight" value="&gt;&gt;" />
+        <input type="button" id="btnLeft" value="&lt;" />
+        <input type="button" id="btnRight" value="&gt;" />
     </div>
     <div>
         <select id="rightValues" size="5" multiple>

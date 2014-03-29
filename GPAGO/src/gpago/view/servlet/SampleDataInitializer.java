@@ -135,6 +135,7 @@ public class SampleDataInitializer extends HttpServlet {
 		facade.saveSponsor(sponsor);
 	}
 
+	@SuppressWarnings("unused")
 	private byte[] extractBytes() throws IOException {
 		File imgPath = new File("C://Greys/BackwoodJanet1.jpg");
 		BufferedImage bufferedImage = ImageIO.read(imgPath);

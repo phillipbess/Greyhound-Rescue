@@ -14,7 +14,7 @@
 <body>
 <div id="page">
 
-<p><h1>Manage Sponsors</h1></p>
+<h1>Manage Sponsors</h1>
 
 <jsp:useBean id="facade" type="gpago.view.ViewFacade" scope="request"/>
 

@@ -21,7 +21,7 @@
 <body>
 <div id="page">
 
-<p><h1>Manage Greyhounds</h1></p>
+<h1>Manage Greyhounds</h1>
 
 <jsp:useBean id="facade" type="gpago.view.ViewFacade" scope="request"/>
 
