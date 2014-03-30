@@ -1,8 +1,6 @@
 package gpago.model;
 
 import gpago.model.entity.Greyhound;
-import gpago.model.entity.Sponsor;
-import gpago.model.entity.Sponsorship;
 
 import java.sql.Date;
 import java.util.List;

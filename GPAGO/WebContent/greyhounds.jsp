@@ -12,7 +12,7 @@
 <script src="http://code.jquery.com/jquery-1.10.1.min.js"  type= "text/javascript"></script>
 <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js" type= "text/javascript"></script>
 
-<!- Optional theme -->
+<!-- Optional theme -->
 <link href="//netdna.bootstrapcdn.com/bootswatch/3.1.1/slate/bootstrap.min.css" rel="stylesheet">
   
 </head>

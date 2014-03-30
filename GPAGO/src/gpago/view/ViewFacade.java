@@ -13,7 +13,6 @@ public class ViewFacade {
 	
 	public ViewFacade(ModelFacade modelFacade) {
 		this.modelFacade = modelFacade;
-		
 	}
 	
 	public List<Greyhound> getGreyhounds() {

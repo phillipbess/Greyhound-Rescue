@@ -1,15 +1,9 @@
 package gpago.view;
 
-import gpago.model.entity.Greyhound;
 import gpago.model.entity.Sponsor;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.Part;
 
-import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 
 /**
@@ -18,7 +12,6 @@ import org.apache.commons.lang3.StringUtils;
  * 
  */
 public class SponsorFormBean {
-	private static final Logger logger = Logger.getLogger(SponsorFormBean.class.getName());
 	
 	/**
 	 * A reference to the Sponsor object being added or edited.
