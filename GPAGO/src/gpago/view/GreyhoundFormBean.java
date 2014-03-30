@@ -1,5 +1,6 @@
 package gpago.view;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -23,6 +24,9 @@ import gpago.view.servlet.ServletUtils;
 public class GreyhoundFormBean {
 	private static final Logger logger = Logger.getLogger(GreyhoundFormBean.class.getName());
 	
+	private static final SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+	
+	
 	/**
 	 * A reference to the greyhound object being added or edited.
 	 */
@@ -41,14 +45,9 @@ public class GreyhoundFormBean {
 		if (request.getParameter("name")!=null){
 			greyhound.setName(request.getParameter("name"));
 		}
-		if (request.getParameter("dateOfBirth")!=null){
-			/*SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-			try {
-				greyhound.setDateOfBirth(format.parse(request.getParameter("dateOfBirth")));
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}*/
-		}
+		
+		setDateOfBirth(request.getParameter("dateOfBirth"));
+		
 		if (request.getParameter("gender")!=null){
 			greyhound.setGender(request.getParameter("gender"));
 		}
@@ -59,6 +58,14 @@ public class GreyhoundFormBean {
 	
 		if (request.getParameter("color")!=null){
 			greyhound.setColor(request.getParameter("color"));
+		}
+		
+		if (request.getParameter("personality")!=null){
+			greyhound.setPersonality(request.getParameter("personality"));
+		}
+		
+		if (request.getParameter("moreInfo")!=null){
+			greyhound.setMoreInfo(request.getParameter("moreInfo"));
 		}
 		
 		greyhound.setCatFriendly(request.getParameter("catFriendly")!=null);
@@ -125,12 +132,17 @@ public class GreyhoundFormBean {
 		greyhound.setName(name);
 	}
 
-	public Date getDateOfBirth() {
-		return greyhound.getDateOfBirth();
+	public String getDateOfBirth() {
+		return format.format(greyhound.getDateOfBirth());
 	}
 
-	public void setDateOfBirth(Date dateOfBirth) {
-		greyhound.setDateOfBirth(dateOfBirth);
+	public void setDateOfBirth(String dateOfBirth) {
+		if (dateOfBirth!=null) {
+			try {
+				greyhound.setDateOfBirth(format.parse(dateOfBirth));
+			} catch (java.text.ParseException e) {
+			}
+		}
 	}
 	
 	public String getGender(){

@@ -1,5 +1,6 @@
 package gpago.view;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import gpago.model.ModelFacade;
@@ -15,15 +16,21 @@ public class ViewFacade {
 		this.modelFacade = modelFacade;
 	}
 	
-	public List<Greyhound> getGreyhounds() {
-		return modelFacade.getAllGreyhounds();
+	public List<GreyhoundFormBean> getGreyhounds() {
+		List<GreyhoundFormBean> result = new ArrayList<GreyhoundFormBean>();
+		for (Greyhound greyhound: modelFacade.getAllGreyhounds())
+			result.add(new GreyhoundFormBean(greyhound));
+		return result;
 	}
 	
 	public List<Sponsorship> getSponsorships() {
 		return modelFacade.getAllSponsorships();
 	}
 	
-	public List<Sponsor> getSponsors(){
-		return modelFacade.getAllSponsors();
+	public List<SponsorFormBean> getSponsors(){
+		List<SponsorFormBean> result = new ArrayList<SponsorFormBean>();
+		for (Sponsor sponsor: modelFacade.getAllSponsors())
+			result.add(new SponsorFormBean(sponsor));
+		return result;
 	}
 }

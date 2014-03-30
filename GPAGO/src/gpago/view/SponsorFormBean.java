@@ -1,6 +1,9 @@
 package gpago.view;
 
+import java.util.List;
+
 import gpago.model.entity.Sponsor;
+import gpago.model.entity.Sponsorship;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -71,4 +74,13 @@ public class SponsorFormBean {
 	public void setName(String name) {
 		sponsor.setName(name);
 	}
+	
+	public List<Sponsorship> getSponsoredGreys() {
+		return sponsor.getSponsoredGreys();
+	}
+
+	public void setSponsoredGreys(List<Sponsorship> sponsoredGreys) {
+		sponsor.setSponsoredGreys(sponsoredGreys);
+	}
+	
 }

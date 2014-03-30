@@ -47,7 +47,7 @@ $(document).ready(function(){
 
 <div class="detail">
 	<label>Name</label><input type="text" name="name" value="${greyhound.name}" />${greyhound.nameValidationText}
-	<label>Date of Birth</label><input type="text" name="dateOfBirth" value="${greyhound.dateOfBirth}" />
+	<label>Date of Birth</label><input type="date" name="dateOfBirth" value="${greyhound.dateOfBirth}" />
 	<label>Gender</label><input type="text" name="gender" value="${greyhound.gender}" />
 	<label>Weight</label><input type="text" name="weight" value="${greyhound.weight}" />
 	<label>Color</label><input type="text" name="color" value="${greyhound.color}" />
