@@ -78,7 +78,6 @@ public class SampleDataInitializer extends HttpServlet {
 		Greyhound greyhound = createGreyhound(facade, idNum);
 		Sponsor sponsor = createSponsor(facade, idNum);
 		List<Sponsorship> sponsorships = createSponsorship(facade, greyhound, sponsor);
-		//createSponsorship(facade, greyhound, sponsor);
 		
 		//update greyhound 
 		updateGreyhound(facade, greyhound, sponsorships);

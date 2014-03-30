@@ -51,6 +51,7 @@ margin-bottom : 10px;
 	border-right: 1px solid #fff;
 }
 
+<<<<<<< HEAD
 #navigation li a:hover { background: blue; }
 
 .content-item
@@ -127,4 +128,22 @@ label {
 	text-align: right;
 	padding: 20px;
 	height: 1%;
+=======
+SELECT, INPUT[type="text"] {
+    width: 160px;
+    box-sizing: border-box;
+}
+SECTION {
+    padding: 8px;
+    /*background-color: #f0f0f0;*/
+    overflow: auto;
+}
+SECTION > DIV {
+    float: left;
+    padding: 4px;
+}
+SECTION > DIV + DIV {
+    width: 40px;
+    text-align: center;
+>>>>>>> 18973610aa722f8ac6946b7d73d7e2937ef5b377
 }
