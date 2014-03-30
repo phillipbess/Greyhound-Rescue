@@ -44,7 +44,6 @@ $(document).ready(function(){
 
 <input type="hidden" name="id" value="${greyhound.id}">
 
-<<<<<<< HEAD
 <div class="detail">
 	<label>Name</label><input type="text" name="name" value="${greyhound.name}" />${greyhound.nameValidationText}
 	<label>Date of Birth</label><input type="text" name="dateOfBirth" value="${greyhound.dateOfBirth}" />
@@ -63,47 +62,6 @@ $(document).ready(function(){
 	<button type="button" onclick="window.location='manage-greyhounds';return false;">Cancel</button>
 </div>
 
-=======
-Name: <input type="text" name="name" value="${greyhound.name}">${greyhound.nameValidationText}<br />
-Date of Birth: <input type="text" name="dateOfBirth" value="${greyhound.dateOfBirth}"><br />
-Gender: <input type="text" name="gender" value="${greyhound.gender}"><br />
-Weight: <input type="text" name="weight" value="${greyhound.weight}"><br />
-Color: <input type="text" name="color" value="${greyhound.color}"><br />
-Cat friendly?: <input type="checkbox" name="isCatFriendly" value="${greyhound.isCatFriendly}"><br />
-Home acclimated: <input type="text" name="isHomeAcclimated" value="${greyhound.isHomeAcclimated}"><br />
-Personality: <input type="text" name="personality" value="${greyhound.personality}"><br />
-More info: <input type="text" name="moreInfo" value="${greyhound.moreInfo}"><br />
-Sponsored by: 
-<section class="container">
-    <div>
-        <select id="leftValues" size="5" name="sponsors[]" multiple></select>
-    </div>
-    <div>
-        <input type="button" id="btnLeft" value="&lt;&lt;" />
-        <input type="button" id="btnRight" value="&gt;&gt;" />
-    </div>
-    <div>
-        <select id="rightValues" size="5" multiple>
-            <c:forEach var="sponsorship" items="${greyhound.sponsors}">
-				<option value="${sponsorship.sponsor.id}">${sponsorship.sponsor.name}</option>
-			</c:forEach>
-        </select>
-        <!-- <div>
-            <input type="text" id="txtRight" />
-        </div>  -->
-    </div>
-</section>
-<!-- <select multiple name="sponsors[]">
-	<c:forEach var="sponsorship" items="${greyhound.sponsors}">
-		<option value="${sponsorship.sponsor.name}">${sponsorship.sponsor.name}</option>
-	</c:forEach>
-</select>
--->
-<br/>
-<input type="file" name="image"><br/>
-<input type="submit" name="Save">
-<button type="button" onclick="window.location='manage-greyhounds';return false;">Cancel</button>
->>>>>>> 18973610aa722f8ac6946b7d73d7e2937ef5b377
 </form>
 
 </div>

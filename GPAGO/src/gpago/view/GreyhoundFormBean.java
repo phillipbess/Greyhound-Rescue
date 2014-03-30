@@ -156,8 +156,8 @@ public class GreyhoundFormBean {
 		return greyhound.isCatFriendly();
 	}
 
-	public void setIsCatFriendly(boolean isCatFriendly) {
-		greyhound.setCatFriendly(isCatFriendly);
+	public void setCatFriendly(boolean catFriendly) {
+		greyhound.setCatFriendly(catFriendly);
 	}
 	
 	public String getPersonality() {
@@ -180,8 +180,8 @@ public class GreyhoundFormBean {
 		return greyhound.isHomeAcclimated();
 	}
 	
-	public void setIsHomeAcclimated(boolean isHomeAcclimated){
-		greyhound.setHomeAcclimated(isHomeAcclimated);
+	public void setHomeAcclimated(boolean homeAcclimated){
+		greyhound.setHomeAcclimated(homeAcclimated);
 	}
 	
 	public List<Sponsorship> getSponsors() {
