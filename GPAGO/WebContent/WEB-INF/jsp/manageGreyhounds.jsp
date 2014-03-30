@@ -9,78 +9,72 @@
 <link href="../adminStyles.css" rel="stylesheet" type="text/css"/>
 
 <title>Greyhound Rescue</title>
-
-<script src="//netdna.bootstrapcdn.com/bootswatch/3.1.1/yeti/bootstrap.min.css"></script>
-<script src="http://code.jquery.com/jquery-1.10.1.min.js"  type= "text/javascript"></script>
-<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js" type= "text/javascript"></script>
-
-<!- Optional theme -->
-<link href="//netdna.bootstrapcdn.com/bootswatch/3.1.1/yeti/bootstrap.min.css" rel="stylesheet">
   
 </head>
 <body>
+
 <div id="page">
 
-<p><h1>Manage Greyhounds</h1></p>
+<div id="header">
+	<h1>Manage Greyhounds</h1>
+</div>
+
+<div id="navigation">
+	<ul>
+		<li><a href="manage-sponsors">Manage Sponsors</a></li>
+		<li><a href="new-greyhound">Create new greyhound record</a></li>
+		<li><a href="logout">Logout</a></li>
+	</ul>
+</div>
 
 <jsp:useBean id="facade" type="gpago.view.ViewFacade" scope="request"/>
 
-<p><a href="manage-sponsors">Manage Sponsors</a></p>
-
-<a href="new-greyhound">Create new greyhound record</a>
-<a href="logout">Logout</a>
-
-<br />
-<br />
-
-<table border="1">
-<tr>
-<td>Name</td>
-<td>Date of Birth</td>
-<td>Gender</td>
-<td>Weight</td>
-<td>Color</td>
-<td>Cat Friendly</td>
-<td>Home Acclimated</td>
-<td>Personality</td>
-<td>More info</td>
-<td>Sponsored by</td>
-<td>First Image</td>
-</tr>
-
 <c:forEach var="greyhound" items="${facade.greyhounds}">
 
-<tr>
-<td>${greyhound.name}</td>
-<td>${greyhound.dateOfBirth}</td>
-<td>${greyhound.gender}</td>
-<td>${greyhound.weight}</td>
-<td>${greyhound.color}</td>
-<td>${greyhound.isCatFriendly}</td>
-<td>${greyhound.isHomeAcclimated}</td>
-<td>${greyhound.personality}</td>
-<td>${greyhound.moreInfo}</td>
-<td>
-	<!-- Print list of sponsors with commas, but not for the first sponsor -->
-	<c:set var="firstSponsor" value="true"/>
-	<c:forEach var="sponsorship" items="${greyhound.sponsors}">
-		<c:choose>
-			<c:when test="${firstSponsor eq true}">
-				${sponsorship.sponsor.name}
-				<c:set var="firstSponsor" value="false"/>
-			</c:when>
-			<c:otherwise>
-				&#44; ${sponsorship.sponsor.name}
-			</c:otherwise>
-		</c:choose>
-	</c:forEach>
-</td>
-<td><img src="image?id=${greyhound.id}" width="42" height="42"></td>
-<td><a href="update-greyhound?id=${greyhound.id}">Edit</a></td>
-</tr>
+<div class="content-item">
+
+<div class="image">
+	<img src="image?id=${greyhound.id}" width="320" height="320">
+</div>
+
+<div class="listDetail">
+	<div class="formButtons">
+		<a href="update-greyhound?id=${greyhound.id}">Edit</a>
+	</div>
+
+	<div class="detail">
+		<label>Name</label><input type="text" disabled="disabled" readonly="readonly" name="name" value="${greyhound.name}" />
+		<label>Date of Birth</label><input type="text" disabled="disabled" readonly="readonly" name="dateOfBirth" value="${greyhound.dateOfBirth}" />
+		<label>Gender</label><input type="text" disabled="disabled" readonly="readonly" name="gender" value="${greyhound.gender}" />
+		<label>Weight</label><input type="text" disabled="disabled" readonly="readonly" name="weight" value="${greyhound.weight}" />
+		<label>Color</label><input type="text" disabled="disabled" readonly="readonly" name="color" value="${greyhound.color}" />
+		<label>Personality</label><input type="text" disabled="disabled" readonly="readonly" name="personality" value="${greyhound.personality}" />
+		<label>More info</label><input type="text" disabled="disabled" readonly="readonly" name="moreInfo" value="${greyhound.moreInfo}" />
+		<label>Cat Friendly</label><input type="checkbox" disabled="disabled" readonly="readonly" name="catFriendly" ${greyhound.catFriendly ? ' checked="checked"' : ''} />
+		<label>Home Acclimated</label><input type="checkbox" disabled="disabled" readonly="readonly" name="homeAcclimated" ${greyhound.homeAcclimated ? ' checked="checked"' : ''} />
+		<label>Sponsored by</label>
+		
+		<!-- Print list of sponsors with commas, but not for the first sponsor -->
+		<div class="sponsors">
+		<c:set var="firstSponsor" value="true"/>
+		<c:forEach var="sponsorship" items="${greyhound.sponsors}">
+		
+		<div class="sponsor">
+			&nbsp;&nbsp;&nbsp;&nbsp;${sponsorship.sponsor.name}
+		</div>
+	
+		</c:forEach>
+		</div>
+	</div> <!-- detail -->
+</div> <!-- listDetail -->
+
+</div> <!-- content-item -->
 
 </c:forEach>
-</table>
+
+<div id="footer">
+	Any footer info goes here (e.g. Copyright info)
+</div>
 
 </div>
 </body>

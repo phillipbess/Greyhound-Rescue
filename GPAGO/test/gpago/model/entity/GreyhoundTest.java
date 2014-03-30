@@ -21,10 +21,10 @@ public class GreyhoundTest {
 		// It is questionable if we need to test getters & setters but for now if can't hurt.
 		
 		Greyhound greyhound = new Greyhound();
-		greyhound.setIsCatFriendly(true);
-		Assert.assertEquals("isCatFriendly is not as expected.", true, greyhound.getIsCatFriendly());
+		greyhound.setCatFriendly(true);
+		Assert.assertEquals("isCatFriendly is not as expected.", true, greyhound.isCatFriendly());
 		
-		greyhound.setIsCatFriendly(false);
-		Assert.assertEquals("isCatFriendly is not as expected.", false, greyhound.getIsCatFriendly());
+		greyhound.setCatFriendly(false);
+		Assert.assertEquals("isCatFriendly is not as expected.", false, greyhound.isCatFriendly());
 	}
 }

@@ -79,14 +79,16 @@ public class ControllerServlet extends HttpServlet {
 		} else if (uri.endsWith("/image")) { // It's a request for a greyhound image.
 			Greyhound greyhound = getGreyhound(getLongParameter(request, "id"));
 			
-			if (greyhound!=null) {
+			if ((greyhound!=null) && (greyhound.getFirstImage()!=null)) {
 				BufferedImage img = ImageIO.read(new ByteArrayInputStream(greyhound.getFirstImage()));
 				
-				response.setContentType("image/jpeg");
+				if (img!=null) {
+					response.setContentType("image/jpeg");
 
-				OutputStream out = response.getOutputStream();
-				ImageIO.write(img, "jpg", out);
-				out.close();
+					OutputStream out = response.getOutputStream();
+					ImageIO.write(img, "jpg", out);
+					out.close();
+				}
 				return;
 			} else
 				response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
@@ -97,14 +99,14 @@ public class ControllerServlet extends HttpServlet {
 			request.setAttribute("facade", new ViewFacade(facade)); // We use the view facade to tailor what is exposed to jsp.
 			forward(request, response, ADDRESS_MANAGE_GREYHOUNDS_URI);
 		} else if (uri.endsWith("/admin/new-greyhound")) {
-			GreyhoundFormBean bean = new GreyhoundFormBean(request, new Greyhound());
+			GreyhoundFormBean bean = new GreyhoundFormBean(new Greyhound());
 			request.setAttribute("greyhound", bean);
 			forward(request, response, ADDRESS_NEW_GREYHOUND_URI);
 		} else if (uri.endsWith("/admin/update-greyhound")) {
 			Greyhound greyhound = getGreyhound(getLongParameter(request, "id"));
 
 			if (greyhound!=null) {
-				GreyhoundFormBean bean = new GreyhoundFormBean(request, greyhound);
+				GreyhoundFormBean bean = new GreyhoundFormBean(greyhound);
 				request.setAttribute("greyhound", bean);
 				forward(request, response, ADDRESS_EDIT_GREYHOUND_URI);
 			} else {

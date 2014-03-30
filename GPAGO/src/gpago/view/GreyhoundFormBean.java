@@ -58,9 +58,21 @@ public class GreyhoundFormBean {
 			greyhound.setColor(request.getParameter("color"));
 		}
 		
-		if (request.getParameter("isCatFriendly")!=null){
+		
+		String isCatFriendly = request.getParameter("catFriendly");
+		System.out.println(isCatFriendly);
+		
+		greyhound.setCatFriendly(request.getParameter("catFriendly")!=null);
+		
+		String isHomeAcclimated = request.getParameter("homeAcclimated");
+		System.out.println(isHomeAcclimated);
+		
+		greyhound.setHomeAcclimated(request.getParameter("homeAcclimated")!=null);
+		
+		
+		/*if (request.getParameter("isCatFriendly")!=null) {
 			greyhound.setIsCatFriendly(Boolean.parseBoolean(request.getParameter("isCatFriendly")));
-		}
+		}*/
 		
 		// Only process image if content is multipart.
 		if ((request.getContentType() != null) && (request.getContentType().toLowerCase().indexOf("multipart/form-data") > -1 )) {
@@ -144,12 +156,12 @@ public class GreyhoundFormBean {
 		greyhound.setColor(color);
 	}
 	
-	public boolean getIsCatFriendly() {
-		return greyhound.getIsCatFriendly();
+	public boolean isCatFriendly() {
+		return greyhound.isCatFriendly();
 	}
 
 	public void setIsCatFriendly(boolean isCatFriendly) {
-		greyhound.setIsCatFriendly(isCatFriendly);
+		greyhound.setCatFriendly(isCatFriendly);
 	}
 	
 	public String getPersonality() {
@@ -168,12 +180,12 @@ public class GreyhoundFormBean {
 		return greyhound.getMoreInfo();
 	}	
 	
-	public boolean getIsHomeAcclimated(){
-		return greyhound.getIsHomeAcclimated();
+	public boolean isHomeAcclimated(){
+		return greyhound.isHomeAcclimated();
 	}
 	
 	public void setIsHomeAcclimated(boolean isHomeAcclimated){
-		greyhound.setIsHomeAcclimated(isHomeAcclimated);
+		greyhound.setHomeAcclimated(isHomeAcclimated);
 	}
 	
 	public void setMainImageLocal(byte[] firstImage){

@@ -19,18 +19,24 @@
 
 <input type="hidden" name="id" value="${greyhound.id}">
 
-Name: <input type="text" name="name" value="${greyhound.name}">${greyhound.nameValidationText}<br />
-Date of Birth: <input type="text" name="dateOfBirth" value="${greyhound.dateOfBirth}"><br />
-Gender: <input type="text" name="gender" value="${greyhound.gender}"><br />
-Weight: <input type="text" name="weight" value="${greyhound.weight}"><br />
-Color: <input type="text" name="color" value="${greyhound.color}"><br />
-Cat friendly?: <input type="checkbox" name="isCatFriendly" value="${greyhound.isCatFriendly}"><br />
-Home acclimated: <input type="text" name="isHomeAcclimated" value="${greyhound.isHomeAcclimated}"><br />
-Personality: <input type="text" name="personality" value="${greyhound.personality}"><br />
-More info: <input type="text" name="moreInfo" value="${greyhound.moreInfo}"><br />
-<input type="file" name="image"><br/>
-<input type="submit" name="Save">
-<button type="button" onclick="window.location='manage-greyhounds';return false;">Cancel</button>
+<div class="detail">
+	<label>Name</label><input type="text" name="name" value="${greyhound.name}" />${greyhound.nameValidationText}
+	<label>Date of Birth</label><input type="text" name="dateOfBirth" value="${greyhound.dateOfBirth}" />
+	<label>Gender</label><input type="text" name="gender" value="${greyhound.gender}" />
+	<label>Weight</label><input type="text" name="weight" value="${greyhound.weight}" />
+	<label>Color</label><input type="text" name="color" value="${greyhound.color}" />
+	<label>Personality</label><input type="text" name="personality" value="${greyhound.personality}" />
+	<label>More info</label><input type="text" name="moreInfo" value="${greyhound.moreInfo}" />
+	<label>Cat Friendly</label><input type="checkbox" name="catFriendly" ${greyhound.catFriendly ? ' checked="checked"' : ''} />
+	<label>Home Acclimated</label><input type="checkbox" name="homeAcclimated" ${greyhound.homeAcclimated ? ' checked="checked"' : ''} />
+	<label>Image</label><input type="file" name="image">
+</div> <!-- detail -->
+
+<div class="formButtons">
+	<input type="submit" name="Save">
+	<button type="button" onclick="window.location='manage-greyhounds';return false;">Cancel</button>
+</div>
+
 </form>
 
 </div>

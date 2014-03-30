@@ -1,6 +1,5 @@
 package gpago.model.entity;
 
-import java.io.File;
 import java.io.Serializable;
 import java.lang.String;
 import java.util.Date;
@@ -63,7 +62,7 @@ public class Greyhound implements Serializable {
 	
 	//greyhound constructor without sponsorship parameter
 	public Greyhound(String name, Date dateOfBirth, String gender, int weight,
-			String color, boolean isCatFriendly, boolean isHomeAcclimated,
+			String color, boolean catFriendly, boolean homeAcclimated,
 			String personality, String moreInfo, byte[] firstImage) {
 		this();
 		setName(name);
@@ -71,15 +70,15 @@ public class Greyhound implements Serializable {
 		setGender(gender);
 		setWeight(weight);
 		setColor(color);
-		setIsCatFriendly(isCatFriendly);
-		setIsHomeAcclimated(isHomeAcclimated);
+		setCatFriendly(catFriendly);
+		setHomeAcclimated(homeAcclimated);
 		setPersonality(personality);
 		setMoreInfo(moreInfo);
 		setFirstImage(firstImage);
 	}
 
 	public Greyhound(String name, Date dateOfBirth, String gender, int weight,
-			String color, boolean isCatFriendly, boolean isHomeAcclimated,
+			String color, boolean catFriendly, boolean homeAcclimated,
 			String personality, String moreInfo, List<Sponsorship> sponsors,
 			byte[] firstImage) {
 		this();
@@ -88,8 +87,8 @@ public class Greyhound implements Serializable {
 		setGender(gender);
 		setWeight(weight);
 		setColor(color);
-		setIsCatFriendly(isCatFriendly);
-		setIsHomeAcclimated(isHomeAcclimated);
+		setCatFriendly(catFriendly);
+		setHomeAcclimated(homeAcclimated);
 		setPersonality(personality);
 		setMoreInfo(moreInfo);
 		setSponsors(sponsors);
@@ -97,11 +96,11 @@ public class Greyhound implements Serializable {
 	}
 
 	public Greyhound(Long id, String name, Date dateOfBirth, String gender,
-			int weight, String color, boolean isCatFriendly,
-			boolean isHomeAcclimated, String personality, String moreInfo,
+			int weight, String color, boolean catFriendly,
+			boolean homeAcclimated, String personality, String moreInfo,
 			List<Sponsorship> sponsors, byte[] firstImage) {
-		this(name, dateOfBirth, gender, weight, color, isCatFriendly,
-				isHomeAcclimated, personality, moreInfo, sponsors, firstImage);
+		this(name, dateOfBirth, gender, weight, color, catFriendly,
+				homeAcclimated, personality, moreInfo, sponsors, firstImage);
 		this.id = id;
 	}
 
@@ -117,12 +116,12 @@ public class Greyhound implements Serializable {
 		this.name = name;
 	}
 
-	public Boolean getIsCatFriendly() {
+	public boolean isCatFriendly() {
 		return isCatFriendly;
 	}
 
-	public void setIsCatFriendly(Boolean isCatFriendly) {
-		this.isCatFriendly = isCatFriendly;
+	public void setCatFriendly(boolean catFriendly) {
+		this.isCatFriendly = catFriendly;
 	}
 
 	public Date getDateOfBirth() {
@@ -157,11 +156,11 @@ public class Greyhound implements Serializable {
 		this.color = color;
 	}
 
-	public Boolean getIsHomeAcclimated() {
+	public boolean isHomeAcclimated() {
 		return isHomeAcclimated;
 	}
 
-	public void setIsHomeAcclimated(Boolean isHomeAcclimated) {
+	public void setHomeAcclimated(boolean isHomeAcclimated) {
 		this.isHomeAcclimated = isHomeAcclimated;
 	}
 
