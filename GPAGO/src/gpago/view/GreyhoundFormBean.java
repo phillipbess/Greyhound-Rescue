@@ -13,6 +13,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import gpago.model.entity.Greyhound;
 import gpago.model.entity.Sponsorship;
+import gpago.view.servlet.ServletUtils;
 
 /**
  * The greyhoundFormBean provides specific information needed by the jsps to display
@@ -74,8 +75,12 @@ public class GreyhoundFormBean {
 		if ((request.getContentType() != null) && (request.getContentType().toLowerCase().indexOf("multipart/form-data") > -1 )) {
 			try {
 				Part filePart = request.getPart("image");
+				
 				if (filePart!=null) {
-					greyhound.setFirstImage(IOUtils.toByteArray(filePart.getInputStream()));
+					String fileName = ServletUtils.getFileName(filePart);
+					
+					if ((fileName!=null) && (!fileName.isEmpty()))
+						greyhound.setFirstImage(IOUtils.toByteArray(filePart.getInputStream()));
 				}
 			} catch (Exception e) {
 				// TODO Log exception, but there's not much else we can do.
