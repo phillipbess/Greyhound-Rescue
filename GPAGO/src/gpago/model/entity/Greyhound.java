@@ -199,9 +199,4 @@ public class Greyhound implements Serializable {
 	public String toString() {
 		return name + " [id = " + id + "] ";
 	}
-
-	public void setSponsorsById(String[] sponsors) {
-		// TODO Auto-generated method stub
-	
-	}
 }

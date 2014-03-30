@@ -65,9 +65,8 @@ public class GreyhoundFormBean {
 		}
 		
 		if (request.getParameterValues("sponsors[]")!=null){
-			String[] sponsors = request.getParameterValues("sponsors[]");
+			String[] sponsors = request.getParameterValues("sponsors[]"); //this returns an array of IDs for the sponsors selected
 			//this still needs to be implemented
-			greyhound.setSponsorsById(sponsors);
 		}
 		
 		// Only process image if content is multipart.
