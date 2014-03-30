@@ -34,12 +34,13 @@
 <div class="content-item">
 
 <div class="image">
-	<img src="image?id=${greyhound.id}" width="320" height="320">
+	<img src="image?id=${greyhound.id}" width="220" height="320">
 </div>
 
 <div class="listDetail">
-	<div class="formButtons">
+	<div class="detailActionContainer">
 		<a href="update-greyhound?id=${greyhound.id}">Edit</a>
+		<a href="update-greyhound?id=${greyhound.id}">Delete</a>
 	</div>
 
 	<div class="detail">
