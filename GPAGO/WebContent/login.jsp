@@ -5,33 +5,70 @@
 <head>
 <meta name="viewport" content= "width=device-width, initial-scale=1.0">
 <meta charset=”utf-8”> 
-     
+
+<style>
+
+body
+{
+    font-family: Arial, Sans-Serif;
+    font-size: 13px;
+}
+
+.actionTitle{
+	font-weight:bold;
+	color:  #2562b0;
+	font-size:15px;
+	margin:0 0 5px;
+	padding:4px 4px;
+}
+
+
+#inputArea
+{
+    font-family: Arial, Sans-Serif;
+    font-size: 13px;
+    background-color: #d6e5f4;
+    padding: 10px;
+    margin-bottom: 10px;
+    width:310px;
+}
+#inputArea input, #inputArea textarea
+{
+    font-family: Arial, Sans-Serif;
+    font-size: 13px;
+    margin-bottom: 5px;
+    display: block;
+    padding: 4px;
+    width: 300px;
+}
+
+
+</style>   
      
 <title>Login</title>
 
-
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-<script src="http://code.jquery.com/jquery-1.10.1.min.js"  type= "text/javascript"></script>
-<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js" type= "text/javascript"></script>
-
-<!-- Optional theme -->
-<!-- <link href="//netdna.bootstrapcdn.com/bootswatch/3.1.1/slate/bootstrap.min.css" rel="stylesheet"> -->
-  
-  <link href="//netdna.bootstrapcdn.com/bootswatch/3.1.1/yeti/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
-<form action="j_security_check" method="POST">
-<table>
-<tr><td>User Name: <input type="TEXT" name="j_username"/></td></tr>
-<tr><td>Password: <input type="PASSWORD" name="j_password"/></td></tr>
-<tr><th><input type="SUBMIT" value="Log In"/></th></tr>
+	<div id="wrapper">
+	<div id="contentarea">
 
-</table>
-</form>
+	<div id="idLoginBox">
+		<form action="j_security_check" method="POST">
+			<h3 class="actionTitle">Sign In</h3>
+			
+			<div id="inputArea">
+				<label>User Name</label><input type="text" name="j_username"/>
+				<label>Password</label><input type="password" name="j_password"/>
+			</div>
 
-
-
-
+			<div class="submitField">
+				<input class="submitBtn" id="idSubmit" type="submit" value="login" />
+			</div>
+		</form>
+	</div> <!-- idLoginBox -->
+</div> <!-- contentarea -->
+<div class="clearer">&nbsp;</div>
+</div> <!-- wrapper -->
 </body>
 </html>
