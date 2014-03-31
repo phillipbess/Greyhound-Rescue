@@ -131,7 +131,13 @@ public class GreyhoundFormBean {
 	}
 	
 	public String getDateOfBirth() {
-		return format.format(greyhound.getDateOfBirth());
+		if ((greyhound!=null) && (greyhound.getDateOfBirth()!=null)) {
+			try {
+				return format.format(greyhound.getDateOfBirth());
+			} catch (Throwable e) {
+			}
+		}
+		return null;
 	}
 
 	public void setDateOfBirth(String dateOfBirth) {
