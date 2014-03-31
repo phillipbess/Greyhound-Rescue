@@ -139,5 +139,33 @@ label {
 	text-align: right;
 	padding: 20px;
 	height: 1%;
+}
+
+.container {
+	display: inline-block;
+	float: left;	
+	width: 500px
+}
+SELECT, INPUT[type="text"] {
+    width: 160px;
     box-sizing: border-box;
+}
+
+#btnRight, #btnLeft {
+	width: 25px;
+}
+
+SECTION {	
+    padding: 8px;
+    overflow: auto;
+}
+
+SECTION > DIV {
+    float: left;
+    padding: 4px;
+}
+
+SECTION > DIV + DIV {	
+    width: 40px;
+    text-align: center;
 }

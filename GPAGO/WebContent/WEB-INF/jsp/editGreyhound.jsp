@@ -28,18 +28,14 @@ $(document).ready(function(){
 	    $("#rightValues").append(selectedItem);
 	});
 });
-/*$(document).ready(function(){
-	$("#rightValues").change(function () {
-	    var selectedItem = $("#rightValues option:selected");
-	    $("#txtRight").val(selectedItem.text());
-	});
-});*/
+
 </script>
 <div id="page">
 
 <h1>Enter Greyhound Information</h1>
 
 <jsp:useBean id="greyhound" type="gpago.view.GreyhoundFormBean" scope="request"/>
+<jsp:useBean id="facade" class="gpago.view.ViewFacade" scope="request"/>
 
 <form method="post" enctype="multipart/form-data" action="save-greyhound">
 
@@ -55,14 +51,35 @@ $(document).ready(function(){
 	<label>More info</label><input type="text" name="moreInfo" value="${greyhound.moreInfo}" />
 	<label>Cat Friendly</label><input type="checkbox" name="catFriendly" ${greyhound.catFriendly ? ' checked="checked"' : ''} />
 	<label>Home Acclimated</label><input type="checkbox" name="homeAcclimated" ${greyhound.homeAcclimated ? ' checked="checked"' : ''} />
+	<label>Sponsored By:</label>
+	<section class="container">
+	    <div>
+	        <select id="leftValues" size="5" name="sponsors[]" multiple>
+		        <c:forEach var="sponsorship" items="${greyhound.sponsors}">
+						<option value="${sponsorship.sponsor.id}">${sponsorship.sponsor.name}</option>
+				</c:forEach>
+			</select>
+	    </div>	
+	    <div>
+	        <input type="button" id="btnLeft" value="&lt;" />
+	        <input type="button" id="btnRight" value="&gt;" />
+	    </div>
+	    <div>
+	        <select id="rightValues" size="5" multiple>
+	            <c:forEach var="sponsor" items="${facade.sponsors}">
+					<option value="${sponsor.id}">${sponsor.name}</option>
+				</c:forEach>
+	        </select>
+	    </div>
+	</section>
 	<label>Image</label><input type="file" name="image">
+	
 </div> <!-- detail -->
 
 <div class="formButtons">
 	<input type="submit" name="Save">
 	<button type="button" onclick="window.location='manage-greyhounds';return false;">Cancel</button>
 </div>
-
 </form>
 
 </div>

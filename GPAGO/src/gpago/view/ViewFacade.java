@@ -12,6 +12,11 @@ public class ViewFacade {
 	
 	ModelFacade modelFacade;
 	
+	//default constructor
+	public ViewFacade(){
+		modelFacade = new ModelFacade();
+	}
+	
 	public ViewFacade(ModelFacade modelFacade) {
 		this.modelFacade = modelFacade;
 	}
