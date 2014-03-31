@@ -56,6 +56,7 @@ public class Greyhound implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	//Default Constructor
 	public Greyhound() {
 		super();
 	}
