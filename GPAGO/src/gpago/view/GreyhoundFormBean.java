@@ -1,8 +1,6 @@
 package gpago.view;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.logging.*;
 
@@ -45,13 +43,7 @@ public class GreyhoundFormBean {
 			greyhound.setName(request.getParameter("name"));
 		}
 		
-		if (request.getParameter("dateOfBirth")!=null){
-			try {
-				greyhound.setDateOfBirth(format.parse(request.getParameter("dateOfBirth")));
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
-		}
+		setDateOfBirth(request.getParameter("dateOfBirth"));
 		
 		if (request.getParameter("gender")!=null){
 			greyhound.setGender(request.getParameter("gender"));
@@ -137,14 +129,17 @@ public class GreyhoundFormBean {
 	public void setName(String name) {
 		greyhound.setName(name);
 	}
-
-	public Date getDateOfBirth() {
-		return greyhound.getDateOfBirth();
+	
+	public String getDateOfBirth() {
+		return format.format(greyhound.getDateOfBirth());
 	}
 
-	public void setDateOfBirth(Date dateOfBirth) {
+	public void setDateOfBirth(String dateOfBirth) {
 		if (dateOfBirth!=null) {
-			greyhound.setDateOfBirth(dateOfBirth);
+			try {
+				greyhound.setDateOfBirth(format.parse(dateOfBirth));
+			} catch (Throwable e) {
+			}
 		}
 	}
 	
