@@ -1,13 +1,12 @@
 package gpago.view;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.logging.*;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.Part;
+import javax.servlet.http.*;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -46,7 +45,13 @@ public class GreyhoundFormBean {
 			greyhound.setName(request.getParameter("name"));
 		}
 		
-		setDateOfBirth(request.getParameter("dateOfBirth"));
+		if (request.getParameter("dateOfBirth")!=null){
+			try {
+				greyhound.setDateOfBirth(format.parse(request.getParameter("dateOfBirth")));
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+		}
 		
 		if (request.getParameter("gender")!=null){
 			greyhound.setGender(request.getParameter("gender"));
@@ -72,11 +77,12 @@ public class GreyhoundFormBean {
 		
 		greyhound.setHomeAcclimated(request.getParameter("homeAcclimated")!=null);
 
-		/*if (request.getParameterValues("sponsors[]")!=null){
+		if (request.getParameterValues("sponsors[]")!=null){
+			//puts all the selected sponsors ids into an Array of Strings
 			String[] sponsors = request.getParameterValues("sponsors[]");
 			//this still needs to be implemented
-			greyhound.setS.setSponsorsById(sponsors);
-		}*/
+			//greyhound.setSponsors(sponsors);
+		}
 		
 		// Only process image if content is multipart.
 		if ((request.getContentType() != null) && (request.getContentType().toLowerCase().indexOf("multipart/form-data") > -1 )) {
@@ -132,16 +138,13 @@ public class GreyhoundFormBean {
 		greyhound.setName(name);
 	}
 
-	public String getDateOfBirth() {
-		return format.format(greyhound.getDateOfBirth());
+	public Date getDateOfBirth() {
+		return greyhound.getDateOfBirth();
 	}
 
-	public void setDateOfBirth(String dateOfBirth) {
+	public void setDateOfBirth(Date dateOfBirth) {
 		if (dateOfBirth!=null) {
-			try {
-				greyhound.setDateOfBirth(format.parse(dateOfBirth));
-			} catch (java.text.ParseException e) {
-			}
+			greyhound.setDateOfBirth(dateOfBirth);
 		}
 	}
 	
