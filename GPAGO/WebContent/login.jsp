@@ -49,14 +49,14 @@
 
 	<div class="container" style="text-align: center; margin-top: 100px;">
 		<p>
-			<img src="../greyhounds.jpg" style="width: 200px;" />
+			<img src="../greyhound.png" style="width: 300px;" />
 		</p>
 	</div>
 	<div class="container">
 
 		<form class="j_security_check" method="POST" action="j_security_check">
 			<h2 class="j_security_check-heading">Please sign in</h2>
-			<input type="Text" class="form-control" name="j_username"
+			<input type="Text"  class="form-control" name="j_username"
 				placeholder="Name" name="j_username" required autofocus> <input
 				type="Password" class="form-control" placeholder="Password"
 				name="j_password" required> <label class="checkbox">
