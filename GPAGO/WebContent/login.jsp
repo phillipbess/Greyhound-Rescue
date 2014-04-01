@@ -1,74 +1,73 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+	pageEncoding="utf-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-<meta name="viewport" content= "width=device-width, initial-scale=1.0">
-<meta charset=”utf-8”> 
-
-<style>
-
-body
-{
-    font-family: Arial, Sans-Serif;
-    font-size: 13px;
-}
-
-.actionTitle{
-	font-weight:bold;
-	color:  #2562b0;
-	font-size:15px;
-	margin:0 0 5px;
-	padding:4px 4px;
-}
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset=”utf-8”>
 
 
-#inputArea
-{
-    font-family: Arial, Sans-Serif;
-    font-size: 13px;
-    background-color: #d6e5f4;
-    padding: 10px;
-    margin-bottom: 10px;
-    width:310px;
-}
-#inputArea input, #inputArea textarea
-{
-    font-family: Arial, Sans-Serif;
-    font-size: 13px;
-    margin-bottom: 5px;
-    display: block;
-    padding: 4px;
-    width: 300px;
-}
-
-
-</style>   
-     
 <title>Login</title>
+
+
+
+
+ <link href="../bootstrap.css" rel="stylesheet">
+<!-- Custom styles for this template -->
+<link href="../loginStyles.css" rel="stylesheet">
+
+
+<script src="../bootstrap.js"></script>
+
+<title>Greyhound Login</title>
 
 </head>
 
 <body>
-	<div id="wrapper">
-	<div id="contentarea">
-
-	<div id="idLoginBox">
-		<form action="j_security_check" method="POST">
-			<h3 class="actionTitle">Sign In</h3>
-			
-			<div id="inputArea">
-				<label>User Name</label><input type="text" name="j_username"/>
-				<label>Password</label><input type="password" name="j_password"/>
+	<div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="" role="button">Greyhound Pets of
+					America - Orlando</a>
 			</div>
-
-			<div class="submitField">
-				<input class="submitBtn" id="idSubmit" type="submit" value="login" />
+			<div class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="">Home</a></li>
+					<li><a href="#about">About</a></li>
+					<li><a href="#contact">Contact</a></li>
+				</ul>
 			</div>
+		</div>
+	</div>
+
+	<div class="container" style="text-align: center; margin-top: 100px;">
+		<p>
+			<img src="../greyhounds.jpg" style="width: 200px;" />
+		</p>
+	</div>
+	<div class="container">
+
+		<form class="j_security_check" method="POST" action="j_security_check">
+			<h2 class="j_security_check-heading">Please sign in</h2>
+			<input type="Text" class="form-control" name="j_username"
+				placeholder="Name" name="j_username" required autofocus> <input
+				type="Password" class="form-control" placeholder="Password"
+				name="j_password" required> <label class="checkbox">
+				<input type="checkbox" value="remember-me">Remember me
+			</label>
+			<button class="btn btn-lg btn-primary btn-block" type="submit"
+				value="Log In">Sign in</button>
 		</form>
-	</div> <!-- idLoginBox -->
-</div> <!-- contentarea -->
-<div class="clearer">&nbsp;</div>
-</div> <!-- wrapper -->
+
+
+		
 </body>
+
 </html>
