@@ -47,7 +47,16 @@
 		<label>Name</label><input type="text" disabled="disabled" readonly="readonly" name="name" value="${greyhound.name}" />
 		<label>Date of Birth</label><input type="text" disabled="disabled" readonly="readonly" name="dateOfBirth" value="${greyhound.dateOfBirth}" />
 		<label>Gender</label><input type="text" disabled="disabled" readonly="readonly" name="gender" value="${greyhound.gender}" />
-		<label>Weight</label><input type="text" disabled="disabled" readonly="readonly" name="weight" value="${greyhound.weight}" />
+		<!-- When displaying a grey, do not display 0 for its weight if no value has been provided. Display an empty box -->
+		<c:set var="weight" value="${greyhound.weight}"/>
+		<c:choose>
+			<c:when test="${weight eq 0}">
+				<label>Weight</label><input type="text" disabled="disabled" readonly="readonly" name="weight" value="" />
+			</c:when>
+			<c:otherwise>
+				<label>Weight</label><input type="text" disabled="disabled" readonly="readonly" name="weight" value="${weight}" />
+			</c:otherwise>
+		</c:choose>
 		<label>Color</label><input type="text" disabled="disabled" readonly="readonly" name="color" value="${greyhound.color}" />
 		<label>Personality</label><input type="text" disabled="disabled" readonly="readonly" name="personality" value="${greyhound.personality}" />
 		<label>More info</label><input type="text" disabled="disabled" readonly="readonly" name="moreInfo" value="${greyhound.moreInfo}" />

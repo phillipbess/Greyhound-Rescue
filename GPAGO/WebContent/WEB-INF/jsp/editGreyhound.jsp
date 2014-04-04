@@ -45,7 +45,16 @@ $(document).ready(function(){
 	<label>Name</label><input type="text" name="name" value="${greyhound.name}" />${greyhound.nameValidationText}
 	<label>Date of Birth</label><input type="date" name="dateOfBirth" value="${greyhound.dateOfBirth}" />
 	<label>Gender</label><input type="text" name="gender" value="${greyhound.gender}" />
-	<label>Weight</label><input type="text" name="weight" value="${greyhound.weight}" />
+	<!-- When creating a new grey, do not display 0. Display an empty box -->
+	<c:set var="weight" value="${greyhound.weight}"/>
+	<c:choose>
+		<c:when test="${weight eq 0}">
+			<label>Weight</label><input type="text" name="weight" value="" />
+		</c:when>
+		<c:otherwise>
+			<label>Weight</label><input type="text" name="weight" value="${weight}" />
+		</c:otherwise>
+	</c:choose>
 	<label>Color</label><input type="text" name="color" value="${greyhound.color}" />
 	<label>Personality</label><input type="text" name="personality" value="${greyhound.personality}" />
 	<label>More info</label><input type="text" name="moreInfo" value="${greyhound.moreInfo}" />

@@ -81,7 +81,6 @@ public class ControllerServlet extends HttpServlet {
 			
 		} else if (uri.endsWith("/login")) {
 			request.setAttribute("facade", new ViewFacade(facade)); // We use the view facade to tailor what is exposed to jsp.
-			//forward(request, response, ADDRESS_MANAGE_GREYHOUNDS_URI);
 			response.sendRedirect(request.getContextPath() + ADDRESS_ADMIN_PAGE_URI);
 		} else if (uri.endsWith("/image")) { // It's a request for a greyhound image.
 			Greyhound greyhound = getGreyhound(getLongParameter(request, "id"));
