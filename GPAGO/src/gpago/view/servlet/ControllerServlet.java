@@ -45,6 +45,8 @@ public class ControllerServlet extends HttpServlet {
 	public static final String ADDRESS_EDIT_SPONSOR_URI = "/WEB-INF/jsp/editSponsor.jsp";
 	
 	public static final String ADDRESS_NOT_FOUND = "/WEB-INF/jsp/notFound.jsp";
+	public static final String ADDRESS_LOGIN_URI = "/admin/login";
+	public static final String ADDRESS_ADMIN_PAGE_URI = "/admin/manage-greyhounds";
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -66,7 +68,7 @@ public class ControllerServlet extends HttpServlet {
 		logger.finest("URI: " + uri);
 		
 		//String contextPath = request.getContextPath();
-		//logger.finest("Context Info: " + contextPath);
+		//logger.finest("Context Info: " + contextPath);	
 		
 		uri = uri.toLowerCase();
 
@@ -75,7 +77,12 @@ public class ControllerServlet extends HttpServlet {
 			if (session!=null)
 				session.invalidate();
 			request.setAttribute("facade", new ViewFacade(facade)); // We use the view facade to tailor what is exposed to jsp.
-			forward(request, response, ADDRESS_MANAGE_GREYHOUNDS_URI);
+			response.sendRedirect(request.getContextPath() + ADDRESS_LOGIN_URI);
+			
+		} else if (uri.endsWith("/login")) {
+			request.setAttribute("facade", new ViewFacade(facade)); // We use the view facade to tailor what is exposed to jsp.
+			//forward(request, response, ADDRESS_MANAGE_GREYHOUNDS_URI);
+			response.sendRedirect(request.getContextPath() + ADDRESS_ADMIN_PAGE_URI);
 		} else if (uri.endsWith("/image")) { // It's a request for a greyhound image.
 			Greyhound greyhound = getGreyhound(getLongParameter(request, "id"));
 			

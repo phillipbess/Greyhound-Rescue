@@ -65,7 +65,7 @@
 			<button class="btn btn-lg btn-primary btn-block" type="submit"
 				value="Log In">Sign in</button>
 		</form>
-
+	</div>
 
 		
 </body>
