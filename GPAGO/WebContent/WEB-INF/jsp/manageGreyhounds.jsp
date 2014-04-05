@@ -66,7 +66,6 @@
 		
 		<!-- Print list of sponsors with commas, but not for the first sponsor -->
 		<div class="sponsors">
-		<c:set var="firstSponsor" value="true"/>
 		<c:forEach var="sponsorship" items="${greyhound.sponsors}">
 		
 		<div class="sponsor">
