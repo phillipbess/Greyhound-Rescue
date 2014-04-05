@@ -44,8 +44,21 @@ public class Greyhound implements Serializable {
 	private String moreInfo;
 
 	@Lob
-	private byte[] firstImage;
+	private byte[] image1;
 
+	@Lob
+	private byte[] image2;
+
+	@Lob
+	private byte[] image3;
+
+	@Lob
+	private byte[] image4;
+
+	@Lob
+	private byte[] image5;
+	
+	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date entryDate;
 
@@ -64,7 +77,7 @@ public class Greyhound implements Serializable {
 	//greyhound constructor without sponsorship parameter
 	public Greyhound(String name, Date dateOfBirth, String gender, int weight,
 			String color, boolean catFriendly, boolean homeAcclimated,
-			String personality, String moreInfo, byte[] firstImage) {
+			String personality, String moreInfo, byte[] image1) {
 		this();
 		setName(name);
 		setDateOfBirth(dateOfBirth);
@@ -75,13 +88,13 @@ public class Greyhound implements Serializable {
 		setHomeAcclimated(homeAcclimated);
 		setPersonality(personality);
 		setMoreInfo(moreInfo);
-		setFirstImage(firstImage);
+		setImage1(image1);
 	}
 
 	public Greyhound(String name, Date dateOfBirth, String gender, int weight,
 			String color, boolean catFriendly, boolean homeAcclimated,
 			String personality, String moreInfo, List<Sponsorship> sponsors,
-			byte[] firstImage) {
+			byte[] image1) {
 		this();
 		setName(name);
 		setDateOfBirth(dateOfBirth);
@@ -93,15 +106,15 @@ public class Greyhound implements Serializable {
 		setPersonality(personality);
 		setMoreInfo(moreInfo);
 		setSponsors(sponsors);
-		setFirstImage(firstImage);
+		setImage1(image1);
 	}
 
 	public Greyhound(Long id, String name, Date dateOfBirth, String gender,
 			int weight, String color, boolean catFriendly,
 			boolean homeAcclimated, String personality, String moreInfo,
-			List<Sponsorship> sponsors, byte[] firstImage) {
+			List<Sponsorship> sponsors, byte[] image1) {
 		this(name, dateOfBirth, gender, weight, color, catFriendly,
-				homeAcclimated, personality, moreInfo, sponsors, firstImage);
+				homeAcclimated, personality, moreInfo, sponsors, image1);
 		this.id = id;
 	}
 
@@ -189,14 +202,49 @@ public class Greyhound implements Serializable {
 		this.sponsors = sponsors;
 	}
 
-	public byte[] getFirstImage() {
-		return firstImage;
+	public byte[] getImage1() {
+		return image1;
 	}
 
-	public void setFirstImage(byte[] firstImage) {
-		this.firstImage = firstImage;
+	public void setImage1(byte[] image1) {
+		this.image1 = image1;
+	}
+	
+	
+	
+	public byte[] getImage2() {
+		return image2;
 	}
 
+	public void setImage2(byte[] image2) {
+		this.image2 = image2;
+	}
+	
+	
+	public byte[] getImage3() {
+		return image3;
+	}
+
+	public void setImage3(byte[] image3) {
+		this.image3 = image3;
+	}
+	
+	public byte[] getImage4() {
+		return image4;
+	}
+
+	public void setImage4(byte[] image4) {
+		this.image4 = image4;
+	}
+	
+	public byte[] getImage5() {
+		return image5;
+	}
+
+	public void setImage5(byte[] image5) {
+		this.image5 = image5;
+	}
+	
 	public String toString() {
 		return name + " [id = " + id + "] ";
 	}
