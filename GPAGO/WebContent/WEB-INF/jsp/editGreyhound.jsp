@@ -55,7 +55,6 @@ $(document).ready(function(){
 			<label>Weight</label><input type="text" name="weight" value="${weight}" />
 		</c:otherwise>
 	</c:choose>
-	<label>Color</label><input type="text" name="color" value="${greyhound.color}" />
 	<label>Color</label><select type="text" name="color" value="${greyhound.color}" >
 			<option value="black">Black</option>
 			<option value="blackBrindle">Black Brindle</option>
