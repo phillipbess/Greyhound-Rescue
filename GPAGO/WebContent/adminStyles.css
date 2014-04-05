@@ -132,6 +132,20 @@ label {
 	margin: 4px 10px 0px 5px;
 }
 
+.detail select {
+	display: inline-block;
+	float: left;
+	width: 250px;
+	margin: 4px 10px 0px 5px;	
+}
+
+.detail textarea {
+	display: inline-block;
+	float: left;
+	width: 250px;
+	margin: 4px 10px 0px 5px;	
+}
+
 #footer
 {
 	clear: left;
@@ -144,7 +158,7 @@ label {
 .container {
 	display: inline-block;
 	float: left;	
-	width: 500px
+	width: 600px
 }
 SELECT, INPUT[type="text"] {
     width: 160px;

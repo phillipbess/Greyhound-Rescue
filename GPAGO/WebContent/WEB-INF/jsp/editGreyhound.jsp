@@ -55,7 +55,7 @@ $(document).ready(function(){
 			<label>Weight</label><input type="text" name="weight" value="${weight}" />
 		</c:otherwise>
 	</c:choose>
-	
+	<label>Color</label><input type="text" name="color" value="${greyhound.color}" />
 	<label>Color</label><select type="text" name="color" value="${greyhound.color}" >
 			<option value="black">Black</option>
 			<option value="blackBrindle">Black Brindle</option>
@@ -97,7 +97,7 @@ $(document).ready(function(){
 			<option value="whiteTickedRedFawn">White Ticked Red Fawn</option>	
 			</select>
 	<label>Personality</label><input type="text" name="personality" value="${greyhound.personality}" />
-	<label>More info</label><textarea type="text" name="moreInfo" value="${greyhound.moreInfo}" ></textarea>
+	<label>More info</label><textarea type="text" name="moreInfo" value="${greyhound.moreInfo}" /></textarea>
 	<label>Cat Friendly</label><input type="checkbox" name="catFriendly" ${greyhound.catFriendly ? ' checked="checked"' : ''} />
 	<label>Home Acclimated</label><input type="checkbox" name="homeAcclimated" ${greyhound.homeAcclimated ? ' checked="checked"' : ''} />
 	<label>Sponsored By:</label>
