@@ -85,8 +85,28 @@ public class ControllerServlet extends HttpServlet {
 		} else if (uri.endsWith("/image")) { // It's a request for a greyhound image.
 			Greyhound greyhound = getGreyhound(getLongParameter(request, "id"));
 			
-			if ((greyhound!=null) && (greyhound.getFirstImage()!=null)) {
-				BufferedImage img = ImageIO.read(new ByteArrayInputStream(greyhound.getFirstImage()));
+			if ((greyhound!=null) && (greyhound.getImage1()!=null)) {
+				
+				int imageIndex = getIntParameter(request, "idx");
+
+				BufferedImage img;
+				
+				switch (imageIndex) {
+				case 2:
+					img = ImageIO.read(new ByteArrayInputStream(greyhound.getImage2()));
+					break;
+				case 3:
+					img = ImageIO.read(new ByteArrayInputStream(greyhound.getImage3()));
+					break;
+				case 4:
+					img = ImageIO.read(new ByteArrayInputStream(greyhound.getImage4()));
+					break;
+				case 5:
+					img = ImageIO.read(new ByteArrayInputStream(greyhound.getImage5()));
+					break;
+				default:
+					img = ImageIO.read(new ByteArrayInputStream(greyhound.getImage1()));
+				}
 				
 				if (img!=null) {
 					response.setContentType("image/jpeg");
@@ -251,4 +271,18 @@ public class ControllerServlet extends HttpServlet {
 		return null;
 	}
 	
+	/*
+	 * Return the int value of the parameter name specified.
+	 * Return -1 if the parameter value is not found or is not in a valid integer format.
+	 */
+	private int getIntParameter(HttpServletRequest request, String name) {
+		String strValue =  request.getParameter(name);
+		if (strValue!=null) {
+			try {
+				return Integer.valueOf(strValue).intValue();
+			} catch (Throwable ex) {
+			}
+		}
+		return -1;
+	}
 }

@@ -369,8 +369,8 @@ div.Section1
 
 		<tr>
 			<td width="151" rowspan="9">
-			<a href="PHOTOGALLERY%20AVAIL%20DOGS/alealancraig2.jpg" target="_blank">
-			<img class="style30" height="202" width="156" src="image?id=${greyhound.id}" /></a></td>
+			<a href="image?idx=2&id=${greyhound.id}" target="_blank">
+			<img class="style30" height="202" width="156" src="image?idx=1&id=${greyhound.id}" /></a></td>
 			
 			<td bgcolor="#c3d2ed" class="style8" style="width: 141px"><strong>
 			Name:</strong></td>
@@ -404,8 +404,20 @@ div.Section1
 			<td class="style8" style="width: 141px; height: 22px;">Personality/more info:</td>
 			<td width="201" class="style8"><span class="auto-style86">${greyhound.personality} &amp; ${greyhound.moreInfo}</span><br />
 			<em>additional
-			<a href="PHOTOGALLERY%20AVAIL%20DOGS/AleAlanCraig3.jpg" target="_blank">pic</a>,
-			<a href="PHOTOGALLERY%20AVAIL%20DOGS/AleAlanCraig4.jpg" target="_blank">pic</a></em></td>
+
+			<c:if test='${greyhound.image3Exists}'>
+				<a href="image?idx=3&id=${greyhound.id}" target="_blank">pic</a>,
+			</c:if>
+
+			<c:if test='${greyhound.image4Exists}'>
+				<a href="image?idx=4&id=${greyhound.id}" target="_blank">pic</a>
+			</c:if>
+			
+			<c:if test='${greyhound.image5Exists}'>
+				<a href="image?idx=5&id=${greyhound.id}" target="_blank">pic</a>
+			</c:if>
+
+			</em></td>			
 		</tr>
 		<tr>
 			<td class="style8" style="width: 141px; height: 21px;">Sponsored by:</td>

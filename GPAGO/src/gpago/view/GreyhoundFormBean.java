@@ -83,21 +83,48 @@ public class GreyhoundFormBean {
 		
 		// Only process image if content is multipart.
 		if ((request.getContentType() != null) && (request.getContentType().toLowerCase().indexOf("multipart/form-data") > -1 )) {
-			try {
-				Part filePart = request.getPart("image");
+				byte[] imageBytes = getImageBytes(request, "image1");
+				if (imageBytes!=null)
+					greyhound.setImage1(imageBytes);
 				
-				if (filePart!=null) {
-					String fileName = ServletUtils.getFileName(filePart);
-					
-					if ((fileName!=null) && (!fileName.isEmpty()))
-						greyhound.setFirstImage(IOUtils.toByteArray(filePart.getInputStream()));
-				}
-			} catch (Exception e) {
-				// TODO Log exception, but there's not much else we can do.
-				logger.log(Level.SEVERE, "Error while getting image bytes from multipart request.", e);
-			}
+				imageBytes = getImageBytes(request, "image2");
+				if (imageBytes!=null)
+					greyhound.setImage2(imageBytes);
+
+				imageBytes = getImageBytes(request, "image3");
+				if (imageBytes!=null)
+					greyhound.setImage3(imageBytes);
+
+				imageBytes = getImageBytes(request, "image4");
+				if (imageBytes!=null)
+					greyhound.setImage4(imageBytes);
+				
+				imageBytes = getImageBytes(request, "image5");
+				if (imageBytes!=null)
+					greyhound.setImage5(imageBytes);
+				
 		}
 	}
+	
+	private byte[] getImageBytes(HttpServletRequest request, String partName) {
+		try {
+			Part filePart = request.getPart(partName);			
+			
+			if (filePart!=null) {
+				String fileName = ServletUtils.getFileName(filePart);
+				
+				if ((fileName!=null) && (!fileName.isEmpty()))
+					return IOUtils.toByteArray(filePart.getInputStream());
+			}
+			
+		} catch (Exception e) {
+			// TODO Log exception, but there's not much else we can do.
+			logger.log(Level.SEVERE, "Error while getting image bytes from multipart request.", e);
+		}
+		
+		return null;
+	}
+		
 	
 	/**
 	 * Determines if the state contained by the bean is valid.
@@ -218,11 +245,43 @@ public class GreyhoundFormBean {
 		greyhound.setSponsors(sponsors);
 	}
 	
-	public void setMainImageLocal(byte[] firstImage){
-		greyhound.setFirstImage(firstImage);
+	public byte[] getImage1(){
+		return greyhound.getImage1();
 	}
 	
-	public byte[] getFirstImage(){
-		return greyhound.getFirstImage();
+	public boolean isImage1Exists() {
+		return greyhound.getImage1()!=null;
+	}
+	
+	public byte[] getImage2(){
+		return greyhound.getImage2();
+	}
+
+	public boolean isImage2Exists() {
+		return greyhound.getImage2()!=null;
+	}
+	
+	public byte[] getImage3(){
+		return greyhound.getImage3();
+	}
+
+	public boolean isImage3Exists() {
+		return greyhound.getImage3()!=null;
+	}
+	
+	public byte[] getImage4(){
+		return greyhound.getImage4();
+	}
+
+	public boolean isImage4Exists() {
+		return greyhound.getImage4()!=null;
+	}
+	
+	public byte[] getImage5(){
+		return greyhound.getImage5();
+	}
+	
+	public boolean isImage5Exists() {
+		return greyhound.getImage5()!=null;
 	}
 }

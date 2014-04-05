@@ -81,7 +81,11 @@ $(document).ready(function(){
 	        </select>
 	    </div>
 	</section>
-	<label>Image</label><input type="file" name="image">
+	<label>Image 1</label><input type="file" name="image1">
+	<label>Image 2</label><input type="file" name="image2">
+	<label>Image 3</label><input type="file" name="image3">
+	<label>Image 4</label><input type="file" name="image4">
+	<label>Image 5</label><input type="file" name="image5">
 	
 </div> <!-- detail -->
 

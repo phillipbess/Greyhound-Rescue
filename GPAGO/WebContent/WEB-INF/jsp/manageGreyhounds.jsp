@@ -34,7 +34,11 @@
 <div class="content-item">
 
 <div class="image">
-	<img src="image?id=${greyhound.id}" width="220" height="320">
+	<img src="image?idx=1&id=${greyhound.id}" width="220" height="320">
+	<img src="image?idx=2&id=${greyhound.id}" width="20" height="20">
+	<img src="image?idx=3&id=${greyhound.id}" width="20" height="20">
+	<img src="image?idx=4&id=${greyhound.id}" width="20" height="20">
+	<img src="image?idx=5&id=${greyhound.id}" width="20" height="20">
 </div>
 
 <div class="listDetail">
