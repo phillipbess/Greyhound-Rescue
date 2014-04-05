@@ -43,7 +43,7 @@ $(document).ready(function(){
 
 <div class="detail">
 	<label>Name</label><input type="text" name="name" value="${greyhound.name}" />${greyhound.nameValidationText}
-	<label>Date of Birth</label><input type="date" name="dateOfBirth" value="${greyhound.dateOfBirth}" />
+	<label>Date of Birth</label><input type="date" name="dateOfBirth" placeholder="mm/dd/yyyy" value="${greyhound.dateOfBirth}" />
 	<label>Gender</label><input type="text" name="gender" value="${greyhound.gender}" />
 	<!-- When creating a new grey, do not display 0. Display an empty box -->
 	<c:set var="weight" value="${greyhound.weight}"/>
@@ -55,9 +55,49 @@ $(document).ready(function(){
 			<label>Weight</label><input type="text" name="weight" value="${weight}" />
 		</c:otherwise>
 	</c:choose>
-	<label>Color</label><input type="text" name="color" value="${greyhound.color}" />
+	
+	<label>Color</label><select type="text" name="color" value="${greyhound.color}" >
+			<option value="black">Black</option>
+			<option value="blackBrindle">Black Brindle</option>
+			<option value="blue">Blue</option>
+			<option value="blueBrindle">Blue Brindle</option>
+			<option value="blueFawn">Blue Fawn</option>
+			<option value="brindle">Brindle</option>
+			<option value="darkBrindle">Dark Brindle</option>
+			<option value="darkFawn">Dark Fawn</option>
+			<option value="darkRed">Dark Red</option>
+			<option value="fawn">Fawn</option>
+			<option value="fawnBrindle">Fawn Brindle</option>
+			<option value="lightBrindle">Light Brindle</option>
+			<option value="lightRed">Light Red</option>
+			<option value="lightTickedBrindle">Light Ticked Brindle</option>
+			<option value="red">Red</option>
+			<option value="redBrindle">Red Brindle</option>
+			<option value="redFawn">Red Fawn</option>
+			<option value="redFawnBrindle">Red Fawn Brindle</option>
+			<option value="silverBrindle">Silver Brindle</option>
+			<option value="white">White</option>
+			<option value="whiteBlack">White and Black</option>
+			<option value="whiteBlue">White and Blue</option>
+			<option value="whiteBrindle">White and Brindle</option>
+			<option value="whiteFawn">White and Fawn</option>
+			<option value="whiteRed">White and Red</option>
+			<option value="whiteBlueBrindle">White Blue Brindle</option>
+			<option value="whiteDarkBrindle">White Dark Brindle</option>
+			<option value="whiteRedBrindle">White Red Brindle</option>
+			<option value="whiteRedFawn">White Red Fawn</option>
+			<option value="whiteTickedBlack">White Ticked Black</option>
+			<option value="whiteTickedBlue">White Ticked Blue</option>
+			<option value="whiteTickedBrindle">White Ticked Brindle</option>
+			<option value="whiteTickedDarkBrindle">White Ticked Dark Brindle</option>
+			<option value="whiteTickedFawn">White Ticked Fawn</option>
+			<option value="whiteTickedLightBrindle">White Ticked Light Brindle</option>
+			<option value="whiteTickedRed">White Ticked Red</option>
+			<option value="whiteTickedRedBrindle">White Ticked Red Brindle</option>
+			<option value="whiteTickedRedFawn">White Ticked Red Fawn</option>	
+			</select>
 	<label>Personality</label><input type="text" name="personality" value="${greyhound.personality}" />
-	<label>More info</label><input type="text" name="moreInfo" value="${greyhound.moreInfo}" />
+	<label>More info</label><textarea type="text" name="moreInfo" value="${greyhound.moreInfo}" ></textarea>
 	<label>Cat Friendly</label><input type="checkbox" name="catFriendly" ${greyhound.catFriendly ? ' checked="checked"' : ''} />
 	<label>Home Acclimated</label><input type="checkbox" name="homeAcclimated" ${greyhound.homeAcclimated ? ' checked="checked"' : ''} />
 	<label>Sponsored By:</label>
