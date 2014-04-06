@@ -44,7 +44,7 @@
 <div class="listDetail">
 	<div class="detailActionContainer">
 		<a href="update-greyhound?id=${greyhound.id}">Edit</a>
-		<a href="update-greyhound?id=${greyhound.id}">Delete</a>
+		<a href="delete-greyhound?id=${greyhound.id}">Delete</a>
 	</div>
 
 	<div class="detail">

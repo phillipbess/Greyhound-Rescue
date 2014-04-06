@@ -39,6 +39,7 @@ public class ControllerServlet extends HttpServlet {
 	public static final String ADDRESS_MANAGE_GREYHOUNDS_URI = "/WEB-INF/jsp/manageGreyhounds.jsp";
 	public static final String ADDRESS_NEW_GREYHOUND_URI  = "/WEB-INF/jsp/editGreyhound.jsp";
 	public static final String ADDRESS_EDIT_GREYHOUND_URI = "/WEB-INF/jsp/editGreyhound.jsp";
+	
 
 	public static final String ADDRESS_MANAGE_SPONSORS_URI = "/WEB-INF/jsp/manageSponsors.jsp";
 	public static final String ADDRESS_NEW_SPONSOR_URI  = "/WEB-INF/jsp/editSponsor.jsp";
@@ -130,7 +131,6 @@ public class ControllerServlet extends HttpServlet {
 			forward(request, response, ADDRESS_NEW_GREYHOUND_URI);
 		} else if (uri.endsWith("/admin/update-greyhound")) {
 			Greyhound greyhound = getGreyhound(getLongParameter(request, "id"));
-
 			if (greyhound!=null) {
 				GreyhoundFormBean bean = new GreyhoundFormBean(greyhound);
 				request.setAttribute("greyhound", bean);
@@ -140,6 +140,13 @@ public class ControllerServlet extends HttpServlet {
 				request.setAttribute("facade", new ViewFacade(facade)); // We use the view facade to tailor what is exposed to jsp.
 				forward(request, response, ADDRESS_MANAGE_GREYHOUNDS_URI);
 			}
+		} else if (uri.endsWith("/admin/delete-greyhound")) {
+			Greyhound greyhound = getGreyhound(getLongParameter(request, "id"));
+			if (greyhound!=null) {
+				facade.removeGreyhound(greyhound);
+			}
+			request.setAttribute("facade", new ViewFacade(facade)); // We use the view facade to tailor what is exposed to jsp.
+			forward(request, response, ADDRESS_MANAGE_GREYHOUNDS_URI);		
 		} else if (uri.endsWith("/admin/manage-sponsors")) {
 			request.setAttribute("facade", new ViewFacade(facade)); // We use the view facade to tailor what is exposed to jsp.
 			forward(request, response, ADDRESS_MANAGE_SPONSORS_URI);
