@@ -40,11 +40,11 @@
     <servlet-name>NoInvoker</servlet-name>
     <servlet-class>coreservlets.NoInvokerServlet</servlet-class>
   </servlet>
-  <servlet>
+  <!-- <servlet>
     <servlet-name>SampleDataInitializer</servlet-name>
     <servlet-class>gpago.view.servlet.SampleDataInitializer</servlet-class>
     <load-on-startup>0</load-on-startup>
-  </servlet>
+  </servlet>  -->
   <servlet-mapping>
     <servlet-name>NoInvoker</servlet-name>
     <url-pattern>/servlet/*</url-pattern>
