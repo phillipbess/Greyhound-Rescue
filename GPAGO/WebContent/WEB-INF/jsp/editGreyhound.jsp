@@ -42,24 +42,24 @@ $(document).ready(function(){
 <input type="hidden" name="id" value="${greyhound.id}">
 
 <div class="detail">
-	<label>Name</label><input type="text" name="name" value="${greyhound.name}" />${greyhound.nameValidationText}
-	<label>Date of Birth</label><input type="date" name="dateOfBirth" placeholder="mm/dd/yyyy" value="${greyhound.dateOfBirth}" />
-	<label>Gender</label><select name="gender">
+	<div class="inputField"><label>Name</label><input type="text" name="name" value="${greyhound.name}" />${greyhound.nameValidationText}</div>
+	<div class="inputField"><label>Date of Birth</label><input type="date" name="dateOfBirth" placeholder="mm/dd/yyyy" value="${greyhound.dateOfBirth}" /></div>
+	<div class="inputField"><label>Gender</label><select name="gender">
 			<option value='${greyhound.gender}' disabled selected style='display:none;'>${greyhound.gender}</option>
 			<option value="Male">Male</option>
 			<option value="Female">Female</option>	
-		</select>
+	</select></div>
 	<!-- When creating a new grey, do not display 0. Display an empty box -->
 	<c:set var="weight" value="${greyhound.weight}"/>
 	<c:choose>
 		<c:when test="${weight eq 0}">
-			<label>Weight</label><input type="text" name="weight" value="" />
+			<div class="inputField"><label>Weight</label><input type="text" name="weight" value="" /></div>
 		</c:when>
 		<c:otherwise>
-			<label>Weight</label><input type="text" name="weight" value="${weight}" />
+			<div class="inputField"><label>Weight</label><input type="text" name="weight" value="${weight}" /></div>
 		</c:otherwise>
 	</c:choose>
-	<label>Color</label><select name="color">
+	<div class="inputField"><label>Color</label><select name="color">
 			<option value='${greyhound.color}' disabled selected style='display:none;'>${greyhound.color}</option>
 			<option value="Black">Black</option>
 			<option value="Black Brindle">Black Brindle</option>
@@ -99,37 +99,33 @@ $(document).ready(function(){
 			<option value="White Ticked Red">White Ticked Red</option>
 			<option value="White Ticked Red Brindle">White Ticked Red Brindle</option>
 			<option value="White Ticked Red Fawn">White Ticked Red Fawn</option>	
-			</select>
-	<label>Personality</label><input type="text" name="personality" value="${greyhound.personality}" />
-	<label>More info</label><textarea type="text" name="moreInfo" value="${greyhound.moreInfo}" /></textarea>
-	<label>Cat Friendly</label><input type="checkbox" name="catFriendly" ${greyhound.catFriendly ? ' checked="checked"' : ''} />
-	<label>Home Acclimated</label><input type="checkbox" name="homeAcclimated" ${greyhound.homeAcclimated ? ' checked="checked"' : ''} />
-	<label>Sponsored By:</label>
-	<section class="container">
-	    <div>
-	        <select id="leftValues" size="5" name="sponsors[]" multiple>
-		        <c:forEach var="sponsorship" items="${greyhound.sponsors}">
-						<option value="${sponsorship.sponsor.id}">${sponsorship.sponsor.name}</option>
-				</c:forEach>
-			</select>
-	    </div>	
-	    <div>
+	</select></div>
+	<div class="inputField"><label>Personality</label><input type="text" name="personality" value="${greyhound.personality}" /></div>
+	<div class="inputField"><label>Cat Friendly</label><input type="checkbox" name="catFriendly" ${greyhound.catFriendly ? ' checked="checked"' : ''} /></div>
+	<div class="inputField"><label>Home Acclimated</label><input type="checkbox" name="homeAcclimated" ${greyhound.homeAcclimated ? ' checked="checked"' : ''} /></div>
+	<div class="inputField"><label>More info</label><textarea name="moreInfo">${greyhound.moreInfo}</textarea></div>
+	<div class="inputField"><label>Sponsored By:</label></div>
+	<div class="inputField">	
+        <select id="leftValues" size="5" name="sponsors[]" multiple>
+	        <c:forEach var="sponsorship" items="${greyhound.sponsors}">
+					<option value="${sponsorship.sponsor.id}">${sponsorship.sponsor.name}</option>
+			</c:forEach>
+		</select>
+	    <div id="shuttle-buttons">
 	        <input type="button" id="btnLeft" value="&lt;" />
 	        <input type="button" id="btnRight" value="&gt;" />
 	    </div>
-	    <div>
-	        <select id="rightValues" size="5" multiple>
-	            <c:forEach var="sponsor" items="${facade.sponsors}">
-					<option value="${sponsor.id}">${sponsor.name}</option>
-				</c:forEach>
-	        </select>
-	    </div>
-	</section>
-	<label>Image 1</label><input type="file" name="image1">
-	<label>Image 2</label><input type="file" name="image2">
-	<label>Image 3</label><input type="file" name="image3">
-	<label>Image 4</label><input type="file" name="image4">
-	<label>Image 5</label><input type="file" name="image5">
+        <select id="rightValues" size="5" multiple>
+            <c:forEach var="sponsor" items="${facade.sponsors}">
+				<option value="${sponsor.id}">${sponsor.name}</option>
+			</c:forEach>
+        </select>
+	</div>
+	<div class="inputField"><label>Image 1</label><input type="file" name="image1"></div>
+	<div class="inputField"><label>Image 2</label><input type="file" name="image2"></div>
+	<div class="inputField"><label>Image 3</label><input type="file" name="image3"></div>
+	<div class="inputField"><label>Image 4</label><input type="file" name="image4"></div>
+	<div class="inputField"><label>Image 5</label><input type="file" name="image5"></div>
 	
 </div> <!-- detail -->
 

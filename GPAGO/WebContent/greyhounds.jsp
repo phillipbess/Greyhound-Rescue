@@ -394,11 +394,11 @@ div.Section1
 		</tr>
 		<tr>
 			<td class="style8" style="width: 141px">Cat friendly:</td>
-			<td width="201" class="style8" style="height: 18px">${greyhound.color}</td>
+			<td width="201" class="style8" style="height: 18px">${greyhound.catFriendly ? 'Yes' : 'No'}</td>
 		</tr>
 		<tr>
 			<td class="style8" style="width: 141px; height: 22px;">Home acclimated:</td>
-			<td width="201" class="style8" style="height: 22px">${greyhound.catFriendly ? ' checked="checked"' : ''}</td>
+			<td width="201" class="style8" style="height: 22px">${greyhound.homeAcclimated ? 'Yes' : 'No'}</td>
 		</tr>
 		<tr>
 			<td class="style8" style="width: 141px; height: 22px;">Personality/more info:</td>

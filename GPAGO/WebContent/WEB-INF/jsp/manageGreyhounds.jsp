@@ -48,35 +48,33 @@
 	</div>
 
 	<div class="detail">
-		<label>Name</label><input type="text" disabled="disabled" readonly="readonly" name="name" value="${greyhound.name}" />
-		<label>Date of Birth</label><input type="text" disabled="disabled" readonly="readonly" name="dateOfBirth" value="${greyhound.dateOfBirth}" />
-		<label>Gender</label><input type="text" disabled="disabled" readonly="readonly" name="gender" value="${greyhound.gender}" />
+		<div class="inputField"><label>Name</label><input type="text" disabled="disabled" readonly="readonly" name="name" value="${greyhound.name}" /></div>
+		<div class="inputField"><label>Date of Birth</label><input type="text" disabled="disabled" readonly="readonly" name="dateOfBirth" value="${greyhound.dateOfBirth}" /></div>
+		<div class="inputField"><label>Gender</label><input type="text" disabled="disabled" readonly="readonly" name="gender" value="${greyhound.gender}" /></div>
 		<!-- When displaying a grey, do not display 0 for its weight if no value has been provided. Display an empty box -->
 		<c:set var="weight" value="${greyhound.weight}"/>
 		<c:choose>
 			<c:when test="${weight eq 0}">
-				<label>Weight</label><input type="text" disabled="disabled" readonly="readonly" name="weight" value="" />
+				<div class="inputField"><label>Weight</label><input type="text" disabled="disabled" readonly="readonly" name="weight" value="" /></div>
 			</c:when>
 			<c:otherwise>
-				<label>Weight</label><input type="text" disabled="disabled" readonly="readonly" name="weight" value="${weight}" />
+				<div class="inputField"><label>Weight</label><input type="text" disabled="disabled" readonly="readonly" name="weight" value="${weight}" /></div>
 			</c:otherwise>
 		</c:choose>
-		<label>Color</label><input type="text" disabled="disabled" readonly="readonly" name="color" value="${greyhound.color}" />
-		<label>Personality</label><input type="text" disabled="disabled" readonly="readonly" name="personality" value="${greyhound.personality}" />
-		<label>More info</label><input type="text" disabled="disabled" readonly="readonly" name="moreInfo" value="${greyhound.moreInfo}" />
-		<label>Cat Friendly</label><input type="checkbox" disabled="disabled" readonly="readonly" name="catFriendly" ${greyhound.catFriendly ? ' checked="checked"' : ''} />
-		<label>Home Acclimated</label><input type="checkbox" disabled="disabled" readonly="readonly" name="homeAcclimated" ${greyhound.homeAcclimated ? ' checked="checked"' : ''} />
-		<label>Sponsored by</label>
+		<div class="inputField"><label>Color</label><input type="text" disabled="disabled" readonly="readonly" name="color" value="${greyhound.color}" /></div>
+		<div class="inputField"><label>Personality</label><input type="text" disabled="disabled" readonly="readonly" name="personality" value="${greyhound.personality}" /></div>
+		<div class="inputField"><label>More info</label><input type="text" disabled="disabled" readonly="readonly" name="moreInfo" value="${greyhound.moreInfo}" /></div>
+		<div class="inputField"><label>Cat Friendly</label><input type="checkbox" disabled="disabled" readonly="readonly" name="catFriendly" ${greyhound.catFriendly ? ' checked="checked"' : ''} /></div>
+		<div class="inputField"><label>Home Acclimated</label><input type="checkbox" disabled="disabled" readonly="readonly" name="homeAcclimated" ${greyhound.homeAcclimated ? ' checked="checked"' : ''} /></div>
+		<div class="inputField"><label>Sponsored by:</label>
 		
 		<!-- Print list of sponsors with commas, but not for the first sponsor -->
 		<div class="sponsors">
 		<c:forEach var="sponsorship" items="${greyhound.sponsors}">
 		
-		<div class="sponsor">
-			&nbsp;&nbsp;&nbsp;&nbsp;${sponsorship.sponsor.name}
-		</div>
+		<div class="sponsor">${sponsorship.sponsor.name}</div>
 	
-		</c:forEach>
+		</c:forEach></div>
 		</div>
 	</div> <!-- detail -->
 </div> <!-- listDetail -->

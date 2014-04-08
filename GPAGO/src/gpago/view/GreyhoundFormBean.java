@@ -50,8 +50,11 @@ public class GreyhoundFormBean {
 		}
 		
 		if (request.getParameter("weight")!=null){
-			if(!request.getParameter("weight").isEmpty()){
-				greyhound.setWeight(Integer.parseInt(request.getParameter("weight")));
+			if(!request.getParameter("weight").isEmpty()) {
+				try {
+					greyhound.setWeight(Integer.parseInt(request.getParameter("weight")));
+				} catch (Throwable ex) {
+				}
 			} else {
 				//if an empty string comes in, set the weight to 0, this will display as an empty box in the page.
 				greyhound.setWeight(0);
