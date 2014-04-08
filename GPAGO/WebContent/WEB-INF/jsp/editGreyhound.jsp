@@ -104,7 +104,7 @@ $(document).ready(function(){
 	<div class="inputField"><label>Cat Friendly</label><input type="checkbox" name="catFriendly" ${greyhound.catFriendly ? ' checked="checked"' : ''} /></div>
 	<div class="inputField"><label>Home Acclimated</label><input type="checkbox" name="homeAcclimated" ${greyhound.homeAcclimated ? ' checked="checked"' : ''} /></div>
 	<div class="inputField"><label>More info</label><textarea name="moreInfo">${greyhound.moreInfo}</textarea></div>
-	<div class="inputField"><label>Sponsored By:</label>
+	<div class="inputField"><label>Sponsored By:</label></div>
 	<div class="inputField">	
         <select id="leftValues" size="5" name="sponsors[]" multiple>
 	        <c:forEach var="sponsorship" items="${greyhound.sponsors}">
