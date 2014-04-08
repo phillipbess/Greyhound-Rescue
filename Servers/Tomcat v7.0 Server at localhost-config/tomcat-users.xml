@@ -33,6 +33,7 @@
   <user username="role1" password="tomcat" roles="role1"/>
 -->
 
-<role rolename="petManager"/>
-<user username="user1" password="password" roles="petManager"/>
+	<role rolename="petManager"/>
+	<user username="user1" password="password" roles="petManager"/>
+	<user username="admin" password="gpago" roles="petManager"/>
 </tomcat-users>
