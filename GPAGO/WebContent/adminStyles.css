@@ -86,25 +86,6 @@ margin-bottom : 3px;
 
 .detail
 {
-	display: block;
-}
-
-
-.sponsors
-{
-	float: right;
-	display: inline;
-	display: inline-block;
-	clear: left;
-}
-
-.sponsor
-{
-	float: left;
-	clear: left;
-	width: 250px;
-	padding-right: 10px;
-	text-align: left;
 }
 
 .formButtons {
@@ -116,34 +97,54 @@ margin-bottom : 3px;
 }
 
 
-label {
-	display: inline-block;
+.inputField {
 	float: left;
 	clear: left;
+
+	margin: 4px 5px 0px 5px;
+}
+
+.inputField label {
+	display: inline-block;
+	float: left;
 	width: 150px;
-	margin: 4px 5px 0px 0px;
 	text-align: right;
+	margin-right: 5px;
 }
 
-.detail input {
+.inputField input {
 	display: inline-block;
 	float: left;
 	width: 250px;
-	margin: 4px 10px 0px 5px;
 }
 
-.detail select {
+.inputField select {
 	display: inline-block;
 	float: left;
 	width: 250px;
-	margin: 4px 10px 0px 5px;	
 }
 
-.detail textarea {
+.inputField textarea {
 	display: inline-block;
 	float: left;
 	width: 250px;
-	margin: 4px 10px 0px 5px;	
+}
+
+.sponsor
+{
+	float: left;
+	clear: left;
+	padding-right: 10px;
+	text-align: left;
+}
+
+.sponsors
+{
+	float: right;
+	display: inline;
+	display: inline-block;
+	clear: left;
+	margin-left: 175px;
 }
 
 #footer
@@ -155,18 +156,21 @@ label {
 	height: 1%;
 }
 
-.container {
-	display: inline-block;
-	float: left;	
-	width: 600px
-}
-SELECT, INPUT[type="text"] {
-    width: 160px;
+SELECT {
+    width: 250px;
     box-sizing: border-box;
 }
 
+#shuttle-buttons {
+	display: inline;
+	float: left;
+	margin: 5px;
+}
+
+
 #btnRight, #btnLeft {
 	width: 25px;
+	clear: both;
 }
 
 SECTION {	
