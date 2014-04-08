@@ -44,7 +44,8 @@ $(document).ready(function(){
 <div class="detail">
 	<label>Name</label><input type="text" name="name" value="${greyhound.name}" />${greyhound.nameValidationText}
 	<label>Date of Birth</label><input type="date" name="dateOfBirth" placeholder="mm/dd/yyyy" value="${greyhound.dateOfBirth}" />
-	<label>Gender</label><select type="text" name="gender" value="${greyhound.gender}" >
+	<label>Gender</label><select name="gender">
+			<option value='${greyhound.gender}' disabled selected style='display:none;'>${greyhound.gender}</option>
 			<option value="Male">Male</option>
 			<option value="Female">Female</option>	
 		</select>
@@ -58,7 +59,8 @@ $(document).ready(function(){
 			<label>Weight</label><input type="text" name="weight" value="${weight}" />
 		</c:otherwise>
 	</c:choose>
-	<label>Color</label><select type="text" name="color" value="${greyhound.color}" >
+	<label>Color</label><select name="color">
+			<option value='${greyhound.color}' disabled selected style='display:none;'>${greyhound.color}</option>
 			<option value="Black">Black</option>
 			<option value="Black Brindle">Black Brindle</option>
 			<option value="Blue">Blue</option>
