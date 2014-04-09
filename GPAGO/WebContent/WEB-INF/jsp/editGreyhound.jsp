@@ -104,11 +104,10 @@ $(document).ready(function(){
 	<div class="inputField"><label>Cat Friendly</label><input type="checkbox" name="catFriendly" ${greyhound.catFriendly ? ' checked="checked"' : ''} /></div>
 	<div class="inputField"><label>Home Acclimated</label><input type="checkbox" name="homeAcclimated" ${greyhound.homeAcclimated ? ' checked="checked"' : ''} /></div>
 	<div class="inputField"><label>More info</label><textarea name="moreInfo">${greyhound.moreInfo}</textarea></div>
-	<div class="inputField"><label>Sponsored By:</label></div>
-	<div class="inputField">	
+	<div class="inputField"><label>Sponsored By:</label>
         <select id="leftValues" size="5" name="sponsors[]" multiple>
-	        <c:forEach var="sponsorship" items="${greyhound.sponsors}">
-					<option value="${sponsorship.sponsor.id}">${sponsorship.sponsor.name}</option>
+            <c:forEach var="sponsor" items="${facade.sponsors}">
+				<option value="${sponsor.id}">${sponsor.name}</option>
 			</c:forEach>
 		</select>
 	    <div id="shuttle-buttons">
@@ -116,8 +115,8 @@ $(document).ready(function(){
 	        <input type="button" id="btnRight" value="&gt;" />
 	    </div>
         <select id="rightValues" size="5" multiple>
-            <c:forEach var="sponsor" items="${facade.sponsors}">
-				<option value="${sponsor.id}">${sponsor.name}</option>
+	        <c:forEach var="sponsorship" items="${greyhound.sponsors}">
+					<option value="${sponsorship.sponsor.id}">${sponsorship.sponsor.name}</option>
 			</c:forEach>
         </select>
 	</div>

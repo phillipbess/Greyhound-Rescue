@@ -167,6 +167,14 @@ SELECT {
 	margin: 5px;
 }
 
+#leftValues {
+	width: 200px;
+}
+
+#rightValues {
+	width: 200px;
+}
+
 
 #btnRight, #btnLeft {
 	width: 25px;
