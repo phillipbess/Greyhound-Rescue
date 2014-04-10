@@ -1,3 +1,5 @@
+<%@page import="gpago.model.enums.AdoptionStatus"%>
+<%@page import="gpago.model.enums.Location"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.List" %>
@@ -101,9 +103,25 @@ $(document).ready(function(){
 			<option value="White Ticked Red Fawn">White Ticked Red Fawn</option>	
 	</select></div>
 	<div class="inputField"><label>Personality</label><input type="text" name="personality" value="${greyhound.personality}" /></div>
+	<div class="inputField"><label>More info</label><textarea name="moreInfo">${greyhound.moreInfo}</textarea></div>
 	<div class="inputField"><label>Cat Friendly</label><input type="checkbox" name="catFriendly" ${greyhound.catFriendly ? ' checked="checked"' : ''} /></div>
 	<div class="inputField"><label>Home Acclimated</label><input type="checkbox" name="homeAcclimated" ${greyhound.homeAcclimated ? ' checked="checked"' : ''} /></div>
-	<div class="inputField"><label>More info</label><textarea name="moreInfo">${greyhound.moreInfo}</textarea></div>
+	<div class="inputField"><label>Location</label>
+		<select name="location">
+			<option value='${greyhound.location}' disabled selected style='display:none;'>${greyhound.location}</option>
+			<option value="<%=Location.FOSTER_HOME%>"><%=Location.FOSTER_HOME%></option>
+			<option selected value="<%=Location.KENNEL%>"><%=Location.KENNEL%></option>
+		</select>
+	</div>		
+	<div class="inputField"><label>Adoption Status</label>
+		<select name="location">
+			<option value='${greyhound.adoptionStatus}' disabled selected style='display:none;'>${greyhound.adoptionStatus}</option>
+			<option value="<%=AdoptionStatus.ADOPTED%>"><%=AdoptionStatus.ADOPTED%></option>
+			<option selected value="<%=AdoptionStatus.AVAILABLE%>"><%=AdoptionStatus.AVAILABLE%></option>
+			<option value="<%=AdoptionStatus.PENDING%>"><%=AdoptionStatus.PENDING%></option>
+		</select>
+	</div>
+	
 	<div class="inputField"><label>Sponsored By:</label></div>
 	<div class="inputField">	
         <select id="leftValues" size="5" name="sponsors[]" multiple>

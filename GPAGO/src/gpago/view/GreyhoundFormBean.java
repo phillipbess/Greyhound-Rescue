@@ -11,6 +11,8 @@ import org.apache.commons.lang3.StringUtils;
 
 import gpago.model.entity.Greyhound;
 import gpago.model.entity.Sponsorship;
+import gpago.model.enums.AdoptionStatus;
+import gpago.model.enums.Location;
 import gpago.view.servlet.ServletUtils;
 
 /**
@@ -238,6 +240,22 @@ public class GreyhoundFormBean {
 	
 	public void setHomeAcclimated(boolean homeAcclimated){
 		greyhound.setHomeAcclimated(homeAcclimated);
+	}
+	
+	public String getLocation(){
+		return greyhound.getLocation().toString();
+	}
+	
+	public void setLocation(Location location){
+		greyhound.setLocation(location);
+	}
+	
+	public String getAdoptionStatus(){
+		return greyhound.getAdoptionStatus().toString();
+	}
+	
+	public void setLocation(AdoptionStatus adoptionStatus){
+		greyhound.setAdoptionStatus(adoptionStatus);
 	}
 	
 	public List<Sponsorship> getSponsors() {
