@@ -5,6 +5,7 @@ import java.lang.String;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import javax.persistence.*;
 
 /**
@@ -124,7 +125,7 @@ public class Greyhound implements Serializable {
 	}
 
 	public String getName() {
-		return this.name;
+		return StringEscapeUtils.escapeHtml4(this.name);
 	}
 
 	public void setName(String name) {
