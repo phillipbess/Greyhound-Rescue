@@ -1,5 +1,3 @@
-<%@page import="gpago.model.enums.AdoptionStatus"%>
-<%@page import="gpago.model.enums.Location"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.List" %>
@@ -109,16 +107,16 @@ $(document).ready(function(){
 	<div class="inputField"><label>Location</label>
 		<select name="location">
 			<option value='${greyhound.location}' disabled selected style='display:none;'>${greyhound.location}</option>
-			<option value="<%=Location.FOSTER_HOME%>"><%=Location.FOSTER_HOME%></option>
-			<option selected value="<%=Location.KENNEL%>"><%=Location.KENNEL%></option>
+			<option value="Foster Home">Foster Home</option>
+			<option value="Kennel">Kennel</option>
 		</select>
 	</div>		
 	<div class="inputField"><label>Adoption Status</label>
-		<select name="location">
+		<select name="adoptionStatus">
 			<option value='${greyhound.adoptionStatus}' disabled selected style='display:none;'>${greyhound.adoptionStatus}</option>
-			<option value="<%=AdoptionStatus.ADOPTED%>"><%=AdoptionStatus.ADOPTED%></option>
-			<option selected value="<%=AdoptionStatus.AVAILABLE%>"><%=AdoptionStatus.AVAILABLE%></option>
-			<option value="<%=AdoptionStatus.PENDING%>"><%=AdoptionStatus.PENDING%></option>
+			<option value="Adopted">Adopted</option>
+			<option value="Available">Available</option>
+			<option value="Pending">Pending</option>
 		</select>
 	</div>
 	

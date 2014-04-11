@@ -1,8 +1,5 @@
 package gpago.model.entity;
 
-import gpago.model.enums.AdoptionStatus;
-import gpago.model.enums.Location;
-
 import java.io.Serializable;
 import java.lang.String;
 import java.util.Date;
@@ -46,9 +43,9 @@ public class Greyhound implements Serializable {
 
 	private String moreInfo;
 	
-	private Location location;
+	private String location;
 	
-	private AdoptionStatus adoptionStatus;
+	private String adoptionStatus;
 
 	@Lob
 	private byte[] image1;
@@ -79,7 +76,7 @@ public class Greyhound implements Serializable {
 	//greyhound constructor without sponsorship parameter
 	public Greyhound(String name, Date dateOfBirth, String gender, int weight,
 			String color, boolean catFriendly, boolean homeAcclimated,
-			String personality, String moreInfo, Location location, AdoptionStatus adoptionStatus, byte[] image1) {
+			String personality, String moreInfo, String location, String adoptionStatus, byte[] image1) {
 		this();
 		setName(name);
 		setDateOfBirth(dateOfBirth);
@@ -198,19 +195,19 @@ public class Greyhound implements Serializable {
 		this.moreInfo = moreInfo;
 	}
 
-	public Location getLocation() {
+	public String getLocation() {
 		return location;
 	}
 
-	public void setLocation(Location location) {
+	public void setLocation(String location) {
 		this.location = location;
 	}
 
-	public AdoptionStatus getAdoptionStatus() {
+	public String getAdoptionStatus() {
 		return adoptionStatus;
 	}
 
-	public void setAdoptionStatus(AdoptionStatus adoptionStatus) {
+	public void setAdoptionStatus(String adoptionStatus) {
 		this.adoptionStatus = adoptionStatus;
 	}
 

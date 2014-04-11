@@ -11,8 +11,6 @@ import org.apache.commons.lang3.StringUtils;
 
 import gpago.model.entity.Greyhound;
 import gpago.model.entity.Sponsorship;
-import gpago.model.enums.AdoptionStatus;
-import gpago.model.enums.Location;
 import gpago.view.servlet.ServletUtils;
 
 /**
@@ -75,6 +73,14 @@ public class GreyhoundFormBean {
 			greyhound.setMoreInfo(request.getParameter("moreInfo"));
 		}
 		
+		if(request.getParameter("location")!=null){
+			greyhound.setLocation(request.getParameter("location"));
+		}
+		
+		if(request.getParameter("adoptionStatus")!=null){
+			greyhound.setAdoptionStatus(request.getParameter("adoptionStatus"));
+		}
+		
 		greyhound.setCatFriendly(request.getParameter("catFriendly")!=null);
 		
 		greyhound.setHomeAcclimated(request.getParameter("homeAcclimated")!=null);
@@ -123,7 +129,7 @@ public class GreyhoundFormBean {
 			}
 			
 		} catch (Exception e) {
-			// TODO Log exception, but there's not much else we can do.
+			//Log exception, but there's not much else we can do.
 			logger.log(Level.SEVERE, "Error while getting image bytes from multipart request.", e);
 		}
 		
@@ -243,18 +249,18 @@ public class GreyhoundFormBean {
 	}
 	
 	public String getLocation(){
-		return greyhound.getLocation().toString();
+		return greyhound.getLocation();
 	}
 	
-	public void setLocation(Location location){
+	public void setLocation(String location){
 		greyhound.setLocation(location);
 	}
 	
 	public String getAdoptionStatus(){
-		return greyhound.getAdoptionStatus().toString();
+		return greyhound.getAdoptionStatus();
 	}
 	
-	public void setLocation(AdoptionStatus adoptionStatus){
+	public void setAdoptionStatus(String adoptionStatus){
 		greyhound.setAdoptionStatus(adoptionStatus);
 	}
 	

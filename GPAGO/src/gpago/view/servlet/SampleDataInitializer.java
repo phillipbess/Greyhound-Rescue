@@ -1,11 +1,7 @@
 package gpago.view.servlet;
 
 import gpago.model.ModelFacade;
-import gpago.model.entity.Greyhound;
-import gpago.model.entity.Sponsor;
-import gpago.model.entity.Sponsorship;
-import gpago.model.enums.AdoptionStatus;
-import gpago.model.enums.Location;
+import gpago.model.entity.*;
 
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
@@ -91,7 +87,7 @@ public class SampleDataInitializer extends HttpServlet {
 	private Greyhound createGreyhound(ModelFacade facade, int idNum) {
 		Greyhound g = new Greyhound("Greyhound " + idNum, new Date(1900000),
 				"Male", 72, "brown", true, true, "A very friendly grey!",
-				"A very happy grey", Location.KENNEL, AdoptionStatus.AVAILABLE,null);
+				"A very happy grey", "Kennel", "Available",null);
 		facade.saveGreyhound(g);
 		return g;
 	}
