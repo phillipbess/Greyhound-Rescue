@@ -21,7 +21,7 @@ import gpago.view.servlet.ServletUtils;
 public class GreyhoundFormBean {
 	private static final Logger logger = Logger.getLogger(GreyhoundFormBean.class.getName());
 	
-	private static final SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+	private static final SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
 	
 	
 	/**
