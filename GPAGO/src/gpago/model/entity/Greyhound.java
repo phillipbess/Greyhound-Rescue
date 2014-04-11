@@ -42,6 +42,10 @@ public class Greyhound implements Serializable {
 	private String personality;
 
 	private String moreInfo;
+	
+	private String location;
+	
+	private String adoptionStatus;
 
 	@Lob
 	private byte[] image1;
@@ -62,11 +66,6 @@ public class Greyhound implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date entryDate;
 
-	/*
-	 * @Lob
-	 * 
-	 * @Column(length = 2048)
-	 */
 	private static final long serialVersionUID = 1L;
 
 	//Default Constructor
@@ -77,7 +76,7 @@ public class Greyhound implements Serializable {
 	//greyhound constructor without sponsorship parameter
 	public Greyhound(String name, Date dateOfBirth, String gender, int weight,
 			String color, boolean catFriendly, boolean homeAcclimated,
-			String personality, String moreInfo, byte[] image1) {
+			String personality, String moreInfo, String location, String adoptionStatus, byte[] image1) {
 		this();
 		setName(name);
 		setDateOfBirth(dateOfBirth);
@@ -88,6 +87,8 @@ public class Greyhound implements Serializable {
 		setHomeAcclimated(homeAcclimated);
 		setPersonality(personality);
 		setMoreInfo(moreInfo);
+		setLocation(location);
+		setAdoptionStatus(adoptionStatus);
 		setImage1(image1);
 	}
 
@@ -192,6 +193,22 @@ public class Greyhound implements Serializable {
 
 	public void setMoreInfo(String moreInfo) {
 		this.moreInfo = moreInfo;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	public String getAdoptionStatus() {
+		return adoptionStatus;
+	}
+
+	public void setAdoptionStatus(String adoptionStatus) {
+		this.adoptionStatus = adoptionStatus;
 	}
 
 	public List<Sponsorship> getSponsors() {

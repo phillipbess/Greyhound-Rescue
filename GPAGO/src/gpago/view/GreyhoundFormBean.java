@@ -73,6 +73,14 @@ public class GreyhoundFormBean {
 			greyhound.setMoreInfo(request.getParameter("moreInfo"));
 		}
 		
+		if(request.getParameter("location")!=null){
+			greyhound.setLocation(request.getParameter("location"));
+		}
+		
+		if(request.getParameter("adoptionStatus")!=null){
+			greyhound.setAdoptionStatus(request.getParameter("adoptionStatus"));
+		}
+		
 		greyhound.setCatFriendly(request.getParameter("catFriendly")!=null);
 		
 		greyhound.setHomeAcclimated(request.getParameter("homeAcclimated")!=null);
@@ -121,7 +129,7 @@ public class GreyhoundFormBean {
 			}
 			
 		} catch (Exception e) {
-			// TODO Log exception, but there's not much else we can do.
+			//Log exception, but there's not much else we can do.
 			logger.log(Level.SEVERE, "Error while getting image bytes from multipart request.", e);
 		}
 		
@@ -238,6 +246,22 @@ public class GreyhoundFormBean {
 	
 	public void setHomeAcclimated(boolean homeAcclimated){
 		greyhound.setHomeAcclimated(homeAcclimated);
+	}
+	
+	public String getLocation(){
+		return greyhound.getLocation();
+	}
+	
+	public void setLocation(String location){
+		greyhound.setLocation(location);
+	}
+	
+	public String getAdoptionStatus(){
+		return greyhound.getAdoptionStatus();
+	}
+	
+	public void setAdoptionStatus(String adoptionStatus){
+		greyhound.setAdoptionStatus(adoptionStatus);
 	}
 	
 	public List<Sponsorship> getSponsors() {

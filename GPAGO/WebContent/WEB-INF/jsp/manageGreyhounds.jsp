@@ -66,6 +66,8 @@
 		<div class="inputField"><label>More info</label><input type="text" disabled="disabled" readonly="readonly" name="moreInfo" value="${greyhound.moreInfo}" /></div>
 		<div class="inputField"><label>Cat Friendly</label><input type="checkbox" disabled="disabled" readonly="readonly" name="catFriendly" ${greyhound.catFriendly ? ' checked="checked"' : ''} /></div>
 		<div class="inputField"><label>Home Acclimated</label><input type="checkbox" disabled="disabled" readonly="readonly" name="homeAcclimated" ${greyhound.homeAcclimated ? ' checked="checked"' : ''} /></div>
+		<div class="inputField"><label>Location</label><input type="text" disabled="disabled" readonly="readonly" name="location" value="${greyhound.location}" /></div>
+		<div class="inputField"><label>Adoption Status</label><input type="text" disabled="disabled" readonly="readonly" name="adoptionStatus" value="${greyhound.adoptionStatus}" /></div>
 		<div class="inputField"><label>Sponsored by:</label>
 		
 		<!-- Print list of sponsors with commas, but not for the first sponsor -->

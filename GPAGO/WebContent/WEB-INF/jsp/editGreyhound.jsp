@@ -101,9 +101,25 @@ $(document).ready(function(){
 			<option value="White Ticked Red Fawn">White Ticked Red Fawn</option>	
 	</select></div>
 	<div class="inputField"><label>Personality</label><input type="text" name="personality" value="${greyhound.personality}" /></div>
+	<div class="inputField"><label>More info</label><textarea name="moreInfo">${greyhound.moreInfo}</textarea></div>
 	<div class="inputField"><label>Cat Friendly</label><input type="checkbox" name="catFriendly" ${greyhound.catFriendly ? ' checked="checked"' : ''} /></div>
 	<div class="inputField"><label>Home Acclimated</label><input type="checkbox" name="homeAcclimated" ${greyhound.homeAcclimated ? ' checked="checked"' : ''} /></div>
-	<div class="inputField"><label>More info</label><textarea name="moreInfo">${greyhound.moreInfo}</textarea></div>
+	<div class="inputField"><label>Location</label>
+		<select name="location">
+			<option value='${greyhound.location}' disabled selected style='display:none;'>${greyhound.location}</option>
+			<option value="Foster Home">Foster Home</option>
+			<option value="Kennel">Kennel</option>
+		</select>
+	</div>		
+	<div class="inputField"><label>Adoption Status</label>
+		<select name="adoptionStatus">
+			<option value='${greyhound.adoptionStatus}' disabled selected style='display:none;'>${greyhound.adoptionStatus}</option>
+			<option value="Adopted">Adopted</option>
+			<option value="Available">Available</option>
+			<option value="Pending">Pending</option>
+		</select>
+	</div>
+	
 	<div class="inputField"><label>Sponsored By:</label></div>
 	<div class="inputField">	
         <select id="leftValues" size="5" name="sponsors[]" multiple>
