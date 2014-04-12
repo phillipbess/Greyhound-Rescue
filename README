@@ -20,29 +20,55 @@ Create a user named “gpago” and give this user full access to the “gpago�
 
 Setup Eclipse Workspace and Working Directory
 1.)	Create a new directory to be used as the Eclipse workspace for Greyhound-Rescue.  For example, create a folder named ‘c:\dev\projects\Greyhound-RescueWorkSpace’.
-  a.	Note, Eclipse stores its settings in the workspace directory in a ‘.metadata’ directory. Using a different workspace directory allows all settings for the Greyhound-Rescue application to be isolated from any other applications or projects.
+    a.	Note, Eclipse stores its settings in the workspace directory in a ‘.metadata’ directory. Using a different workspace directory allows all settings for the Greyhound-Rescue application to be isolated from any other applications or projects.
 2.)	Create a new directory to be used as the working directory for the Greyhound-Rescue application resources.  For example, create a directory named ‘c:\dev\projects\Greyhound-Rescue’.
 3.)	Launch Eclipse and switch the workspace to the new directory that was created in step 1
-  a.	In Eclipse: File-> Switch Workspace -> Other
-  b.	Browse to and select the new workspace folder.
+    a.	In Eclipse: File-> Switch Workspace -> Other
+    b.	Browse to and select the new workspace folder.
 4.)	In Eclipse, add Apache Tomcat v7.0 as a new server runtime environment.
-  a.	Window -> Preferences -> Server -> Runtime Environments
-  b.	Select ‘Add’
-  c.	Select ‘Apache Tomcat v7.0’
-  d.	Hit ‘Next’
-  e.	Specify the Tomcat Installation Directory. Hit ‘Browse’ to browse to the ‘apache-tomcat-7.x.xx folder’.
-  f.	Hit ‘Finish’
-  g.	Hit ‘OK’
+    a.	Window -> Preferences -> Server -> Runtime Environments
+    b.	Select ‘Add’
+    c.	Select ‘Apache Tomcat v7.0’
+    d.	Hit ‘Next’
+    e.	Specify the Tomcat Installation Directory. Hit ‘Browse’ to browse to the ‘apache-tomcat-7.x.xx folder’.
+    f.	Hit ‘Finish’
+    g.	Hit ‘OK’
 5.)	In Eclipse, show the git repositories view.
-  a.	Window -> Show View -> Other... -> Git -> Git Repositories
+    a.	Window -> Show View -> Other... -> Git -> Git Repositories
 6.)	In the Git Repositories view, select ‘Clone a Git repository’.
-  a.	Enter https://github.com/phillipbess/Greyhound-Rescue for the URI.
-  b.	Hit ‘Next’
-  c.	Hit ‘Next’ again
-  d.	In the local Destination dialog
-    i.	browse to the directory that was created in step two.  This is where the project files will go.
-    ii.	Select ‘Import all existing projects after clone finishes’
-  e.	Hit ‘Finish’
+    a.	Enter https://github.com/phillipbess/Greyhound-Rescue for the URI.
+    b.	Hit ‘Next’
+    c.	Hit ‘Next’ again
+    d.	In the local Destination dialog
+      i.	browse to the directory that was created in step two.  This is where the project files will go.
+      ii.	Select ‘Import all existing projects after clone finishes’
+    e.	Hit ‘Finish’
 7.)	Launch the web application
-  a.	Open the GPAGO project and navigate to the Administrator.html file located in the ‘WebContent’ folder. Right-click on the file and select ‘Run-As -> Run On Server’. Select the Tomcat v7.0 Server and hit ‘Finish’. A login screen should be displayed.
-  b.	Login using “user1” and “password” as the username/password.
+    a.	Open the GPAGO project and navigate to the Administrator.html file located in the ‘WebContent’ folder. Right-click on the file and select ‘Run-As -> Run On Server’. Select the Tomcat v7.0 Server and hit ‘Finish’. A login screen should be displayed.
+    b.	Login using “user1” and “password” as the username/password.
+    
+    
+Deployment process.
+
+
+1.) Set up server to have the following installed:
+    a. Java 7, and ensure to set JAVA_HOME. 
+    b. Apache Tomcat 7, this should be installed in a directory that is not specific to a user. For instance, in Linux you can put it in /opt/
+    c. Install MySql, create a gpago schema in the database, and a gpago user that has full access and admin rights other the gpago schema.
+    
+2.) In order to generate the GPAGO.war file, you will need to do the following:
+    a. Checkout the Deployment branch in github, and merge the latest changes (if any) from master into it.
+    b. In Eclipse, right click the GPAGO project -> Export -> WAR file. Choose a Destination and click Finish.
+    c. Transfer the GPAGO.war to the server via ftp, scp, or other method of your preference. 
+    
+3.) Assuming that Tomcat has been installed in the /opt/ folder do the following.
+    a. Stop tomcat by running the shutdown script located in the /opt/apache-xyz/bin directory.
+    b. Copy the GPAGO.war file into the /opt/apache-xyz/webapps directory.
+    c. Start tomcat by running the startup script located in the /opt/apache-xyz/bin directory.
+    d. Once tomcat is up and running, it should have created a GPAGO directory under webapps. Verify this by going to the webapps directory and listing the directories.
+    
+4.) The application should now be deployed and you should be able to access it by typing the following in a browser:
+    a. Within the server: localhost:8080/GPAGO/admin/manage-greyhounds
+    b  From outside the server: <SERVER.IP.ADDRESS.HERE>:8080/GPAGO/admin/manage-greyhounds
+    
+NOTES: Keep in mind that the port 8080 should be exposed in order to access tomcat from outside the server machine.
