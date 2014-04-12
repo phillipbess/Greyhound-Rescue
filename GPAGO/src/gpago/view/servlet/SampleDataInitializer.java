@@ -1,9 +1,7 @@
 package gpago.view.servlet;
 
 import gpago.model.ModelFacade;
-import gpago.model.entity.Greyhound;
-import gpago.model.entity.Sponsor;
-import gpago.model.entity.Sponsorship;
+import gpago.model.entity.*;
 
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
@@ -88,8 +86,8 @@ public class SampleDataInitializer extends HttpServlet {
 
 	private Greyhound createGreyhound(ModelFacade facade, int idNum) {
 		Greyhound g = new Greyhound("Greyhound " + idNum, new Date(1900000),
-				"Male", 72, "brown", true, true, "A very friendly grey!",
-				"A very happy grey", null);
+				"Male", 72, "Light Ticked Brindle", true, true, "A very friendly grey!",
+				"A very happy grey", "Kennel", "Available",null);
 		facade.saveGreyhound(g);
 		return g;
 	}
@@ -124,6 +122,7 @@ public class SampleDataInitializer extends HttpServlet {
 		facade.saveSponsor(sponsor);
 	}
 
+	@SuppressWarnings("unused")
 	private byte[] extractBytes() throws IOException {
 		File imgPath = new File("C://Greys/BackwoodJanet1.jpg");
 		BufferedImage bufferedImage = ImageIO.read(imgPath);
