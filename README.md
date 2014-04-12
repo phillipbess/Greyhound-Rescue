@@ -18,11 +18,10 @@ Install MySql
 Create a catalog named “gpago”
 Create a user named “gpago” and give this user full access to the “gpago” catalog.
 
- 
 Setup Eclipse Workspace and Working Directory
-1.)	Create a new directory to be used as the Eclipse workspace for Greyhound-Rescue.  For example, create a folder      named ‘c:\dev\projects\Greyhound-RescueWorkSpace’.
-  a.	Note, Eclipse stores its settings in the workspace directory in a ‘.metadata’ directory.  Using a different         workspace directory allows all settings for the Greyhound-Rescue application to be isolated from any other          applications or projects.
-2.)	Create a new directory to be used as the working directory for the Greyhound-Rescue application resources.  For     example, create a directory named ‘c:\dev\projects\Greyhound-Rescue’.
+1.)	Create a new directory to be used as the Eclipse workspace for Greyhound-Rescue.  For example, create a folder named ‘c:\dev\projects\Greyhound-RescueWorkSpace’.
+  a.	Note, Eclipse stores its settings in the workspace directory in a ‘.metadata’ directory. Using a different workspace directory allows all settings for the Greyhound-Rescue application to be isolated from any other applications or projects.
+2.)	Create a new directory to be used as the working directory for the Greyhound-Rescue application resources.  For example, create a directory named ‘c:\dev\projects\Greyhound-Rescue’.
 3.)	Launch Eclipse and switch the workspace to the new directory that was created in step 1
   a.	In Eclipse: File-> Switch Workspace -> Other
   b.	Browse to and select the new workspace folder.
@@ -31,7 +30,7 @@ Setup Eclipse Workspace and Working Directory
   b.	Select ‘Add’
   c.	Select ‘Apache Tomcat v7.0’
   d.	Hit ‘Next’
-  e.	Specify the Tomcat Installation Directory.  Hit ‘Browse’ to browse to the ‘apache-tomcat-7.x.xx folder’.
+  e.	Specify the Tomcat Installation Directory. Hit ‘Browse’ to browse to the ‘apache-tomcat-7.x.xx folder’.
   f.	Hit ‘Finish’
   g.	Hit ‘OK’
 5.)	In Eclipse, show the git repositories view.
@@ -45,5 +44,5 @@ Setup Eclipse Workspace and Working Directory
     ii.	Select ‘Import all existing projects after clone finishes’
   e.	Hit ‘Finish’
 7.)	Launch the web application
-  a.	Open the GPAGO project and navigate to the Administrator.html file located in the ‘WebContent’ folder.              Right-click on the file and select ‘Run-As -> Run On Server’.  Select the Tomcat v7.0 Server and hit ‘Finish’.       A login screen should be displayed.
+  a.	Open the GPAGO project and navigate to the Administrator.html file located in the ‘WebContent’ folder. Right-click on the file and select ‘Run-As -> Run On Server’. Select the Tomcat v7.0 Server and hit ‘Finish’. A login screen should be displayed.
   b.	Login using “user1” and “password” as the username/password.
