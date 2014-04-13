@@ -1,6 +1,8 @@
 package gpago.view;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.logging.*;
 
@@ -9,7 +11,9 @@ import javax.servlet.http.*;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import gpago.model.ModelFacade;
 import gpago.model.entity.Greyhound;
+import gpago.model.entity.Sponsor;
 import gpago.model.entity.Sponsorship;
 import gpago.view.servlet.ServletUtils;
 
@@ -21,7 +25,7 @@ import gpago.view.servlet.ServletUtils;
 public class GreyhoundFormBean {
 	private static final Logger logger = Logger.getLogger(GreyhoundFormBean.class.getName());
 	
-	private static final SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+	private static final SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
 	
 	
 	/**
@@ -88,8 +92,24 @@ public class GreyhoundFormBean {
 		if (request.getParameterValues("sponsors[]")!=null){
 			//puts all the selected sponsors ids into an Array of Strings
 			String[] sponsors = request.getParameterValues("sponsors[]");
-			//this still needs to be implemented
-			//greyhound.setSponsors(sponsors);
+			List<Sponsorship> sponsorships = new ArrayList<Sponsorship>();
+			ModelFacade modelFacade = new ModelFacade();
+			//gets all the sponsors from the server
+			List<Sponsor> sponsorList = modelFacade.getAllSponsors();
+			Sponsor sponsorMatch = null;
+			//finds the sponsors from the database that match the selected ones and add those sponsors to the database.
+			for(int i=0;i<sponsors.length;i++){				
+				Iterator<Sponsor> si = sponsorList.iterator();
+				Sponsor s = null;
+				while (si.hasNext()){
+					s = si.next();					
+					if(s.getId().toString().equals(sponsors[i])){
+						sponsorMatch = s;
+					}
+				}
+				sponsorships.add(new Sponsorship(sponsorMatch, this.greyhound, 0));
+			}
+			greyhound.setSponsors(sponsorships);
 		}
 		
 		// Only process image if content is multipart.
