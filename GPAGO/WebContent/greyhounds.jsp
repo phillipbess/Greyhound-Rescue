@@ -365,76 +365,82 @@ div.Section1
 
 	<table width="504" border="1">
 
-	<c:forEach var="greyhound" items="${facade.greyhounds}">
-
-		<tr>
-			<td width="151" rowspan="9">
-			<a href="image?idx=2&id=${greyhound.id}" target="_blank">
-			<img class="style30" height="202" width="156" src="image?idx=1&id=${greyhound.id}" /></a></td>
+		<c:forEach var="greyhound" items="${facade.greyhounds}">
 			
-			<td bgcolor="#c3d2ed" class="style8" style="width: 141px"><strong>
-			Name:</strong></td>
-			<td width="201" bgcolor="#c3d2ed" class="auto-style17">${greyhound.name}</td>
-		</tr>
-		<tr>
-			<td class="style8" style="width: 141px">Date of Birth:</td>
-			<td width="201" class="style8">${greyhound.dateOfBirth}</td>
-		</tr>
-		<tr>
-			<td class="style8" style="width: 141px">Gender:</td>
-			<td width="201" class="style8">${greyhound.gender}</td>
-		</tr>
-		<tr>
-			<td class="style8" style="width: 141px">Weight:</td>
-			<td width="201" class="style8">${greyhound.weight}</td>
-		</tr>
-		<tr>
-			<td class="style8" style="width: 141px; height: 16px;">Color:</td>
-			<td width="201" class="style8" style="height: 16px">${greyhound.color}</td>
-		</tr>
-		<tr>
-			<td class="style8" style="width: 141px">Cat friendly:</td>
-			<td width="201" class="style8" style="height: 18px">${greyhound.catFriendly ? 'Yes' : 'No'}</td>
-		</tr>
-		<tr>
-			<td class="style8" style="width: 141px; height: 22px;">Home acclimated:</td>
-			<td width="201" class="style8" style="height: 22px">${greyhound.homeAcclimated ? 'Yes' : 'No'}</td>
-		</tr>
-		<tr>
-			<td class="style8" style="width: 141px; height: 22px;">Personality/more info:</td>
-			<td width="201" class="style8"><span class="auto-style86">${greyhound.personality} &amp; ${greyhound.moreInfo}</span><br />
-			<em>additional
-
-			<c:if test='${greyhound.image3Exists}'>
-				<a href="image?idx=3&id=${greyhound.id}" target="_blank">pic</a>,
-			</c:if>
-
-			<c:if test='${greyhound.image4Exists}'>
-				<a href="image?idx=4&id=${greyhound.id}" target="_blank">pic</a>
-			</c:if>
+			<c:choose>
+				<c:when test="${greyhound.adoptionStatus == 'Available'}">
+						
+					<tr>
+						<td width="151" rowspan="9">
+						<a href="image?idx=2&id=${greyhound.id}" target="_blank">
+						<img class="style30" height="202" width="156" src="image?idx=1&id=${greyhound.id}" /></a></td>
+						
+						<td bgcolor="#c3d2ed" class="style8" style="width: 141px"><strong>
+						Name:</strong></td>
+						<td width="201" bgcolor="#c3d2ed" class="auto-style17">${greyhound.name}</td>
+					</tr>
+					<tr>
+						<td class="style8" style="width: 141px">Date of Birth:</td>
+						<td width="201" class="style8">${greyhound.dateOfBirth}</td>
+					</tr>
+					<tr>
+						<td class="style8" style="width: 141px">Gender:</td>
+						<td width="201" class="style8">${greyhound.gender}</td>
+					</tr>
+					<tr>
+						<td class="style8" style="width: 141px">Weight:</td>
+						<td width="201" class="style8">${greyhound.weight}</td>
+					</tr>
+					<tr>
+						<td class="style8" style="width: 141px; height: 16px;">Color:</td>
+						<td width="201" class="style8" style="height: 16px">${greyhound.color}</td>
+					</tr>
+					<tr>
+						<td class="style8" style="width: 141px">Cat friendly:</td>
+						<td width="201" class="style8" style="height: 18px">${greyhound.catFriendly ? 'Yes' : 'No'}</td>
+					</tr>
+					<tr>
+						<td class="style8" style="width: 141px; height: 22px;">Home acclimated:</td>
+						<td width="201" class="style8" style="height: 22px">${greyhound.homeAcclimated ? 'Yes' : 'No'}</td>
+					</tr>
+					<tr>
+						<td class="style8" style="width: 141px; height: 22px;">Personality/more info:</td>
+						<td width="201" class="style8"><span class="auto-style86">${greyhound.personality} &amp; ${greyhound.moreInfo}</span><br />
+						<em>additional
 			
-			<c:if test='${greyhound.image5Exists}'>
-				<a href="image?idx=5&id=${greyhound.id}" target="_blank">pic</a>
-			</c:if>
-
-			</em></td>			
-		</tr>
-		<tr>
-			<td class="style8" style="width: 141px; height: 21px;">Sponsored by:</td>
-			<td width="201" class="style8" style="height: 21px">
-
-			<c:forEach var="sponsorship" items="${greyhound.sponsors}">
-
-			<p class="style61">${sponsorship.sponsor.name}</p>
+						<c:if test='${greyhound.image3Exists}'>
+							<a href="image?idx=3&id=${greyhound.id}" target="_blank">pic</a>,
+						</c:if>
+			
+						<c:if test='${greyhound.image4Exists}'>
+							<a href="image?idx=4&id=${greyhound.id}" target="_blank">pic</a>
+						</c:if>
+						
+						<c:if test='${greyhound.image5Exists}'>
+							<a href="image?idx=5&id=${greyhound.id}" target="_blank">pic</a>
+						</c:if>
+			
+						</em></td>			
+					</tr>
+					<tr>
+						<td class="style8" style="width: 141px; height: 21px;">Sponsored by:</td>
+						<td width="201" class="style8" style="height: 21px">
+			
+						<c:forEach var="sponsorship" items="${greyhound.sponsors}">
+			
+						<p class="style61">${sponsorship.sponsor.name}</p>
+					
+						</c:forEach>
+			
+						<p class="style61">
+						<a href="sponsorform.html">Click here to sponsor me</a></p>
+						</td>
+					</tr>
 		
-			</c:forEach>
-
-			<p class="style61">
-			<a href="sponsorform.html">Click here to sponsor me</a></p>
-			</td>
-		</tr>
-
-	</c:forEach>
+				</c:when>		
+			</c:choose>
+		
+		</c:forEach>
 	</table>
    
 	</div>
