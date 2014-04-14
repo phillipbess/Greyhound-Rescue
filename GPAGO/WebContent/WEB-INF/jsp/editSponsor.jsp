@@ -3,7 +3,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset=”utf-8”>
 <link href="../bootstrap.css" rel="stylesheet">
 
 <link href="../adminStyles.css" rel="stylesheet" type="text/css" />
@@ -14,8 +13,10 @@
 
 <body>
 
+<div id="page">
 
-<div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+<div id="header">
+	<div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
 		<div class="container">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse"
@@ -24,24 +25,19 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="" role="button">Greyhound Pets of
-					America - Orlando</a>
+				<a class="navbar-brand" href="" role="button">Greyhound Pets of America - Orlando</a>
 			</div>
 			<div class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
 					<li class="active"><a href="">Home</a></li>
-
-					<li><a href="manage-greyhounds">Manage Greyhounds</a></li>
-					<li><a href="new-greyhound">Create New Greyhound</a></li>
 					<li><a href="Logout">Logout</a></li>
 				</ul>
 			</div>
 		</div>
 	</div>
-	
-<div id="page">
+</div>
 
-<h1>Enter Sponsor Information</h1>
+<h2>Edit Sponsor Information</h2>
 
 <jsp:useBean id="sponsor" type="gpago.view.SponsorFormBean" scope="request"/>
 

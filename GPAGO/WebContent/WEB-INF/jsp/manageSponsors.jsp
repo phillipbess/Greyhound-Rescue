@@ -26,9 +26,6 @@ function confirm_delete() {
 <div id="page">
 
 <div id="header">
-	<h1>Manage Sponsors</h1>
-</div>
-
 	<div class="navbar navbar-fixed-top navbar-inverse">
 		<div class="container">
 			<div class="navbar-header">
@@ -50,6 +47,9 @@ function confirm_delete() {
 			</div>
 		</div>
 	</div>
+</div>
+
+<h2>Manage Sponsors</h2>
 
 
 

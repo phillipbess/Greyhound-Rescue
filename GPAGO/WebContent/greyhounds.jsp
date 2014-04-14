@@ -426,9 +426,9 @@ div.Section1
 						<td class="style8" style="width: 141px; height: 21px;">Sponsored by:</td>
 						<td width="201" class="style8" style="height: 21px">
 			
-						<c:forEach var="sponsorship" items="${greyhound.sponsors}">
+						<c:forEach var="sponsor" items="${greyhound.sponsors}">
 			
-						<p class="style61">${sponsorship.sponsor.name}</p>
+						<p class="style61">${sponsor.name}</p>
 					
 						</c:forEach>
 			

@@ -42,7 +42,8 @@ function selectAllSponsors() {
 <body>
 <div id="page">
 
-<div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+<div id="header">
+	<div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
 		<div class="container">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse"
@@ -57,19 +58,15 @@ function selectAllSponsors() {
 			<div class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
 					<li class="active"><a href="">Home</a></li>
-
-					<li><a href="manage-greyhounds">Manage Greyhounds</a></li>
-					<li><a href="New-sponsor">Create New Sponsor</a></li>
 					<li><a href="Logout">Logout</a></li>
 				</ul>
 			</div>
 		</div>
 	</div>
+</div>
 
+<h2>Enter greyhound information</h2>
 
-
-
-<h1>Enter Greyhound Information</h1>
 
 <jsp:useBean id="greyhound" type="gpago.view.GreyhoundFormBean" scope="request" />
 <jsp:useBean id="facade" class="gpago.view.ViewFacade" scope="request" />
@@ -77,6 +74,8 @@ function selectAllSponsors() {
 <form method="post" enctype="multipart/form-data" action="save-greyhound" onsubmit=selectAllSponsors();>
 
 <input type="hidden" name="id" value="${greyhound.id}">
+
+<div class="content-item">
 
 <div class="detail">
 	<div class="inputField"><label>Name</label><input type="text" name="name" value="${greyhound.name}" />${greyhound.nameValidationText}</div>
@@ -177,6 +176,7 @@ function selectAllSponsors() {
 	<div class="inputField"><label>Image 4</label><input type="file" name="image4"></div>
 	<div class="inputField"><label>Image 5</label><input type="file" name="image5"></div>
 </div> <!-- detail -->
+</div> <!-- content-item -->
 
 <div class="formButtons">
 	<button type="submit">Save</button>
