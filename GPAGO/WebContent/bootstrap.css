@@ -2648,6 +2648,12 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
     border-bottom: 4px solid;
     content:"";
 }
+.error-head {
+            COLOR: #FFFFFF;
+            background: #000000;
+            font-size: 15pt;
+            font-weight: bold;
+}
 .dropup .dropdown-menu, .navbar-fixed-bottom .dropdown .dropdown-menu {
     top: auto;
     bottom: 100%;
