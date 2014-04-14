@@ -8,8 +8,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link href="../adminStyles.css" rel="stylesheet" type="text/css"/>
 
+<script>
+
+function confirm_delete() {
+	return confirm('Are you sure you want to delete this greyhound?');
+}
+
+</script>
+
 <title>Greyhound Rescue</title>
-  
 </head>
 <body>
 
@@ -44,7 +51,7 @@
 <div class="listDetail">
 	<div class="detailActionContainer">
 		<a href="update-greyhound?id=${greyhound.id}">Edit</a>
-		<a href="delete-greyhound?id=${greyhound.id}">Delete</a>
+		<a href="delete-greyhound?id=${greyhound.id}" onclick="return confirm_delete()">Delete</a>
 	</div>
 
 	<div class="detail">
@@ -66,13 +73,15 @@
 		<div class="inputField"><label>More info</label><input type="text" disabled="disabled" readonly="readonly" name="moreInfo" value="${greyhound.moreInfo}" /></div>
 		<div class="inputField"><label>Cat Friendly</label><input type="checkbox" disabled="disabled" readonly="readonly" name="catFriendly" ${greyhound.catFriendly ? ' checked="checked"' : ''} /></div>
 		<div class="inputField"><label>Home Acclimated</label><input type="checkbox" disabled="disabled" readonly="readonly" name="homeAcclimated" ${greyhound.homeAcclimated ? ' checked="checked"' : ''} /></div>
+		<div class="inputField"><label>Location</label><input type="text" disabled="disabled" readonly="readonly" name="location" value="${greyhound.location}" /></div>
+		<div class="inputField"><label>Adoption Status</label><input type="text" disabled="disabled" readonly="readonly" name="adoptionStatus" value="${greyhound.adoptionStatus}" /></div>
 		<div class="inputField"><label>Sponsored by:</label>
 		
 		<!-- Print list of sponsors with commas, but not for the first sponsor -->
 		<div class="sponsors">
-		<c:forEach var="sponsorship" items="${greyhound.sponsors}">
+		<c:forEach var="sponsor" items="${greyhound.sponsors}">
 		
-		<div class="sponsor">${sponsorship.sponsor.name}</div>
+		<div class="sponsor">${sponsor.name}</div>
 	
 		</c:forEach></div>
 		</div>

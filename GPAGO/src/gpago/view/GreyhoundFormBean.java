@@ -1,6 +1,7 @@
 package gpago.view;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.*;
 
@@ -10,7 +11,7 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import gpago.model.entity.Greyhound;
-import gpago.model.entity.Sponsorship;
+import gpago.model.entity.Sponsor;
 import gpago.view.servlet.ServletUtils;
 
 /**
@@ -21,8 +22,10 @@ import gpago.view.servlet.ServletUtils;
 public class GreyhoundFormBean {
 	private static final Logger logger = Logger.getLogger(GreyhoundFormBean.class.getName());
 	
-	private static final SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+	private static final SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
 	
+	// Ids of sponsors for this greyhound.  It is held in this form bean temporarily to be used elsewhere.
+	private List<Long> sponsorIds = new ArrayList<Long>();
 	
 	/**
 	 * A reference to the greyhound object being added or edited.
@@ -35,7 +38,7 @@ public class GreyhoundFormBean {
 	
 	public GreyhoundFormBean(HttpServletRequest request, Greyhound greyhound) {
 		this.greyhound = greyhound;
-			initFromRequest(request, greyhound);
+		initFromRequest(request, greyhound);
 	}
 	
 	private void initFromRequest(HttpServletRequest request, Greyhound greyhound){
@@ -43,7 +46,12 @@ public class GreyhoundFormBean {
 			greyhound.setName(request.getParameter("name"));
 		}
 		
-		setDateOfBirth(request.getParameter("dateOfBirth"));
+		if (request.getParameter("dateOfBirth")!=null) {
+			try {
+				greyhound.setDateOfBirth(format.parse(request.getParameter("dateOfBirth")));
+			} catch (Throwable e) {
+			}
+		}
 		
 		if (request.getParameter("gender")!=null){
 			greyhound.setGender(request.getParameter("gender"));
@@ -73,15 +81,30 @@ public class GreyhoundFormBean {
 			greyhound.setMoreInfo(request.getParameter("moreInfo"));
 		}
 		
+		if(request.getParameter("location")!=null){
+			greyhound.setLocation(request.getParameter("location"));
+		}
+		
+		if(request.getParameter("adoptionStatus")!=null){
+			greyhound.setAdoptionStatus(request.getParameter("adoptionStatus"));
+		}
+		
 		greyhound.setCatFriendly(request.getParameter("catFriendly")!=null);
 		
 		greyhound.setHomeAcclimated(request.getParameter("homeAcclimated")!=null);
-
-		if (request.getParameterValues("sponsors[]")!=null){
-			//puts all the selected sponsors ids into an Array of Strings
-			String[] sponsors = request.getParameterValues("sponsors[]");
-			//this still needs to be implemented
-			//greyhound.setSponsors(sponsors);
+		
+		String[] strIds = request.getParameterValues("sponsors");
+		if (strIds!=null) {
+			for (String strId: strIds) {
+				try {
+					Long id = Long.parseLong(strId);
+					
+					if (id!=null) {
+						sponsorIds.add(id);
+					}
+				} catch (Throwable ex) {
+				}
+			}
 		}
 		
 		// Only process image if content is multipart.
@@ -121,7 +144,7 @@ public class GreyhoundFormBean {
 			}
 			
 		} catch (Exception e) {
-			// TODO Log exception, but there's not much else we can do.
+			//Log exception, but there's not much else we can do.
 			logger.log(Level.SEVERE, "Error while getting image bytes from multipart request.", e);
 		}
 		
@@ -161,10 +184,6 @@ public class GreyhoundFormBean {
 		return "";
 	}
 
-	public void setName(String name) {
-		greyhound.setName(name);
-	}
-	
 	public String getDateOfBirth() {
 		if ((greyhound!=null) && (greyhound.getDateOfBirth()!=null)) {
 			try {
@@ -174,60 +193,27 @@ public class GreyhoundFormBean {
 		}
 		return null;
 	}
-
-	public void setDateOfBirth(String dateOfBirth) {
-		if (dateOfBirth!=null) {
-			try {
-				greyhound.setDateOfBirth(format.parse(dateOfBirth));
-			} catch (Throwable e) {
-			}
-		}
-	}
 	
-	public String getGender(){
+	public String getGender() {
 		return greyhound.getGender();
 	}
-	
-	public void setGender(String gender){
-		greyhound.setGender(gender);
-	}
-	
+
 	public int getWeight(){
 		return greyhound.getWeight();
-	}
-	
-	public void setWeight(int weight){
-		greyhound.setWeight(weight); 
 	}
 	
 	public String getColor(){
 		return greyhound.getColor();
 	}
 	
-	public void setColor(String color){
-		greyhound.setColor(color);
-	}
-	
 	public boolean isCatFriendly() {
 		return greyhound.isCatFriendly();
 	}
 
-	public void setCatFriendly(boolean catFriendly) {
-		greyhound.setCatFriendly(catFriendly);
-	}
-	
 	public String getPersonality() {
 		return greyhound.getPersonality();
 	}
 
-	public void setPersonality(String personality) {
-		greyhound.setPersonality(personality);
-	}
-	
-	public void setMoreInfo(String moreInfo) {
-		greyhound.setMoreInfo(moreInfo);
-	}
-	
 	public String getMoreInfo() {
 		return greyhound.getMoreInfo();
 	}	
@@ -236,16 +222,16 @@ public class GreyhoundFormBean {
 		return greyhound.isHomeAcclimated();
 	}
 	
-	public void setHomeAcclimated(boolean homeAcclimated){
-		greyhound.setHomeAcclimated(homeAcclimated);
+	public String getLocation(){
+		return greyhound.getLocation();
 	}
 	
-	public List<Sponsorship> getSponsors() {
+	public String getAdoptionStatus(){
+		return greyhound.getAdoptionStatus();
+	}
+	
+	public List<Sponsor> getSponsors() {
 		return greyhound.getSponsors();
-	}
-	
-	public void setSponsors(List<Sponsorship> sponsors) {
-		greyhound.setSponsors(sponsors);
 	}
 	
 	public byte[] getImage1(){
@@ -286,5 +272,9 @@ public class GreyhoundFormBean {
 	
 	public boolean isImage5Exists() {
 		return greyhound.getImage5()!=null;
+	}
+	
+	public List<Long> getSponsorIds() {
+		return sponsorIds;
 	}
 }

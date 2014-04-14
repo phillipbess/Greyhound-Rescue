@@ -10,26 +10,32 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link href="../adminStyles.css" rel="stylesheet" type="text/css"/>
 <!-- JQuery from google / This can or should be replaced -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
-</script>
-<title>Greyhound Rescue</title>
-</head>
-<body>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
 <script>
 $(document).ready(function(){
 	$("#btnLeft").click(function () {
-	    var selectedItem = $("#rightValues option:selected");
-	    $("#leftValues").append(selectedItem);
+	    var selectedItem = $("#allSponsors option:selected");
+	    $("#sponsors").append(selectedItem);
 	});
 });
 $(document).ready(function(){
 	$("#btnRight").click(function () {
-	    var selectedItem = $("#leftValues option:selected");
-	    $("#rightValues").append(selectedItem);
+	    var selectedItem = $("#sponsors option:selected");
+	    $("#allSponsors").append(selectedItem);
 	});
 });
 
+
+function selectAllSponsors() {
+	$('#sponsors option').prop('selected', true);
+}
 </script>
+
+<title>Greyhound Rescue</title>
+</head>
+
+<body>
 <div id="page">
 
 <h1>Enter Greyhound Information</h1>
@@ -37,7 +43,7 @@ $(document).ready(function(){
 <jsp:useBean id="greyhound" type="gpago.view.GreyhoundFormBean" scope="request"/>
 <jsp:useBean id="facade" class="gpago.view.ViewFacade" scope="request"/>
 
-<form method="post" enctype="multipart/form-data" action="save-greyhound">
+<form method="post" enctype="multipart/form-data" action="save-greyhound" onsubmit=selectAllSponsors();>
 
 <input type="hidden" name="id" value="${greyhound.id}">
 
@@ -101,24 +107,38 @@ $(document).ready(function(){
 			<option value="White Ticked Red Fawn">White Ticked Red Fawn</option>	
 	</select></div>
 	<div class="inputField"><label>Personality</label><input type="text" name="personality" value="${greyhound.personality}" /></div>
+	<div class="inputField"><label>More info</label><textarea name="moreInfo">${greyhound.moreInfo}</textarea></div>
 	<div class="inputField"><label>Cat Friendly</label><input type="checkbox" name="catFriendly" ${greyhound.catFriendly ? ' checked="checked"' : ''} /></div>
 	<div class="inputField"><label>Home Acclimated</label><input type="checkbox" name="homeAcclimated" ${greyhound.homeAcclimated ? ' checked="checked"' : ''} /></div>
-	<div class="inputField"><label>More info</label><textarea name="moreInfo">${greyhound.moreInfo}</textarea></div>
+	<div class="inputField"><label>Location</label>
+		<select name="location">
+			<option value='${greyhound.location}' disabled selected style='display:none;'>${greyhound.location}</option>
+			<option value="Foster Home">Foster Home</option>
+			<option value="Kennel">Kennel</option>
+	</select></div>		
+	<div class="inputField"><label>Adoption Status</label>
+		<select name="adoptionStatus">
+			<option value='${greyhound.adoptionStatus}' disabled selected style='display:none;'>${greyhound.adoptionStatus}</option>
+			<option value="Adopted">Adopted</option>
+			<option value="Available">Available</option>
+			<option value="Pending">Pending</option>
+	</select></div>
+	
 	<div class="inputField"><label>Sponsored By:</label>
-        <select id="leftValues" size="5" name="sponsors[]" multiple>
-            <c:forEach var="sponsor" items="${facade.sponsors}">
-				<option value="${sponsor.id}">${sponsor.name}</option>
+        <select id="sponsors" size="5" name="sponsors" multiple>
+	        <c:forEach var="sponsor" items="${greyhound.sponsors}">
+					<option value="${sponsor.id}" selected>${sponsor.name}</option>
 			</c:forEach>
-		</select>
+        </select>
 	    <div id="shuttle-buttons">
 	        <input type="button" id="btnLeft" value="&lt;" />
 	        <input type="button" id="btnRight" value="&gt;" />
 	    </div>
-        <select id="rightValues" size="5" multiple>
-	        <c:forEach var="sponsorship" items="${greyhound.sponsors}">
-					<option value="${sponsorship.sponsor.id}">${sponsorship.sponsor.name}</option>
+        <select id="allSponsors" size="5" multiple>
+            <c:forEach var="sponsor" items="${facade.sponsors}">
+				<option value="${sponsor.id}" selected>${sponsor.name}</option>
 			</c:forEach>
-        </select>
+		</select>
 	</div>
 	<div class="inputField"><label>Image 1</label><input type="file" name="image1"></div>
 	<div class="inputField"><label>Image 2</label><input type="file" name="image2"></div>
@@ -129,7 +149,7 @@ $(document).ready(function(){
 </div> <!-- detail -->
 
 <div class="formButtons">
-	<input type="submit" name="Save">
+	<button type="submit">Save</button>
 	<button type="button" onclick="window.location='manage-greyhounds';return false;">Cancel</button>
 </div>
 </form>

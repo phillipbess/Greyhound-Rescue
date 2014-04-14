@@ -3,19 +3,12 @@ package gpago.view.servlet;
 import gpago.model.ModelFacade;
 import gpago.model.entity.Greyhound;
 import gpago.model.entity.Sponsor;
-import gpago.model.entity.Sponsorship;
 
-import java.awt.image.BufferedImage;
-import java.awt.image.DataBufferByte;
-import java.awt.image.WritableRaster;
-import java.io.File;
-import java.io.IOException;
 import java.sql.Date;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-import javax.imageio.ImageIO;
+import javax.servlet.Servlet;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -29,7 +22,7 @@ public class SampleDataInitializer extends HttpServlet {
 	private static final Logger logger = Logger
 			.getLogger(SampleDataInitializer.class.getName());
 
-	private static final int RECORDS_TO_GENERATE = 50;
+	private static final int RECORDS_TO_GENERATE = 25;
 
 	private static final long serialVersionUID = 1L;
 
@@ -64,6 +57,10 @@ public class SampleDataInitializer extends HttpServlet {
 			for (int x = 1; x <= RECORDS_TO_GENERATE; x++)
 				createSponsoredGreys(facade, x);
 
+			// Create additional sponsors that are not associated with a greyhound yet.
+			for (int x = 1; x <= 20; x++)
+				createSponsor(facade, "Another Sponsor " + x);
+			
 			List<Greyhound> greyhounds = facade.getAllGreyhounds();
 
 			logger.info("SampleDataInitializer - " + greyhounds.size()
@@ -74,62 +71,33 @@ public class SampleDataInitializer extends HttpServlet {
 	}
 	
 	private Greyhound createSponsoredGreys(ModelFacade facade, int idNum){
-		Greyhound greyhound = createGreyhound(facade, idNum);
-		Sponsor sponsor = createSponsor(facade, idNum);
-		List<Sponsorship> sponsorships = createSponsorship(facade, greyhound, sponsor);
+		String greyhound_name = "Greyhound " + idNum;
 		
-		//update greyhound 
-		updateGreyhound(facade, greyhound, sponsorships);
-		//update sponsor
-		updateSponsor(facade, sponsor, sponsorships);
+		Sponsor sponsor1 = createSponsor(facade, "Sponsor 1 for greyhound : " + greyhound_name);
+		Sponsor sponsor2 = createSponsor(facade, "Sponsor 2 for greyhound : " + greyhound_name);
 		
-		return greyhound;
-	}
-
-	private Greyhound createGreyhound(ModelFacade facade, int idNum) {
-		Greyhound g = new Greyhound("Greyhound " + idNum, new Date(1900000),
+		Greyhound g = new Greyhound(greyhound_name, new Date(1900000),
 				"Male", 72, "brown", true, true, "A very friendly grey!",
-				"A very happy grey", null);
+				"A very happy grey", "Kennel", "Available",null);
+
 		facade.saveGreyhound(g);
+		
+		facade.addSponsorToGreyhound(g.getId(), sponsor1.getId());
+		facade.addSponsorToGreyhound(g.getId(), sponsor2.getId());
+		
+		//g.addSponsor(sponsor1);
+		//g.addSponsor(sponsor2);
+		
 		return g;
 	}
 	
-	private Sponsor createSponsor(ModelFacade facade, int idNum){
-		Sponsor sponsor = new Sponsor("sponsor" + idNum);
+	private Sponsor createSponsor(ModelFacade facade, String name) {
+		Sponsor sponsor = new Sponsor(name);
 		
 		facade.saveSponsor(sponsor);
+		
 		return sponsor;
 	}
 	
-	private List<Sponsorship> createSponsorship(ModelFacade facade, Greyhound greyhound, Sponsor sponsor){
-		List<Sponsorship> sponsorships = new ArrayList<Sponsorship>();
-		for(int i = 0; i < 2; i++){
-			Sponsorship sponsorship = new Sponsorship(sponsor, greyhound, 10.00 + i);
-			sponsorships.add(sponsorship);
-		}		
-		
-		facade.saveSponsorships((ArrayList<Sponsorship>) sponsorships);
-		return sponsorships;
-	}
 	
-	private void updateGreyhound(ModelFacade facade, Greyhound greyhound, List<Sponsorship> sponsors){
-		greyhound.setSponsors(sponsors);
-		
-		facade.saveGreyhound(greyhound);
-	}
-	
-	private void updateSponsor(ModelFacade facade, Sponsor sponsor, List<Sponsorship> sponsors){
-		sponsor.setSponsoredGreys(sponsors);
-		
-		facade.saveSponsor(sponsor);
-	}
-
-	private byte[] extractBytes() throws IOException {
-		File imgPath = new File("C://Greys/BackwoodJanet1.jpg");
-		BufferedImage bufferedImage = ImageIO.read(imgPath);
-
-		WritableRaster raster = bufferedImage.getRaster();
-		DataBufferByte data = (DataBufferByte) raster.getDataBuffer();
-		return (data.getData());
-	}
 }
