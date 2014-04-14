@@ -59,7 +59,14 @@ public class ViewFacade {
 		return modelFacade.getSponsor(id);
 	}
 	
-	public List<SponsorFormBean> getSponsors(){
+	public List<SponsorFormBean> getAllSponsors(){
+		List<SponsorFormBean> result = new ArrayList<SponsorFormBean>();
+		for (Sponsor sponsor: modelFacade.getAllSponsors())
+			result.add(new SponsorFormBean(sponsor));
+		return result;
+	}
+	
+	public List<SponsorFormBean> getAvailableSponsors(){
 		List<SponsorFormBean> result = new ArrayList<SponsorFormBean>();
 		for (Sponsor sponsor: modelFacade.getAvailableSponsors())
 			result.add(new SponsorFormBean(sponsor));
@@ -69,6 +76,11 @@ public class ViewFacade {
 	public void saveSponsor(Sponsor sponsor) {
 		modelFacade.saveSponsor(sponsor);
 	}
+	
+	public void removeSponsor(Sponsor sponsor) {
+		modelFacade.removeSponsor(sponsor);
+	}
+	
 	
 	
 	public GreyhoundSaveResult saveOrUpdateGreyhound(HttpServletRequest request) {

@@ -77,8 +77,8 @@ public class SampleDataInitializer extends HttpServlet {
 		Sponsor sponsor2 = createSponsor(facade, "Sponsor 2 for greyhound : " + greyhound_name);
 		
 		Greyhound g = new Greyhound(greyhound_name, new Date(1900000),
-				"Male", 72, "brown", true, true, "A very friendly grey!",
-				"A very happy grey", "Kennel", "Available",null);
+				"Male", 72, "Light Ticked Brindle", true, true, "A very friendly grey!",
+				"A very happy grey", "Kennel", "Available", null);
 
 		facade.saveGreyhound(g);
 		

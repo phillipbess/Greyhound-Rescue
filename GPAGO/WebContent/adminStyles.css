@@ -2,16 +2,17 @@
 
 body
 {
-    font-family: Arial, Sans-Serif;
+  Helvetica, Arial, sans-serif;
     font-size: 13px;
 }
 
 h1  {
-font-size : 125%;
-font-family : Helvetica, Arial, sans-serif;
-color : blue;
+font-size : 31px;
+font-family: inherit;
+color : black;
 margin-top : 3px;
 margin-bottom : 3px;
+font-weight: normal;
 }
 
 
@@ -21,7 +22,7 @@ margin-bottom : 3px;
 
 #header
 {
-	background: #ccc;
+	font
 	padding: 8px;
 }
 

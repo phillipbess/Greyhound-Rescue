@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="ISO-8859-1" %>
 <%@ page import="java.util.List" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!-- Testing commit -->
@@ -8,8 +8,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link href="../adminStyles.css" rel="stylesheet" type="text/css"/>
 <!-- JQuery from google / This can or should be replaced -->
+
+<link href="../bootstrap.css" rel="stylesheet">
+<link href="../adminStyles.css" rel="stylesheet" type="text/css" />
+
+<script src="../bootstrap.js"></script>
+
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
 <script>
@@ -26,7 +31,6 @@ $(document).ready(function(){
 	});
 });
 
-
 function selectAllSponsors() {
 	$('#sponsors option').prop('selected', true);
 }
@@ -38,10 +42,37 @@ function selectAllSponsors() {
 <body>
 <div id="page">
 
+<div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="" role="button">Greyhound Pets of
+					America - Orlando</a>
+			</div>
+			<div class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="">Home</a></li>
+
+					<li><a href="manage-greyhounds">Manage Greyhounds</a></li>
+					<li><a href="New-sponsor">Create New Sponsor</a></li>
+					<li><a href="Logout">Logout</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+
+
+
 <h1>Enter Greyhound Information</h1>
 
-<jsp:useBean id="greyhound" type="gpago.view.GreyhoundFormBean" scope="request"/>
-<jsp:useBean id="facade" class="gpago.view.ViewFacade" scope="request"/>
+<jsp:useBean id="greyhound" type="gpago.view.GreyhoundFormBean" scope="request" />
+<jsp:useBean id="facade" class="gpago.view.ViewFacade" scope="request" />
 
 <form method="post" enctype="multipart/form-data" action="save-greyhound" onsubmit=selectAllSponsors();>
 
@@ -51,12 +82,12 @@ function selectAllSponsors() {
 	<div class="inputField"><label>Name</label><input type="text" name="name" value="${greyhound.name}" />${greyhound.nameValidationText}</div>
 	<div class="inputField"><label>Date of Birth</label><input type="date" name="dateOfBirth" placeholder="mm/dd/yyyy" value="${greyhound.dateOfBirth}" /></div>
 	<div class="inputField"><label>Gender</label><select name="gender">
-			<option value='${greyhound.gender}' disabled selected style='display:none;'>${greyhound.gender}</option>
-			<option value="Male">Male</option>
-			<option value="Female">Female</option>	
+		<option value='${greyhound.gender}' disabled selected style='display:none;'>${greyhound.gender}</option>
+		<option value="Male">Male</option>
+		<option value="Female">Female</option>
 	</select></div>
 	<!-- When creating a new grey, do not display 0. Display an empty box -->
-	<c:set var="weight" value="${greyhound.weight}"/>
+	<c:set var="weight" value="${greyhound.weight}" />
 	<c:choose>
 		<c:when test="${weight eq 0}">
 			<div class="inputField"><label>Weight</label><input type="text" name="weight" value="" /></div>
@@ -104,26 +135,26 @@ function selectAllSponsors() {
 			<option value="White Ticked Light Brindle">White Ticked Light Brindle</option>
 			<option value="White Ticked Red">White Ticked Red</option>
 			<option value="White Ticked Red Brindle">White Ticked Red Brindle</option>
-			<option value="White Ticked Red Fawn">White Ticked Red Fawn</option>	
+			<option value="White Ticked Red Fawn">White Ticked Red Fawn</option>
 	</select></div>
 	<div class="inputField"><label>Personality</label><input type="text" name="personality" value="${greyhound.personality}" /></div>
 	<div class="inputField"><label>More info</label><textarea name="moreInfo">${greyhound.moreInfo}</textarea></div>
 	<div class="inputField"><label>Cat Friendly</label><input type="checkbox" name="catFriendly" ${greyhound.catFriendly ? ' checked="checked"' : ''} /></div>
 	<div class="inputField"><label>Home Acclimated</label><input type="checkbox" name="homeAcclimated" ${greyhound.homeAcclimated ? ' checked="checked"' : ''} /></div>
 	<div class="inputField"><label>Location</label>
-		<select name="location">
+	<select name="location">
 			<option value='${greyhound.location}' disabled selected style='display:none;'>${greyhound.location}</option>
 			<option value="Foster Home">Foster Home</option>
 			<option value="Kennel">Kennel</option>
-	</select></div>		
+	</select></div>
 	<div class="inputField"><label>Adoption Status</label>
-		<select name="adoptionStatus">
+	<select name="adoptionStatus">
 			<option value='${greyhound.adoptionStatus}' disabled selected style='display:none;'>${greyhound.adoptionStatus}</option>
 			<option value="Adopted">Adopted</option>
 			<option value="Available">Available</option>
 			<option value="Pending">Pending</option>
 	</select></div>
-	
+
 	<div class="inputField"><label>Sponsored By:</label>
         <select id="sponsors" size="5" name="sponsors" multiple>
 	        <c:forEach var="sponsor" items="${greyhound.sponsors}">
@@ -135,7 +166,7 @@ function selectAllSponsors() {
 	        <input type="button" id="btnRight" value="&gt;" />
 	    </div>
         <select id="allSponsors" size="5" multiple>
-            <c:forEach var="sponsor" items="${facade.sponsors}">
+            <c:forEach var="sponsor" items="${facade.availableSponsors}">
 				<option value="${sponsor.id}" selected>${sponsor.name}</option>
 			</c:forEach>
 		</select>
@@ -145,7 +176,6 @@ function selectAllSponsors() {
 	<div class="inputField"><label>Image 3</label><input type="file" name="image3"></div>
 	<div class="inputField"><label>Image 4</label><input type="file" name="image4"></div>
 	<div class="inputField"><label>Image 5</label><input type="file" name="image5"></div>
-	
 </div> <!-- detail -->
 
 <div class="formButtons">

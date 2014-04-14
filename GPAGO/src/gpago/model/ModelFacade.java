@@ -182,6 +182,10 @@ public class ModelFacade {
 
 			try {
 				utx.begin();
+				
+				if (s.getGreyhound()!=null)
+					s.getGreyhound().removeSponsor(s);
+				
 				em.remove(s);
 				utx.commit();
 			} catch (Throwable ex) {

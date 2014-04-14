@@ -90,23 +90,28 @@ public class ControllerServlet extends HttpServlet {
 				
 				int imageIndex = ParamUtils.getIntParameter(request, "idx");
 
-				BufferedImage img;
+				BufferedImage img = null;
 				
 				switch (imageIndex) {
 				case 2:
-					img = ImageIO.read(new ByteArrayInputStream(greyhound.getImage2()));
+					if (greyhound.getImage2()!=null)
+						img = ImageIO.read(new ByteArrayInputStream(greyhound.getImage2()));
 					break;
 				case 3:
-					img = ImageIO.read(new ByteArrayInputStream(greyhound.getImage3()));
+					if (greyhound.getImage3()!=null)
+						img = ImageIO.read(new ByteArrayInputStream(greyhound.getImage3()));
 					break;
 				case 4:
-					img = ImageIO.read(new ByteArrayInputStream(greyhound.getImage4()));
+					if (greyhound.getImage4()!=null)
+						img = ImageIO.read(new ByteArrayInputStream(greyhound.getImage4()));
 					break;
 				case 5:
-					img = ImageIO.read(new ByteArrayInputStream(greyhound.getImage5()));
+					if (greyhound.getImage5()!=null)
+						img = ImageIO.read(new ByteArrayInputStream(greyhound.getImage5()));
 					break;
 				default:
-					img = ImageIO.read(new ByteArrayInputStream(greyhound.getImage1()));
+					if (greyhound.getImage1()!=null)
+						img = ImageIO.read(new ByteArrayInputStream(greyhound.getImage1()));
 				}
 				
 				if (img!=null) {
@@ -147,6 +152,13 @@ public class ControllerServlet extends HttpServlet {
 			}
 			request.setAttribute("facade", viewFacade); // We use the view facade to tailor what is exposed to jsp.
 			forward(request, response, ADDRESS_MANAGE_GREYHOUNDS_URI);		
+		} else if (uri.endsWith("/admin/delete-sponsor")) {
+			Sponsor sponsor = viewFacade.getSponsor(ParamUtils.getLongParameter(request, "id"));
+			if (sponsor!=null) {
+				viewFacade.removeSponsor(sponsor);
+			}
+			request.setAttribute("facade", viewFacade); // We use the view facade to tailor what is exposed to jsp.
+			forward(request, response, ADDRESS_MANAGE_SPONSORS_URI);		
 		} else if (uri.endsWith("/admin/manage-sponsors")) {
 			request.setAttribute("facade", viewFacade); // We use the view facade to tailor what is exposed to jsp.
 			forward(request, response, ADDRESS_MANAGE_SPONSORS_URI);

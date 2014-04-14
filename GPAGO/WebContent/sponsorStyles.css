@@ -1,0 +1,38 @@
+body {
+	padding-top: 40px;
+	padding-bottom: 40px;
+	background-color: #eee;
+	font color: black
+	
+
+}
+
+table a,.table a,td, tr {
+	color: #0A0909;
+	border: solid 2px black;
+
+}
+
+tbody {
+
+	display:block;
+	vertical-align: middle;
+	color: #0A0909;
+	font-weight: normal;
+	color: #171717;
+	font-size: 19px;
+	text-align: left;
+	line-height: 1;
+	border: solid 2px black;
+	text-decoration: underline;
+	background-color: #F$
+
+}
+
+td {
+	padding: 10px;
+
+	
+	
+
+}

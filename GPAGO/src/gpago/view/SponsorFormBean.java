@@ -73,11 +73,11 @@ public class SponsorFormBean {
 		sponsor.setName(name);
 	}
 	
-	public Greyhound getSponsoredGrey() {
+	public Greyhound getGreyhound() {
 		return sponsor.getGreyhound();
 	}
 
-	public void setSponsoredGreys(Greyhound greyhound) {
+	public void setGreyhound(Greyhound greyhound) {
 		sponsor.setGreyhound(greyhound);
 	}
 }
