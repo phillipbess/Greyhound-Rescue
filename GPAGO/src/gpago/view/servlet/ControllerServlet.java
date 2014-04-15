@@ -47,7 +47,8 @@ public class ControllerServlet extends HttpServlet {
 	
 	public static final String ADDRESS_NOT_FOUND = "/WEB-INF/jsp/notFound.jsp";
 	public static final String ADDRESS_LOGIN_URI = "/admin/login";
-	public static final String ADDRESS_ADMIN_PAGE_URI = "/admin/manage-greyhounds";
+	public static final String ADDRESS_GREYHOUND_ADMIN_PAGE_URI = "/admin/manage-greyhounds";
+	public static final String ADDRESS_SPONSOR_ADMIN_PAGE_URI = "/admin/manage-sponsors";
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -82,7 +83,7 @@ public class ControllerServlet extends HttpServlet {
 			
 		} else if (uri.endsWith("/login")) {
 			request.setAttribute("facade", viewFacade); // We use the view facade to tailor what is exposed to jsp.
-			response.sendRedirect(request.getContextPath() + ADDRESS_ADMIN_PAGE_URI);
+			response.sendRedirect(request.getContextPath() + ADDRESS_GREYHOUND_ADMIN_PAGE_URI);
 		} else if (uri.endsWith("/image")) { // It's a request for a greyhound image.
 			Greyhound greyhound = viewFacade.getGreyhound(ParamUtils.getLongParameter(request, "id"));
 			
@@ -148,17 +149,17 @@ public class ControllerServlet extends HttpServlet {
 		} else if (uri.endsWith("/admin/delete-greyhound")) {
 			Greyhound greyhound = viewFacade.getGreyhound(ParamUtils.getLongParameter(request, "id"));
 			if (greyhound!=null) {
-				viewFacade.removeGreyhound(greyhound);
+				viewFacade.removeGreyhound(greyhound);				
 			}
 			request.setAttribute("facade", viewFacade); // We use the view facade to tailor what is exposed to jsp.
-			forward(request, response, ADDRESS_MANAGE_GREYHOUNDS_URI);		
+			response.sendRedirect(request.getContextPath() + ADDRESS_GREYHOUND_ADMIN_PAGE_URI);
 		} else if (uri.endsWith("/admin/delete-sponsor")) {
 			Sponsor sponsor = viewFacade.getSponsor(ParamUtils.getLongParameter(request, "id"));
 			if (sponsor!=null) {
 				viewFacade.removeSponsor(sponsor);
 			}
 			request.setAttribute("facade", viewFacade); // We use the view facade to tailor what is exposed to jsp.
-			forward(request, response, ADDRESS_MANAGE_SPONSORS_URI);		
+			response.sendRedirect(request.getContextPath() + ADDRESS_SPONSOR_ADMIN_PAGE_URI);	
 		} else if (uri.endsWith("/admin/manage-sponsors")) {
 			request.setAttribute("facade", viewFacade); // We use the view facade to tailor what is exposed to jsp.
 			forward(request, response, ADDRESS_MANAGE_SPONSORS_URI);
