@@ -68,8 +68,8 @@ public class ControllerServlet extends HttpServlet {
 		String uri = request.getRequestURI();
 		logger.finest("URI: " + uri);
 		
-		System.out.println("RequestURI: " + request.getContextPath());	
-		System.out.println("ContextPath: " + request.getContextPath());	
+		// System.out.println("RequestURI: " + request.getContextPath());	
+		// System.out.println("ContextPath: " + request.getContextPath());	
 		
 		uri = uri.toLowerCase();
 

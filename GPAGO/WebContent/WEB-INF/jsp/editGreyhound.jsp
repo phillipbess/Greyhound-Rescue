@@ -79,7 +79,7 @@ function selectAllSponsors() {
 
 <div class="detail">
 	<div class="inputField"><label>Name</label><input type="text" name="name" value="${greyhound.name}" />${greyhound.nameValidationText}</div>
-	<div class="inputField"><label>Date of Birth</label><input type="date" name="dateOfBirth" placeholder="mm/dd/yyyy" value="${greyhound.dateOfBirth}" /></div>
+	<div class="inputField"><label>Date of Birth</label><input type="date" name="dateOfBirth" placeholder="yyyy-MM-dd" value="${greyhound.dateOfBirth}" /></div>
 	<div class="inputField"><label>Gender</label><select name="gender">
 		<option value='${greyhound.gender}' disabled selected style='display:none;'>${greyhound.gender}</option>
 		<option value="Male">Male</option>
