@@ -11,7 +11,7 @@
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/gpago"/>
 			<property name="javax.persistence.jdbc.user" value="gpago"/>
 			<property name="javax.persistence.jdbc.password" value="password"/>
-			<property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>
+			<property name="eclipselink.ddl-generation" value="create-or-extend-tables"/>
 			<property name="eclipselink.logging.level" value="FINER"/>
 		</properties>
 	</persistence-unit>
