@@ -1,7 +1,6 @@
 package gpago.model.entity;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.*;
 
@@ -13,6 +12,7 @@ import javax.persistence.*;
 @Entity
 @NamedQueries({
 	@NamedQuery(name = "Sponsor.findAll", query = "SELECT e FROM Sponsor e"),
+	@NamedQuery(name = "Sponsor.findAvailable", query = "SELECT e FROM Sponsor e WHERE e.greyhound = null"),
 	@NamedQuery(name = "Sponsor.findById", query = "SELECT e FROM Sponsor e WHERE e.id = :id")
 })
 public class Sponsor implements Serializable {
@@ -23,8 +23,9 @@ public class Sponsor implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id; 
 	
-	@OneToMany(mappedBy="sponsor")
-	private List<Sponsorship> sponsoredGreys;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="GREYHOUND_ID")
+	private Greyhound greyhound;
 	
 	private String name;
 		
@@ -49,13 +50,11 @@ public class Sponsor implements Serializable {
 		this.name = name;
 	}
 
-	public List<Sponsorship> getSponsoredGreys() {
-		return sponsoredGreys;
+	public Greyhound getGreyhound() {
+		return greyhound;
 	}
 
-	public void setSponsoredGreys(List<Sponsorship> sponsoredGreys) {
-		this.sponsoredGreys = sponsoredGreys;
+	public void setGreyhound(Greyhound greyhound) {
+		this.greyhound = greyhound;
 	}
-	
-	
 }

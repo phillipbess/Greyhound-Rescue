@@ -6,12 +6,13 @@ body
     font-size: 13px;
 }
 
-h1  {
-font-size : 31px;
+h2  {
+font-size : 24px;
 font-family: inherit;
 color : black;
-margin-top : 3px;
-margin-bottom : 3px;
+
+margin-left: 30px;
+margin-top : 50px;
 font-weight: normal;
 }
 
@@ -22,8 +23,7 @@ font-weight: normal;
 
 #header
 {
-	font
-	padding: 8px;
+	clear: both;
 }
 
 #header h1 { margin: 0; }
@@ -166,6 +166,14 @@ SELECT {
 	display: inline;
 	float: left;
 	margin: 5px;
+}
+
+#leftValues {
+	width: 250px;
+}
+
+#rightValues {
+	width: 275px;
 }
 
 

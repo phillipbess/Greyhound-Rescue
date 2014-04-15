@@ -2,7 +2,6 @@ package gpago.model;
 
 import gpago.model.entity.Greyhound;
 import gpago.model.entity.Sponsor;
-import gpago.model.entity.Sponsorship;
 
 import java.util.List;
 import java.util.logging.Level;
@@ -22,6 +21,10 @@ public class ModelFacade {
 		logger.info("Initializing Entity Manager Factory");
 		emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		logger.info("Entity Manager Factory Initialized for persistence unit: " + PERSISTENCE_UNIT_NAME);
+	}
+	
+	public EntityManagerFactory getEntityManagerFactory() {
+		return emf;
 	}
 	
 	/**
@@ -86,6 +89,9 @@ public class ModelFacade {
 
 			try {
 				utx.begin();
+				
+				g.removeAllSponsors();
+				
 				em.remove(g);
 				utx.commit();
 			} catch (Throwable ex) {
@@ -99,84 +105,18 @@ public class ModelFacade {
 			}
 		}
 	}
-	
+
 	/**
-	 * Retrieve all Sponsorship records from the database.
-	 * @return A list of all Sponsorship entities in the database.
+	 * Retrieve all Sponsor records from the database.
+	 * @return A list of all Sponsor entities in the database.
 	 */
-	public List<Sponsorship> getAllSponsorships() {
+	public List<Sponsor> getAvailableSponsors() {
 		EntityManager em = emf.createEntityManager();
 
 		try {
-			return em.createNamedQuery("Sponsorship.findAll", Sponsorship.class).getResultList();
+			return emf.createEntityManager().createNamedQuery("Sponsor.findAvailable", Sponsor.class).getResultList();
 		} finally {
 			em.close();
-		}
-	}
-	
-	public Sponsorship getSponsorship(Long id) {
-		EntityManager em = emf.createEntityManager();
-
-		try {
-			return em.find(Sponsorship.class, id);
-		} finally {
-			em.close();
-		}
-	}
-	
-	public void saveSponsorships(List<Sponsorship> sponsorships) {
-		EntityManager em = emf.createEntityManager();
-		EntityTransaction utx = em.getTransaction();
-
-		try {
-			utx.begin();
-			for(Sponsorship sponsorship: sponsorships){
-				if (sponsorship.getId()==null) { // it's a new sponsorship, persist it.
-					em.persist(sponsorship);
-				} else { // Else, it's an existing sponsorship that has been updated.  Just commit.
-					em.merge(sponsorship);
-				}
-			}
-			utx.commit();
-		} catch (Throwable ex) {
-			logger.log(Level.SEVERE, "Error while saving sponsorship record.  The transaction is being rolled back.", ex);
-			try {
-				utx.rollback();
-			} catch (Exception e) {
-			}
-		} finally {
-			em.close();
-		}
-	}
-	
-	public void removeSponsorships(List<Sponsorship> sponsorships) {
-		for(Sponsorship sponsorship: sponsorships){
-			if (sponsorship.getId() == null){ // sponsorship does not have id, probably because it was never persisted.
-				return;
-			}
-		}
-		EntityManager em = emf.createEntityManager();
-		
-		for(Sponsorship sponsorship: sponsorships){
-		Sponsorship s = em.find(Sponsorship.class, sponsorship.getId());
-		
-			if (s!=null) {
-				EntityTransaction utx = em.getTransaction();
-	
-				try {
-					utx.begin();
-					em.remove(s);
-					utx.commit();
-				} catch (Throwable ex) {
-					logger.log(Level.SEVERE, "Error while removing sponsorship record.  The transaction is being rolled back.", ex);
-					try {
-						utx.rollback();
-					} catch (Exception e) {
-					}
-				} finally {
-					em.close();
-				}
-			}
 		}
 	}
 	
@@ -242,6 +182,10 @@ public class ModelFacade {
 
 			try {
 				utx.begin();
+				
+				if (s.getGreyhound()!=null)
+					s.getGreyhound().removeSponsor(s);
+				
 				em.remove(s);
 				utx.commit();
 			} catch (Throwable ex) {
@@ -255,4 +199,117 @@ public class ModelFacade {
 			}
 		}
 	}
+	
+	/*public void setSponsors(Greyhound greyhound, List<Long> sponsorIds) {
+		EntityManager em = emf.createEntityManager();
+		
+		try {
+			// Get a managed greyhound instance
+			greyhound = em.find(Greyhound.class, greyhound.getId());
+			
+			if (greyhound!=null) {
+				
+				EntityTransaction utx = em.getTransaction();
+
+				try {
+					utx.begin();
+					
+					greyhound.removeAllSponsors();
+					
+					for (Long sponsorId: sponsorIds) {
+						Sponsor sponsor = em.find(Sponsor.class, sponsorId);
+						
+						if (sponsor!=null) {
+							greyhound.addSponsor(sponsor);
+						}
+					}
+					utx.commit();
+				} catch (Throwable ex) {
+					logger.log(Level.SEVERE, "Error while saving sponsor record.  The transaction is being rolled back.", ex);
+					try {
+						utx.rollback();
+					} catch (Exception e) {
+					}
+				}
+			}
+		} finally {
+			em.close();
+		}
+	}*/
+	
+	/**
+	 * Associate a sponsor with a greyhound.
+	 * @param greyhound
+	 * @param sponsor
+	 * @throws Throwable 
+	 */
+	public void addSponsorToGreyhound(Long greyhoundId, Long sponsorId) {
+		
+		if (greyhoundId==null)
+			throw new IllegalArgumentException("Greyhound ID cannot be null.");
+		
+		if (sponsorId==null)
+			throw new IllegalArgumentException("Sponsor ID cannot be null.");
+		
+		EntityManager em = emf.createEntityManager();
+		
+
+		EntityTransaction utx = em.getTransaction();
+
+		try {
+			utx.begin();
+
+			// Get the greyhound record and sponsor records as managed entities.
+			Greyhound greyhound = em.find(Greyhound.class, greyhoundId);
+			Sponsor sponsor = em.find(Sponsor.class, sponsorId);
+			
+			if ((greyhound!=null) && (sponsor!=null))
+				greyhound.addSponsor(sponsor);
+			
+			utx.commit();
+		} catch (Throwable ex) {
+			logger.log(Level.SEVERE, "Error while associating a greyhound to a sponsor.  The transaction is being rolled back.", ex);
+			try {
+				utx.rollback();
+			} catch (Exception e) {
+			}
+		} finally {
+			em.close();
+		}
+	}
+	
+	/**
+	 * Remove the association between a sponsor and a greyhound.
+	 * @param greyhound
+	 * @param sponsor
+	 */
+	/*public void removeSponsorFromGreyhound(Greyhound greyhound, Sponsor sponsor) {
+		if ((greyhound.getId() == null) || (sponsor.getId() == null)) // Sponsor does not have id, probably because it was never persisted.
+			return;
+
+		EntityManager em = emf.createEntityManager();
+
+		Greyhound g = em.find(Greyhound.class, greyhound.getId());
+		Sponsor s = em.find(Sponsor.class, sponsor.getId());
+		
+		if ((g!=null) && (s!=null)) {
+			EntityTransaction utx = em.getTransaction();
+
+			try {
+				utx.begin();
+				
+				g.removeSponsor(s);
+				
+				utx.commit();
+			} catch (Throwable ex) {
+				logger.log(Level.SEVERE, "Error while removing the associating between greyhound and a sponsor.  The transaction is being rolled back.", ex);
+				try {
+					utx.rollback();
+				} catch (Exception e) {
+				}
+			} finally {
+				em.close();
+			}
+		}
+	}*/
 }

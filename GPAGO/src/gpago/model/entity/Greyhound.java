@@ -2,10 +2,13 @@ package gpago.model.entity;
 
 import java.io.Serializable;
 import java.lang.String;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import org.apache.commons.lang3.StringEscapeUtils;
+
 import javax.persistence.*;
 
 /**
@@ -17,14 +20,12 @@ import javax.persistence.*;
 		@NamedQuery(name = "Greyhound.findAll", query = "SELECT e FROM Greyhound e"),
 		@NamedQuery(name = "Greyhound.findById", query = "SELECT e FROM Greyhound e WHERE e.id = :id") })
 public class Greyhound implements Serializable {
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@OneToMany(mappedBy="greyhound")
-	private List<Sponsorship> sponsors;
-	
 	private String name;
 
 	@Temporal(TemporalType.TIMESTAMP)
@@ -67,8 +68,10 @@ public class Greyhound implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date entryDate;
 
-	private static final long serialVersionUID = 1L;
+	@OneToMany(mappedBy="greyhound")
+	private List<Sponsor> sponsors = new ArrayList<Sponsor>();
 
+	
 	//Default Constructor
 	public Greyhound() {
 		super();
@@ -91,33 +94,6 @@ public class Greyhound implements Serializable {
 		setLocation(location);
 		setAdoptionStatus(adoptionStatus);
 		setImage1(image1);
-	}
-
-	public Greyhound(String name, Date dateOfBirth, String gender, int weight,
-			String color, boolean catFriendly, boolean homeAcclimated,
-			String personality, String moreInfo, List<Sponsorship> sponsors,
-			byte[] image1) {
-		this();
-		setName(name);
-		setDateOfBirth(dateOfBirth);
-		setGender(gender);
-		setWeight(weight);
-		setColor(color);
-		setCatFriendly(catFriendly);
-		setHomeAcclimated(homeAcclimated);
-		setPersonality(personality);
-		setMoreInfo(moreInfo);
-		setSponsors(sponsors);
-		setImage1(image1);
-	}
-
-	public Greyhound(Long id, String name, Date dateOfBirth, String gender,
-			int weight, String color, boolean catFriendly,
-			boolean homeAcclimated, String personality, String moreInfo,
-			List<Sponsorship> sponsors, byte[] image1) {
-		this(name, dateOfBirth, gender, weight, color, catFriendly,
-				homeAcclimated, personality, moreInfo, sponsors, image1);
-		this.id = id;
 	}
 
 	public Long getId() {
@@ -212,12 +188,34 @@ public class Greyhound implements Serializable {
 		this.adoptionStatus = adoptionStatus;
 	}
 
-	public List<Sponsorship> getSponsors() {
+	public List<Sponsor> getSponsors() {
 		return sponsors;
 	}
 
-	public void setSponsors(List<Sponsorship> sponsors) {
-		this.sponsors = sponsors;
+	public void addSponsor(Sponsor sponsor) {
+		sponsor.setGreyhound(this);
+		sponsors.add(sponsor);
+	}
+	
+	public boolean hasSponsor(Long sponsorId) {
+		for (Sponsor sponsor: sponsors) {
+			if (sponsor.getId()==sponsorId)
+				return true;
+		}
+		return false;
+	}
+	
+	public void removeSponsor(Sponsor sponsor) {
+		sponsors.remove(sponsor); // Remove the sponsor from the list.
+		sponsor.setGreyhound(null); // Remove the sponsor's reference to the greyhound
+	}
+	
+	public void removeAllSponsors() {
+		for (Iterator<Sponsor> iterator = sponsors.iterator(); iterator.hasNext(); ) {
+			Sponsor sponsorToRemove = iterator.next();
+			iterator.remove(); // safely remove an item from the collection while iterating over it.
+			sponsorToRemove.setGreyhound(null);
+		}
 	}
 
 	public byte[] getImage1() {
