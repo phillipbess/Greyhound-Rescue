@@ -76,7 +76,7 @@
 								</c:choose>
 							</c:forEach>
 						</td>
-
+					
 						<td><a href="update-sponsor?id=${sponsor.id}">Edit</a></td>
 					</tr>
 
