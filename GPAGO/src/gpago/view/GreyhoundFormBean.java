@@ -22,7 +22,7 @@ import gpago.view.servlet.ServletUtils;
 public class GreyhoundFormBean {
 	private static final Logger logger = Logger.getLogger(GreyhoundFormBean.class.getName());
 	
-	private static final SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
+	private static final SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 	
 	// Ids of sponsors for this greyhound.  It is held in this form bean temporarily to be used elsewhere.
 	private List<Long> sponsorIds = new ArrayList<Long>();
@@ -48,6 +48,7 @@ public class GreyhoundFormBean {
 		
 		if (request.getParameter("dateOfBirth")!=null) {
 			try {
+				System.out.println(request.getParameter("dateOfBirth"));
 				greyhound.setDateOfBirth(format.parse(request.getParameter("dateOfBirth")));
 			} catch (Throwable e) {
 			}
