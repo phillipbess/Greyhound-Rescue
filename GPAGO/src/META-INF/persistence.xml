@@ -8,7 +8,7 @@
 		<class>gpago.model.entity.Sponsor</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
-			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/gpago"/>
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://aa4qn6mtxygpul.cifbuhops9dx.us-east-1.rds.amazonaws.com:3306/ebdb"/>
 			<property name="javax.persistence.jdbc.user" value="gpago"/>
 			<property name="javax.persistence.jdbc.password" value="password"/>
 			<property name="eclipselink.ddl-generation" value="create-or-extend-tables"/>
