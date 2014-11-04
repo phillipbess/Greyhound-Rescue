@@ -1,0 +1,44 @@
+Notes on deploying to AWS  November 4, 2014
+
+A few changes to create a war file that can be deployed to AWS Elastic Beanstalk.
+
+Connection to the DB was changed.  They recommend that the connection string be created at runtime using the environment variables that they created.  I don't know how to do that, so I hard coded the connection to the DB that they created.  This is in persistence.xml   They also named the databse ebdb without telling me.  
+Connection to the database. 
+
+I have the first from AWS and the second from persistence.xml:
+
+aa4qn6mtxygpul.cifbuhops9dx.us-east-1.rds.amazonaws.com:3306/ebdb
+
+<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/gpago"/>
+
+The name of the database is hardcoded in persistence.xml
+
+==================================
+
+tomcat-users.xml
+
+In AWS we don't get direct access to tomcat, so we needed to add a folder in WebContent called
+
+ .ebextensions     (ElasticBeanstalk)
+server-update.config    - copies the tomcat-users file to the right place
+tomcat-users.xml
+
+====================================
+
+We needed to add a folder called .ebextensions in WebContent.  
+
+That is the only way I can figure out to push the tomcat-users.xml file into the deployment.  There is now 2 tomcat-users files.  :(
+
+the users are now:
+	<role rolename="petManager"/>
+	<user username="Wendy" password="connor" roles="petManager"/>
+	<user username="admin" password="gpago" roles="petManager"/>
+
+the database master user/password is still    gpago / password
+
+============================================
+
+Added the file AwsCredentatils.properties in src. I think this might be only required if you want to deploy directly from Eclipse, but I'm not sure.  I'm deploying by exporting a WAR file and uploading that into AWS. 
+
+
+
